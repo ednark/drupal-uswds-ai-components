@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Tag, Link, Icon, Pagination via custom Twig.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Tag, Link, Icon, Pagination (Drupal Custom Twig)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "misc/default.html",
+  "title": "Tag, Link, Icon, Pagination (Drupal Custom Twig)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "tag, link, icon, pagination",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Tags and labels", "Content links", "USWDS icons via sprite", "Views pagination"],
+  "avoidWhen": ["When a paragraph bundle or theme region already handles the component"],
+  "agentPrompt": "These components have no dedicated paragraph bundle. Implement via Twig template overrides: field.html.twig for tags (add usa-tag), link.html.twig for links (add usa-link), menu.html.twig for pagination (add usa-pagination), and use USWDS sprite SVGs for icons.",
+  "twigTemplate": "field--type-list-string.html.twig (for tags), link.html.twig, menu.html.twig (for pagination), field--field-icon.html.twig (for icons)",
+  "preprocessFunction": "mytheme_preprocess_field() — detect tag fields and add usa-tag class. mytheme_preprocess_link() — add usa-link. mytheme_preprocess_menu() — add usa-pagination for pager menus.",
+  "drushCommands": [],
+  "scssSettings": "$theme-link-color, $theme-tag-font-family",
+  "dependencies": ["uswds theme"],
+  "editableAreas": ["Tag content and variant (usa-tag--big)", "Link variant (usa-link--external, --download)", "Icon name from USWDS sprite", "Pagination page range and current page"],
+  "preserveElements": ["usa-tag, usa-link, usa-icon, usa-pagination class structure", "xlink:href to USWDS sprite.svg for icons", "aria-current='page' on current pagination item", "rel='external' or download attribute on special links"],
+  "knownLimitations": ["USWDS sprite.svg must be in theme assets directory", "Pagination via Views pager needs separate template (views-mini-pager.html.twig)", "External link detection requires custom logic in preprocess"],
+  "tier": "curated",
+  "tags": ["tag", "link", "icon", "pagination", "twig", "custom", "misc"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Tag, Link, Icon, Pagination — Drupal Custom Twig</h1>
+<h2>Tag</h2>
+<pre>{# field--field-tags.html.twig #}
+{% for item in items %}
+  &lt;span class="usa-tag"&gt;{{ item.content }}&lt;/span&gt;
+{% endfor %}</pre>
+<h2>Icon (via USWDS sprite)</h2>
+<pre>&lt;svg class="usa-icon" aria-hidden="true" role="img"&gt;
+  &lt;use xlink:href="/themes/custom/mytheme/assets/img/sprite.svg#arrow-right"&gt;&lt;/use&gt;
+&lt;/svg&gt;</pre>
+<h2>Pagination (Views pager)</h2>
+<pre>{# views-mini-pager.html.twig #}
+&lt;nav class="usa-pagination" aria-label="Pagination"&gt;
+  &lt;ul class="usa-pagination__list"&gt;...&lt;/ul&gt;
+&lt;/nav&gt;</pre>
+</body>
+</html>

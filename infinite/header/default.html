@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Header via theme regions.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Header (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "header/default.html",
+  "title": "Header (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "header",
+  "themeRegion": "header, primary_menu, secondary_menu",
+  "complexity": "moderate",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Every government site", "Site-wide header navigation"],
+  "avoidWhen": ["Single-page apps without Drupal theme"],
+  "agentPrompt": "The uswds base theme provides header_top, header, primary_menu, and secondary_menu regions. Place menu blocks in primary_menu and secondary_menu. The theme settings page (/admin/appearance/settings/uswds) controls header variant (basic vs extended).",
+  "twigTemplate": "page.html.twig in themes/contrib/uswds/templates/ — look for region-header, region-primary_menu blocks. Override in themes/custom/mytheme/templates/page.html.twig",
+  "preprocessFunction": "mytheme_preprocess_page() — set $variables['header_variant'] = 'extended'",
+  "drushCommands": ["drush theme:enable uswds", "drush config-set system.theme default mytheme", "drush pm:enable block"],
+  "configYaml": "# In theme settings:\n# /admin/appearance/settings/uswds\n# Set header style: basic or extended",
+  "scssSettings": "$theme-header-font-family, $theme-header-logo-width, $theme-header-min-width",
+  "dependencies": ["uswds theme", "drupal:block", "drupal:system (menu)"],
+  "editableAreas": ["Header variant (basic vs extended) in theme settings", "Logo image in theme settings", "Menu structure via Drupal menu admin", "Search block placement in secondary_menu region"],
+  "preserveElements": ["usa-header class structure", "usa-logo and usa-logo__text", "usa-nav__primary and usa-nav__link", "usa-menu-btn and usa-nav__close buttons", "aria-label on nav"],
+  "knownLimitations": ["Extended header variant requires specific region block placement", "Megamenu requires custom Twig work — not provided by base theme"],
+  "tier": "curated",
+  "tags": ["header", "theme-region", "uswds", "navigation", "menu", "logo"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Header — Drupal Theme Region</h1>
+<p>Provided by the <code>uswds</code> base theme's region system.</p>
+<h2>Regions</h2>
+<ul>
+<li><code>header_top</code> — above the header (e.g., government banner)</li>
+<li><code>header</code> — logo and menu button</li>
+<li><code>primary_menu</code> — main navigation links</li>
+<li><code>secondary_menu</code> — secondary links (e.g., search, language)</li>
+</ul>
+</body>
+</html>

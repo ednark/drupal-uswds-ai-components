@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Full USWDS-Drupal module stack installation guide.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Drupal Setup</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "setup/default.html",
+  "title": "USWDS Drupal Setup",
+  "implementationType": "custom_module",
+  "drupalModule": "uswds + uswds_paragraph_components",
+  "uswdsComponent": "all",
+  "complexity": "moderate",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["Starting a new Drupal + USWDS government site", "Setting up the USWDS ecosystem on an existing Drupal site"],
+  "avoidWhen": ["Non-Drupal projects", "Sites not using USWDS"],
+  "agentPrompt": "Run these composer and drush commands in order to install the full USWDS-Drupal stack. Then create a subtheme of uswds and configure USWDS SCSS settings.",
+  "drushCommands": [
+    "composer require drupal/uswds",
+    "composer require drupal/uswds_paragraph_components",
+    "composer require drupal/paragraphs drupal/entity_reference_revisions drupal/viewsreference drupal/field_group drupal/twig_tweak",
+    "drush theme:enable uswds",
+    "drush pm:enable paragraphs entity_reference_revisions viewsreference field_group twig_tweak",
+    "drush pm:enable uswds_paragraph_components",
+    "drush pm:enable uswds_paragraph_components_accordion uswds_paragraph_components_alert uswds_paragraph_components_cards uswds_paragraph_components_modal uswds_paragraph_components_process_list uswds_paragraph_components_step_indicator uswds_paragraph_components_summary_box",
+    "drush cache:rebuild"
+  ],
+  "configYaml": "# Create a subtheme:\n# Copy themes/custom/uswds/examples/uswds_gulp_subtheme to web/themes/custom/mytheme\n# Set as default theme: drush config-set system.theme default mytheme",
+  "scssSettings": "_uswds-theme.scss settings to customize:\n$theme-color-primary: #005ea2;\n$theme-font-family-sans: 'Public Sans', sans-serif;\n$theme-show-compile-warnings: false;",
+  "dependencies": ["drupal:paragraphs", "drupal:entity_reference_revisions", "drupal:viewsreference", "drupal:field_group", "drupal:twig_tweak", "USWDS framework CSS/JS from theme"],
+  "twigTemplate": "themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_page() in mytheme.theme",
+  "editableAreas": ["Theme name (mytheme)", "SCSS settings in _uswds-theme.scss", "Which paragraph submodules to enable"],
+  "preserveElements": ["base theme: uswds", "library dependencies", "paragraph type configs"],
+  "knownLimitations": ["USWDS SCSS compilation requires Node.js and gulp", "Some paragraph bundles depend on others (Cards Flag depends on Cards)"],
+  "tier": "curated",
+  "tags": ["setup", "installation", "composer", "drush", "uswds", "paragraphs", "theme"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Drupal Setup</h1>
+<p>Full module stack installation for a Drupal + USWDS government site.</p>
+<pre>
+# 1. Install base theme and paragraph components
+composer require drupal/uswds
+composer require drupal/uswds_paragraph_components
+
+# 2. Install dependencies
+composer require drupal/paragraphs drupal/entity_reference_revisions \
+  drupal/viewsreference drupal/field_group drupal/twig_tweak
+
+# 3. Enable modules
+drush theme:enable uswds
+drush pm:enable paragraphs entity_reference_revisions viewsreference field_group twig_tweak
+drush pm:enable uswds_paragraph_components
+
+# 4. Enable desired submodules (pick what you need)
+drush pm:enable uswds_paragraph_components_accordion \
+  uswds_paragraph_components_alert \
+  uswds_paragraph_components_cards \
+  uswds_paragraph_components_modal \
+  uswds_paragraph_components_process_list \
+  uswds_paragraph_components_step_indicator \
+  uswds_paragraph_components_summary_box
+
+# 5. Clear cache
+drush cache:rebuild
+
+# 6. Create a subtheme (recommended)
+cp web/themes/contrib/uswds/examples/uswds_gulp_subtheme web/themes/custom/mytheme
+drush config-set system.theme default mytheme
+</pre>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Footer via theme regions.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Footer (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "footer/default.html",
+  "title": "Footer (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "footer",
+  "themeRegion": "footer_menu, footer, footer_secondary",
+  "complexity": "moderate",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Every government site", "Site-wide footer with navigation links and agency info"],
+  "avoidWhen": ["Single-page apps without Drupal theme"],
+  "agentPrompt": "The uswds base theme provides footer_menu, footer, and footer_secondary regions. Place a menu block in footer_menu for footer links. Place custom blocks in footer for agency info. Theme settings control slim vs big footer variant.",
+  "twigTemplate": "page.html.twig — look for region-footer, region-footer_menu, region-footer_secondary. Override in your subtheme.",
+  "preprocessFunction": "mytheme_preprocess_page() — set footer variant",
+  "drushCommands": ["drush pm:enable block", "drush config-set block.block.mytheme_footer content ..."],
+  "scssSettings": "$theme-footer-font-family",
+  "dependencies": ["uswds theme", "drupal:block"],
+  "editableAreas": ["Footer variant (slim, big, default) in theme settings", "Menu links via Drupal menu admin", "Agency name and contact info via custom blocks", "Identifier links (required by law)"],
+  "preserveElements": ["usa-footer class and variant classes", "usa-footer__primary-section structure", "usa-footer__nav and usa-footer__primary-content", "usa-identifier section (required for federal sites)"],
+  "knownLimitations": ["Big footer with collapsible sections needs JS", "Identifier component (usa-identifier) is separate — add as a custom block in footer_secondary"],
+  "tier": "curated",
+  "tags": ["footer", "theme-region", "uswds", "identifier", "agency", "navigation"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Footer — Drupal Theme Region</h1>
+<p>Provided by the <code>uswds</code> base theme's region system.</p>
+<h2>Regions</h2>
+<ul>
+<li><code>footer_menu</code> — footer navigation menu</li>
+<li><code>footer</code> — primary footer content (agency info, contact)</li>
+<li><code>footer_secondary</code> — secondary footer (identifier, legal links)</li>
+</ul>
+</body>
+</html>

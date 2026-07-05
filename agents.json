@@ -1,0 +1,40 @@
+{
+  "name": "drupal-uswds-ai-components",
+  "description": "Drupal implementation knowledge for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and configuration. Maintainer: ednark.",
+  "repo": "https://github.com/ednark/drupal-uswds-ai-components",
+  "base": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main",
+  "count": 20,
+  "facetsUrl": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json",
+  "index": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/components.index.json",
+  "indexSchemaVersion": 1,
+  "tileFetchPattern": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/{file}",
+  "facets": [
+    "implementationType",
+    "drupalModule",
+    "uswdsComponent",
+    "paragraphType",
+    "themeRegion",
+    "complexity",
+    "drupalVersion"
+  ],
+  "adaptationDetail": "embedded in each tile as <script type=\"application/json\" id=\"drupal-uswds-agent-meta\">",
+  "flow": [
+    "GET facets.json",
+    "GET components.index.json",
+    "filter by implementationType or drupalModule",
+    "GET tile by file",
+    "read drupal-uswds-agent-meta block for Drupal implementation guidance"
+  ],
+  "companionRegistry": {
+    "name": "uswds-ai-components",
+    "description": "USWDS design knowledge registry (component patterns, when to use, adaptation guidance)",
+    "url": "https://github.com/ednark/uswds-ai-components",
+    "agentsUrl": "https://raw.githubusercontent.com/ednark/uswds-ai-components/main/agents.json"
+  },
+  "drupalModules": [
+    "uswds (base theme)",
+    "uswds_paragraph_components (paragraph bundles by smustgrave)",
+    "plotly_js (charting field type)"
+  ],
+  "updated": "1.0.0"
+}

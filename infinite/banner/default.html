@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Banner via theme region.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Banner (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "banner/default.html",
+  "title": "Banner (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "banner",
+  "themeRegion": "header_top",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Required on all federal government websites", "The 'official website' indicator banner"],
+  "avoidWhen": ["Non-government sites", "State/local government (optional but recommended)"],
+  "agentPrompt": "The uswds base theme includes the government banner in the header_top region by default. It uses the usa-banner markup with accordion behavior. Override the template in your subtheme to customize.",
+  "twigTemplate": "usa-banner.html.twig in themes/contrib/uswds/templates/. Override in themes/custom/mytheme/templates/usa-banner.html.twig",
+  "preprocessFunction": "mytheme_preprocess_usa_banner()",
+  "drushCommands": ["drush theme:enable uswds"],
+  "scssSettings": "$theme-banner-max-width, $theme-banner-background-color",
+  "dependencies": ["uswds theme"],
+  "editableAreas": ["Banner text (agency name)", "Banner variant (default, medium, slim)", "How you know content"],
+  "preserveElements": ["usa-banner class structure", "usa-banner__header-text", "usa-accordion__button usa-banner__button", "usa-banner__content with guidance", "aria-expanded attribute on toggle"],
+  "knownLimitations": ["Banner is built into the theme — customizing requires template override", "The until-found hidden pattern needs custom JS"],
+  "tier": "curated",
+  "tags": ["banner", "theme-region", "uswds", "government", "official", "header_top", "required"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Banner — Drupal Theme Region</h1>
+<p>The government banner is included in the <code>header_top</code> region by the <code>uswds</code> base theme.</p>
+</body>
+</html>

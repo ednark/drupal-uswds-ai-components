@@ -1,0 +1,82 @@
+{
+  "name": "drupal-uswds-ai-components",
+  "description": "Drupal implementation knowledge for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and configuration.",
+  "version": "1.0.0",
+  "designSystem": {
+    "name": "U.S. Web Design System",
+    "version": "3.13.0",
+    "url": "https://designsystem.digital.gov"
+  },
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "totals": {
+    "components": "TBD",
+    "modules": 3,
+    "paragraphTypes": 8
+  },
+  "conventions": {
+    "selfContained": "Each tile is a single .html file with embedded drupal-uswds-agent-meta JSON block containing Drupal implementation guidance.",
+    "tiles": "infinite/<component>/<variant>.html — maps a USWDS component to its Drupal implementation",
+    "adaptationMetadata": "Each tile contains drupal-uswds-agent-meta with module, paragraph type, Twig template, Drush commands, and config"
+  },
+  "modules": [
+    {
+      "name": "USWDS Base Theme",
+      "machineName": "uswds",
+      "type": "theme",
+      "url": "https://www.drupal.org/project/uswds",
+      "description": "Base Drupal theme implementing USWDS v3.x. Provides regions, libraries, and subtheme examples.",
+      "regions": ["header_top", "header", "primary_menu", "secondary_menu", "sidebar_first", "sidebar_second", "breadcrumb", "highlighted", "help", "hero", "content", "footer_menu", "footer", "footer_secondary"]
+    },
+    {
+      "name": "USWDS Paragraph Components",
+      "machineName": "uswds_paragraph_components",
+      "type": "module",
+      "url": "https://www.drupal.org/project/uswds_paragraph_components",
+      "maintainer": "smustgrave (Stephen Mustgrave)",
+      "description": "Suite of Paragraph bundles for USWDS components. Submodules: Accordion, Alert, Cards, Columns, Modal, Process List, Step Indicator, Summary Box.",
+      "submodules": ["uswds_paragraph_components_accordion", "uswds_paragraph_components_alert", "uswds_paragraph_components_cards", "uswds_paragraph_components_cards_flag", "uswds_paragraph_components_columns", "uswds_paragraph_components_modal", "uswds_paragraph_components_process_list", "uswds_paragraph_components_step_indicator", "uswds_paragraph_components_summary_box"]
+    },
+    {
+      "name": "Plotly.js",
+      "machineName": "plotly_js",
+      "type": "module",
+      "url": "https://www.drupal.org/project/plotly_js",
+      "maintainer": "smustgrave (contributor)",
+      "description": "Integrates Plotly.js charting library as a Drupal field type. Create bar, line, pie, scatter charts from form input."
+    }
+  ],
+  "implementationTypes": [
+    "paragraph_bundle",
+    "theme_region",
+    "field_type",
+    "twig_template",
+    "custom_module"
+  ],
+  "sections": [
+    {
+      "id": "setup",
+      "title": "Setup & Installation",
+      "components": ["setup"]
+    },
+    {
+      "id": "paragraph-bundles",
+      "title": "Paragraph Bundle Components",
+      "components": ["accordion", "alert", "card", "modal", "process-list", "step-indicator", "summary-box"]
+    },
+    {
+      "id": "theme-regions",
+      "title": "Theme Region Components",
+      "components": ["header", "footer", "banner", "breadcrumb", "search", "side-navigation"]
+    },
+    {
+      "id": "field-types",
+      "title": "Field Type Components",
+      "components": ["data-visualizations"]
+    },
+    {
+      "id": "custom-twig",
+      "title": "Custom Twig Components",
+      "components": ["button", "table", "form", "text-input", "tag", "link", "icon", "pagination"]
+    }
+  ]
+}

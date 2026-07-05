@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Breadcrumb via theme region.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Breadcrumb (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "breadcrumb/default.html",
+  "title": "Breadcrumb (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "breadcrumb",
+  "themeRegion": "breadcrumb",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Multi-level content hierarchies", "Documentation sites", "Any page deeper than 2 levels"],
+  "avoidWhen": ["Single-level sites", "Homepage"],
+  "agentPrompt": "The uswds base theme maps Drupal's breadcrumb to usa-breadcrumb markup. Place the system breadcrumb block in the breadcrumb region. The theme handles the Twig conversion from Drupal's breadcrumb trail to usa-breadcrumb__list items.",
+  "twigTemplate": "breadcrumb.html.twig in themes/contrib/uswds/templates/. The base theme converts Drupal's breadcrumb variables into usa-breadcrumb__list structure.",
+  "preprocessFunction": "mytheme_preprocess_breadcrumb() — modify $variables['breadcrumb'] array",
+  "drushCommands": ["drush pm:enable block", "drush config-set block.block.mytheme_breadcrumbs region breadcrumb"],
+  "dependencies": ["uswds theme", "drupal:block", "drupal:system"],
+  "editableAreas": ["Breadcrumb block placement (which pages show it)", "Wrap variant via template override", "Custom breadcrumb logic via preprocess"],
+  "preserveElements": ["usa-breadcrumb class", "usa-breadcrumb__list and usa-breadcrumb__list-item", "usa-breadcrumb__link", "aria-label='Breadcrumb' on nav"],
+  "knownLimitations": ["Drupal's breadcrumb builder determines the trail — theme just styles it", "Wrap and naviprev-next variants need custom preprocess logic"],
+  "tier": "curated",
+  "tags": ["breadcrumb", "theme-region", "uswds", "navigation", "hierarchy", "trail"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Breadcrumb — Drupal Theme Region</h1>
+<p>Drupal's system breadcrumb block placed in the <code>breadcrumb</code> region, styled by the <code>uswds</code> theme.</p>
+</body>
+</html>

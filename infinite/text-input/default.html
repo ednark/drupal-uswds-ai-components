@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Text Input via template overrides.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Text Input (Drupal Custom Twig)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "text-input/default.html",
+  "title": "Text Input (Drupal Custom Twig)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "text-input",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Form text fields", "Search inputs", "Email/phone inputs"],
+  "avoidWhen": ["When using Webform module (has its own theming)"],
+  "agentPrompt": "Override input.html.twig and form-element--type-textfield.html.twig in your theme. Add usa-input class to the input element and usa-label to the label. For error states, add usa-input--error and wrap error message in usa-error-message.",
+  "twigTemplate": "input.html.twig, form-element--type-textfield.html.twig in themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_input() — add usa-input class. mytheme_preprocess_form_element() — add usa-label class to labels.",
+  "drushCommands": [],
+  "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-input-max-width",
+  "dependencies": ["uswds theme"],
+  "editableAreas": ["Input type attribute (text, email, tel, url, search, password)", "Placeholder text", "maxlength attribute", "autocomplete attribute", "Error/success variant classes"],
+  "preserveElements": ["usa-input class", "usa-label class on label", "for/id attribute relationship", "aria-describedby for hints", "aria-invalid='true' on error"],
+  "knownLimitations": ["Drupal wraps inputs in form-element divs that need CSS normalization", "Error message markup differs between Drupal and USWDS"],
+  "tier": "curated",
+  "tags": ["text-input", "twig", "custom", "form", "input", "textfield", "email", "tel"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Text Input — Drupal Custom Twig</h1>
+<p>Override <code>input.html.twig</code> to add <code>usa-input</code> class.</p>
+</body>
+</html>

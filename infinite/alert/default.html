@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Alert using paragraph bundle.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Alert (Drupal Paragraph)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "alert/default.html",
+  "title": "Alert (Drupal Paragraph Bundle)",
+  "implementationType": "paragraph_bundle",
+  "drupalModule": "uswds_paragraph_components",
+  "uswdsComponent": "alert",
+  "paragraphType": "uswds_alert",
+  "complexity": "simple",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["Page-level alerts", "Emergency notices", "Success/error feedback in content"],
+  "avoidWhen": ["Form validation errors (use Drupal's native form error handling)", "Site-wide alerts (use site_alert module instead)"],
+  "agentPrompt": "Enable the uswds_paragraph_components_alert submodule. Add a Paragraphs field allowing 'USWDS Alert' bundle. Editor selects alert type (info, success, warning, error) and enters body text.",
+  "twigTemplate": "paragraph--uswds-alert.html.twig",
+  "preprocessFunction": "uswds_paragraph_components_alert_preprocess_paragraph__uswds_alert()",
+  "drushCommands": ["drush pm:enable uswds_paragraph_components_alert", "drush cache:rebuild"],
+  "fieldDefinitions": {
+    "field_uswds_alert_type": "List (text) with options: info, success, warning, error",
+    "field_uswds_alert_body": "Text formatted field for alert content"
+  },
+  "dependencies": ["uswds_paragraph_components", "paragraphs"],
+  "editableAreas": ["Template override for custom alert styling", "Field options for alert type", "Help text for editors"],
+  "preserveElements": ["usa-alert class and variant classes (usa-alert--success, etc.)", "role='alert' or role='status'", "usa-alert__body structure"],
+  "knownLimitations": ["For site-wide alerts, use Drupal's site_alert module instead", "Alert type is fixed at creation time — no dynamic state changes"],
+  "tier": "curated",
+  "tags": ["alert", "paragraph", "uswds_paragraph_components", "notification", "info", "success", "warning", "error"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Alert — Drupal Paragraph Bundle</h1>
+<p>Provided by <code>uswds_paragraph_components_alert</code> submodule.</p>
+<h2>Installation</h2>
+<pre>drush pm:enable uswds_paragraph_components_alert</pre>
+<h2>Fields</h2>
+<ul>
+<li><strong>Alert Type</strong>: info, success, warning, error (select list)</li>
+<li><strong>Alert Body</strong>: formatted text</li>
+</ul>
+<h2>Output</h2>
+<p><code>&lt;div class="usa-alert usa-alert--{type}"&gt;</code></p>
+</body>
+</html>

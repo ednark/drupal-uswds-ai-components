@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Side Navigation via theme region.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Side Navigation (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "side-navigation/default.html",
+  "title": "Side Navigation (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "side-navigation",
+  "themeRegion": "sidebar_first",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Content pages with sidebar navigation", "Documentation sites", "Multi-level section navigation"],
+  "avoidWhen": ["Full-width content layouts", "Landing pages"],
+  "agentPrompt": "The uswds base theme auto-styles any menu block placed in sidebar_first as usa-sidenav. Drupal's menu system provides the hierarchy; the theme converts it to usa-sidenav markup with usa-current on the active trail.",
+  "twigTemplate": "menu.html.twig in themes/contrib/uswds/templates/. The theme provides a usa-sidenav version of the menu template.",
+  "preprocessFunction": "mytheme_preprocess_menu() — add custom classes or modify items",
+  "drushCommands": ["drush pm:enable block", "drush config-set block.block.mytheme_main_menu region sidebar_first"],
+  "dependencies": ["uswds theme", "drupal:block", "drupal:system (menu)"],
+  "editableAreas": ["Which menu to place in sidebar_first", "Menu depth (how many levels to show)", "Custom template for sublist expansion"],
+  "preserveElements": ["usa-sidenav class", "usa-sidenav__item", "usa-sidenav__sublist for nested items", "usa-current on active trail", "active-trail class hierarchy"],
+  "knownLimitations": ["Menu structure must be defined in Drupal's menu admin", "usa-current is applied based on Drupal's active trail — may not match for views pages", "Sub-list expansion requires menu depth > 1"],
+  "tier": "curated",
+  "tags": ["side-navigation", "sidenav", "theme-region", "uswds", "sidebar", "menu", "navigation"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Side Navigation — Drupal Theme Region</h1>
+<p>Any menu block placed in <code>sidebar_first</code> is auto-styled as <code>usa-sidenav</code> by the <code>uswds</code> theme.</p>
+</body>
+</html>

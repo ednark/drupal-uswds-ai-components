@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Card using paragraph bundle.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Card (Drupal Paragraph)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "card/default.html",
+  "title": "Card (Drupal Paragraph Bundle)",
+  "implementationType": "paragraph_bundle",
+  "drupalModule": "uswds_paragraph_components",
+  "uswdsComponent": "card",
+  "paragraphType": "uswds_card",
+  "complexity": "moderate",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["Topic landing pages", "Feature highlights", "Linkable content cards in grids"],
+  "avoidWhen": ["Simple text content", "When you need complex card interactions"],
+  "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
+  "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
+  "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
+  "drushCommands": ["drush pm:enable uswds_paragraph_components_cards", "drush cache:rebuild"],
+  "fieldDefinitions": {
+    "field_uswds_card_image": "Image field (media reference)",
+    "field_uswds_card_heading": "Text field for card title",
+    "field_uswds_card_body": "Text formatted field",
+    "field_uswds_card_link": "Link field for clickable card",
+    "field_uswds_card_flag": "Boolean for flag variant"
+  },
+  "dependencies": ["uswds_paragraph_components", "paragraphs", "drupal:media", "drupal:media_library"],
+  "editableAreas": ["Card layout (regular vs flag)", "Image style for card images", "Link behavior (entire card vs button)", "Breakpoint settings via uswds_paragraph_components_breakpoints submodule"],
+  "preserveElements": ["usa-card-group wrapper", "usa-card__container structure", "usa-card__header, usa-card__body, usa-card__media hierarchy", "make-link pattern for clickable cards"],
+  "knownLimitations": ["Card group requires parent paragraph with child cards", "Flag variant needs specific image dimensions", "Breakpoint submodule needed for responsive grid"],
+  "tier": "curated",
+  "tags": ["card", "paragraph", "uswds_paragraph_components", "grid", "topic", "landing"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Card — Drupal Paragraph Bundle</h1>
+<p>Provided by <code>uswds_paragraph_components_cards</code> submodule.</p>
+<h2>Structure</h2>
+<pre>
+uswds_card_group (parent)
+├── uswds_card (child — regular)
+├── uswds_card (child — regular)
+└── uswds_card (child — flag variant)
+</pre>
+<h2>Installation</h2>
+<pre>drush pm:enable uswds_paragraph_components_cards uswds_paragraph_components_breakpoints</pre>
+</body>
+</html>

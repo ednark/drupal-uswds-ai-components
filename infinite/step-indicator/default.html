@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Step Indicator using paragraph bundle.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Step Indicator (Drupal Paragraph)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "step-indicator/default.html",
+  "title": "Step Indicator (Drupal Paragraph Bundle)",
+  "implementationType": "paragraph_bundle",
+  "drupalModule": "uswds_paragraph_components",
+  "uswdsComponent": "step-indicator",
+  "paragraphType": "uswds_step_indicator",
+  "complexity": "moderate",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["Multi-step form progress", "Wizard-style workflows in content", "Showing completion status of a process"],
+  "avoidWhen": ["Simple numbered lists (use process-list instead)", "Navigation breadcrumbs (use breadcrumb component)"],
+  "agentPrompt": "Enable uswds_paragraph_components_step_indicator submodule. Create a parent 'uswds_step_indicator' paragraph, then add 'uswds_step_indicator_item' children. Mark one as current.",
+  "twigTemplate": "paragraph--uswds-step-indicator.html.twig",
+  "preprocessFunction": "uswds_paragraph_components_step_indicator_preprocess_paragraph()",
+  "drushCommands": ["drush pm:enable uswds_paragraph_components_step_indicator", "drush cache:rebuild"],
+  "fieldDefinitions": {
+    "field_uswds_step_items": "Entity reference revisions to uswds_step_indicator_item (unlimited)",
+    "field_uswds_step_label": "Text field for each step label",
+    "field_uswds_step_status": "List: complete, current, incomplete"
+  },
+  "dependencies": ["uswds_paragraph_components", "paragraphs", "entity_reference_revisions"],
+  "editableAreas": ["Template for centered/no-labels variants", "Step status field options"],
+  "preserveElements": ["usa-step-indicator structure", "usa-step-indicator__segment states (--complete, --current)", "aria-label for progress"],
+  "knownLimitations": ["Step items are child paragraphs", "State management is manual (editor sets complete/current/incomplete)", "Not integrated with Drupal's form API multi-step forms"],
+  "tier": "curated",
+  "tags": ["step-indicator", "paragraph", "uswds_paragraph_components", "progress", "wizard", "multistep"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Step Indicator — Drupal Paragraph Bundle</h1>
+<p>Provided by <code>uswds_paragraph_components_step_indicator</code> submodule.</p>
+</body>
+</html>

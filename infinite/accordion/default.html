@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Accordion using paragraph bundle.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Accordion (Drupal Paragraph)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "accordion/default.html",
+  "title": "Accordion (Drupal Paragraph Bundle)",
+  "implementationType": "paragraph_bundle",
+  "drupalModule": "uswds_paragraph_components",
+  "uswdsComponent": "accordion",
+  "paragraphType": "uswds_accordion",
+  "complexity": "simple",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["FAQ pages", "Collapsible content sections", "Progressive disclosure of information"],
+  "avoidWhen": ["Content that should always be visible", "Mobile-accordion-only patterns (use details element instead)"],
+  "agentPrompt": "Enable the uswds_paragraph_components_accordion submodule. Add a Paragraphs field to your content type. Select 'USWDS Accordion' as an allowed bundle. Editors create accordion items as child paragraphs.",
+  "twigTemplate": "paragraph--uswds-accordion.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_accordion/templates/",
+  "preprocessFunction": "uswds_paragraph_components_accordion_preprocess_paragraph__uswds_accordion()",
+  "drushCommands": ["drush pm:enable uswds_paragraph_components_accordion", "drush cache:rebuild"],
+  "fieldDefinitions": {
+    "field_uswds_accordion_item": "Entity reference revisions to uswds_accordion_item paragraph type (unlimited)",
+    "field_uswds_heading": "Text field for accordion section title"
+  },
+  "dependencies": ["uswds_paragraph_components", "paragraphs", "entity_reference_revisions"],
+  "editableAreas": ["Template override in theme: copy to themes/custom/mytheme/templates/paragraph--uswds-accordion.html.twig", "Field labels and help text", "Allowed bundles on the parent paragraph field"],
+  "preserveElements": ["usa-accordion class structure", "aria-expanded and aria-controls attributes", "button.usa-accordion__button", "hidden attribute on content panels"],
+  "knownLimitations": ["Uses jQuery-based USWDS JS by default", "Accordion items are child paragraphs — cannot reference existing nodes"],
+  "tier": "curated",
+  "tags": ["accordion", "paragraph", "uswds_paragraph_components", "collapsible", "faq"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Accordion — Drupal Paragraph Bundle</h1>
+<p>Provided by <code>uswds_paragraph_components_accordion</code> submodule.</p>
+<h2>Installation</h2>
+<pre>drush pm:enable uswds_paragraph_components_accordion</pre>
+<h2>Usage</h2>
+<ol>
+<li>Add a Paragraphs field to your content type</li>
+<li>Select <strong>USWDS Accordion</strong> as an allowed bundle</li>
+<li>Editors add accordion items as child paragraphs</li>
+<li>Each item has a heading and body text</li>
+</ol>
+<h2>Template</h2>
+<p>Override: <code>paragraph--uswds-accordion.html.twig</code></p>
+<p>Output: <code>&lt;ul class="usa-accordion"&gt; &lt;li class="usa-accordion__item"&gt; ...</code></p>
+</body>
+</html>

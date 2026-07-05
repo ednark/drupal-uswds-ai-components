@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of data visualizations using plotly_js field type.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Visualizations (Drupal Field Type)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "data-visualizations/default.html",
+  "title": "Data Visualizations (Drupal Field Type — plotly_js)",
+  "implementationType": "field_type",
+  "drupalModule": "plotly_js",
+  "uswdsComponent": "data-visualizations",
+  "complexity": "moderate",
+  "drupalVersion": "^11.3 || ^12",
+  "useWhen": ["Bar charts", "Line charts", "Pie charts", "Scatter plots", "Any data visualization on a Drupal government site"],
+  "avoidWhen": ["Simple static images of charts", "When USWDS's native (limited) chart patterns suffice", "Drupal 10 sites (module requires ^11.3)"],
+  "agentPrompt": "Install plotly_js module: composer require drupal/plotly_js. Run drush plotly_js:download-plotly to get the library. Add a 'Plotly.js Graph' field to your content type. Editors configure chart type and data via the field widget. Graph templates (YAML) control rendering.",
+  "twigTemplate": "plotly-js-graph.html.twig in modules/contrib/plotly_js/templates/. Graph templates in graph_templates/ directory (YAML-based, overrideable).",
+  "preprocessFunction": "plotly_js_preprocess_field() — prepare graph data for JS rendering",
+  "drushCommands": [
+    "composer require drupal/plotly_js",
+    "drush pm:enable plotly_js",
+    "drush plotly_js:download-plotly",
+    "drush cache:rebuild"
+  ],
+  "configYaml": "# Graph template cascade (most specific wins):\n# PLOT_NAME.yml\n# PLOT_NAME--ENTITY_TYPE.yml\n# PLOT_NAME--ENTITY_TYPE--FIELD_MACHINE_NAME.yml\n# PLOT_NAME--ENTITY_TYPE--ENTITY_ID.yml\n# PLOT_NAME--ENTITY_TYPE--ENTITY_ID--FIELD_MACHINE_NAME.yml",
+  "scssSettings": "Chart colors should inherit from USWDS theme tokens for visual consistency",
+  "fieldDefinitions": {
+    "field_chart": "Plotly.js Graph field type — stores chart type, data, and display settings",
+    "chart_type": "bar, line, pie, scatter, etc.",
+    "chart_data": "JSON or CSV data for the chart",
+    "display_settings": "Width, height, colors, legend, axis labels"
+  },
+  "dependencies": ["plotly_js", "Plotly.js library (via drush download or remote)"],
+  "editableAreas": ["Chart type per field instance", "Graph template YAML files", "Chart colors to match USWDS palette", "Remote vs local library at /admin/config/content/plotly_js"],
+  "preserveElements": ["Plotly.js library script include", "Chart container div with unique ID", "Accessibility: provide data table alternative for screen readers"],
+  "knownLimitations": ["Requires Drupal 11.3+ or 12", "Plotly.js is a large JS library (~3MB)", "Not integrated with USWDS design tokens — colors must be set manually", "Charts are JS-rendered (no server-side fallback)"],
+  "tier": "curated",
+  "tags": ["data-visualizations", "field-type", "plotly_js", "charts", "graphs", "bar", "line", "pie", "scatter"]
+}
+</script>
+</head>
+<body>
+<h1>Data Visualizations — Drupal Field Type (plotly_js)</h1>
+<p>Provided by the <code>plotly_js</code> module maintained by smustgrave.</p>
+<h2>Installation</h2>
+<pre>
+composer require drupal/plotly_js
+drush pm:enable plotly_js
+drush plotly_js:download-plotly
+drush cache:rebuild
+</pre>
+<h2>Graph Template Cascade</h2>
+<p>Templates resolve most-specific-first:</p>
+<pre>
+bar--node--7--field_chart.yml  (most specific)
+bar--node--7.yml
+bar--node--field_chart.yml
+bar--node.yml
+bar.yml                         (least specific)
+</pre>
+</body>
+</html>

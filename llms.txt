@@ -1,0 +1,65 @@
+> Drupal USWDS AI Components — Drupal implementation knowledge for USWDS
+> Maps each USWDS component to its Drupal module, paragraph type, Twig template, and configuration.
+> Home: https://github.com/ednark/drupal-uswds-ai-components
+> Base layer: https://github.com/ednark/ai-component-registry-spec (submodule at _base/)
+> Companion design registry: https://github.com/ednark/uswds-ai-components
+
+---
+
+## Overview
+
+Drupal USWDS AI Components is a registry that tells AI agents HOW to implement USWDS components in Drupal. It is a companion to uswds-ai-components (which tells agents WHICH component to use).
+
+## Machine manifest
+
+> https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/agents.json
+
+---
+
+## Quick start
+
+1. Filter vocab: GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json
+2. Discovery index: GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/components.index.json
+3. Component source: GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/{file}
+
+---
+
+## Facets
+
+- implementationType — paragraph_bundle, theme_region, field_type, twig_template, custom_module
+- drupalModule — uswds, uswds_paragraph_components, plotly_js, custom
+- uswdsComponent — accordion, alert, button, card, etc.
+- paragraphType — uswds_accordion, uswds_alert, uswds_card, etc. (when applicable)
+- themeRegion — header, footer, breadcrumb, etc. (when applicable)
+- complexity — simple, moderate, complex
+- drupalVersion — ^10.1, ^11, ^12
+
+---
+
+## Drupal modules
+
+- uswds (base theme) — regions, libraries, subtheming
+- uswds_paragraph_components (by smustgrave) — paragraph bundles for 8 USWDS components
+- plotly_js — field type for charts
+
+---
+
+## Two-registry pattern
+
+Step 1: Query uswds-ai-components for design guidance (which component, when, HTML pattern)
+Step 2: Query this registry for implementation guidance (which module, paragraph type, Twig, Drush)
+
+---
+
+## Adaptation metadata fields
+
+Each tile includes:
+- drupalModule — which module provides this
+- paragraphType — paragraph bundle machine name (if applicable)
+- twigTemplate — Twig template naming pattern
+- preprocessFunction — hook_preprocess function name
+- drushCommands — commands to install/configure
+- configYaml — config import YAML
+- scssSettings — USWDS SCSS theme settings
+- fieldDefinitions — Drupal field definitions
+- dependencies — required Drupal modules

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Summary Box using paragraph bundle.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Summary Box (Drupal Paragraph)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "summary-box/default.html",
+  "title": "Summary Box (Drupal Paragraph Bundle)",
+  "implementationType": "paragraph_bundle",
+  "drupalModule": "uswds_paragraph_components",
+  "uswdsComponent": "summary-box",
+  "paragraphType": "uswds_summary_box",
+  "complexity": "simple",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": ["Key takeaways at top of content", "Informational summaries", "TL;DR sections"],
+  "avoidWhen": ["Error summaries (use Drupal form error handling)", "Regular body content"],
+  "agentPrompt": "Enable uswds_paragraph_components_summary_box submodule. Editor creates a summary box with heading and body text (can include list items).",
+  "twigTemplate": "paragraph--uswds-summary-box.html.twig",
+  "preprocessFunction": "uswds_paragraph_components_summary_box_preprocess_paragraph()",
+  "drushCommands": ["drush pm:enable uswds_paragraph_components_summary_box", "drush cache:rebuild"],
+  "fieldDefinitions": {
+    "field_uswds_summary_heading": "Text field for box heading",
+    "field_uswds_summary_body": "Text formatted field (supports lists, links)"
+  },
+  "dependencies": ["uswds_paragraph_components", "paragraphs"],
+  "editableAreas": ["Template for info/warning/error variants", "Heading level (h2-h4)"],
+  "preserveElements": ["usa-summary-box structure", "role='region'", "usa-summary-box__heading and __body hierarchy"],
+  "knownLimitations": ["Variant (info/warning/error) styling may require custom CSS", "Not auto-generated from content — editor must write summary"],
+  "tier": "curated",
+  "tags": ["summary-box", "paragraph", "uswds_paragraph_components", "summary", "callout", "tldr"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Summary Box — Drupal Paragraph Bundle</h1>
+<p>Provided by <code>uswds_paragraph_components_summary_box</code> submodule.</p>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "name": "drupal-uswds-ai-components",
+  "description": "Drupal implementation knowledge for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and configuration.",
+  "designSystem": {
+    "name": "U.S. Web Design System (Drupal)",
+    "version": "3.13.0",
+    "url": "https://designsystem.digital.gov"
+  },
+  "agentMetaId": "drupal-uswds-agent-meta",
+  "tileDir": "infinite",
+  "facets": [
+    "implementationType",
+    "drupalModule",
+    "uswdsComponent",
+    "paragraphType",
+    "themeRegion",
+    "complexity",
+    "drupalVersion"
+  ],
+  "indexSchemaVersion": 1,
+  "repo": "https://github.com/ednark/drupal-uswds-ai-components",
+  "base": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main",
+  "additionalFields": [
+    "useWhen",
+    "avoidWhen",
+    "agentPrompt",
+    "editableAreas",
+    "preserveElements",
+    "knownLimitations",
+    "twigTemplate",
+    "preprocessFunction",
+    "drushCommands",
+    "configYaml",
+    "scssSettings",
+    "fieldDefinitions",
+    "dependencies"
+  ],
+  "govCompliance": [
+    "Section 508",
+    "WCAG 2.1 AA",
+    "21st Century IDEA"
+  ],
+  "updated": "1.0.0"
+}

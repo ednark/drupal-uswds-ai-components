@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Search via theme region.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Search (Drupal Theme Region)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "search/default.html",
+  "title": "Search (Drupal Theme Region)",
+  "implementationType": "theme_region",
+  "drupalModule": "uswds",
+  "uswdsComponent": "search",
+  "themeRegion": "secondary_menu",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Sites with search functionality", "Header search bar"],
+  "avoidWhen": ["Sites without search", "When search is in a dropdown panel (custom Twig needed)"],
+  "agentPrompt": "Place the Drupal search form block in the secondary_menu region. The uswds theme converts Drupal's search form to usa-search markup. For usa-search--small or --big variants, override the template.",
+  "twigTemplate": "search.html.twig or form--search-form.html.twig in themes/contrib/uswds/templates/. Override to change variant (default, big, small).",
+  "preprocessFunction": "mytheme_preprocess_form() — check for search form and add usa-search--small class",
+  "drushCommands": ["drush pm:enable search", "drush config-set block.block.mytheme_search region secondary_menu"],
+  "scssSettings": "$theme-search-input-width",
+  "dependencies": ["uswds theme", "drupal:search"],
+  "editableAreas": ["Search form block placement", "Search variant (default, big, small) via template override", "Placeholder text", "Submit button text/icon"],
+  "preserveElements": ["usa-search class", "usa-input type='search'", "usa-button submit", "role='search' on form"],
+  "knownLimitations": ["Drupal's search form has extra div wrappers that need CSS normalization", "Big/small variants require template override", "Search API integration requires additional configuration"],
+  "tier": "curated",
+  "tags": ["search", "theme-region", "uswds", "header", "form", "secondary_menu"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Search — Drupal Theme Region</h1>
+<p>Drupal's search form block placed in <code>secondary_menu</code> region, styled by the <code>uswds</code> theme.</p>
+</body>
+</html>

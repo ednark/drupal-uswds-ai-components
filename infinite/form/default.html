@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Form via custom Twig and Form API.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Form (Drupal Custom Twig + Form API)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "form/default.html",
+  "title": "Form (Drupal Custom Twig + Form API)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "form",
+  "complexity": "complex",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Custom forms", "Contact forms", "Application forms", "Survey forms"],
+  "avoidWhen": ["Content editing forms (admin UI)", "When a Webform module form suffices"],
+  "agentPrompt": "Use Drupal's Form API to build forms. Override form-element.html.twig and input.html.twig in your theme to add usa-form, usa-input, usa-label, usa-button classes. For the form wrapper, override form.html.twig to add usa-form class. Use #attributes to add USWDS classes in your form builder.",
+  "twigTemplate": "form.html.twig, form-element.html.twig, input.html.twig, fieldset.html.twig, textarea.html.twig, select.html.twig in themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_form() — add usa-form class. mytheme_preprocess_form_element() — add usa-label, usa-input classes. mytheme_preprocess_input() — map input types to USWDS classes.",
+  "drushCommands": [],
+  "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-form-font-family",
+  "dependencies": ["uswds theme"],
+  "editableAreas": ["Form wrapper class (usa-form)", "Input classes (usa-input, usa-select, usa-checkbox__input, usa-radio__input)", "Label classes (usa-label)", "Error message styling (usa-error-message)", "Fieldset and legend classes"],
+  "preserveElements": ["usa-form wrapper", "usa-label + usa-input pairing", "for/id attribute relationship", "aria-describedby for hints and errors", "required attribute and aria-required"],
+  "knownLimitations": ["Drupal's Form API generates its own markup — significant template overrides needed", "Drupal's error handling uses different markup than USWDS validation patterns", "Checkbox and radio groups need fieldset wrapper with usa-fieldset class"],
+  "tier": "curated",
+  "tags": ["form", "twig", "custom", "form-api", "input", "label", "validation", "contact"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Form — Drupal Custom Twig + Form API</h1>
+<p>Requires overriding multiple form-related Twig templates to map Drupal's Form API to USWDS classes.</p>
+<h2>Form builder (PHP)</h2>
+<pre>
+$form['name'] = [
+  '#type' => 'textfield',
+  '#title' => $this->t('Full Name'),
+  '#attributes' => ['class' => ['usa-input']],
+  '#label_attributes' => ['class' => ['usa-label']],
+];
+</pre>
+<h2>Template override</h2>
+<pre>
+{# input.html.twig #}
+&lt;input{{ attributes.addClass('usa-input') }} /&gt;
+{# label attributes are applied automatically #}
+</pre>
+</body>
+</html>

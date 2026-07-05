@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "_base/generate-index.mjs",
+  "total": 20,
+  "designSystem": "U.S. Web Design System (Drupal) 3.13.0",
+  "facets": {
+    "implementationType": {
+      "paragraph_bundle": 7,
+      "theme_region": 6,
+      "twig_template": 5,
+      "field_type": 1,
+      "custom_module": 1
+    },
+    "drupalModule": {
+      "uswds_paragraph_components": 7,
+      "uswds": 6,
+      "custom": 5,
+      "plotly_js": 1,
+      "uswds + uswds_paragraph_components": 1
+    },
+    "uswdsComponent": {
+      "accordion": 1,
+      "alert": 1,
+      "banner": 1,
+      "breadcrumb": 1,
+      "button": 1,
+      "card": 1,
+      "data-visualizations": 1,
+      "footer": 1,
+      "form": 1,
+      "header": 1,
+      "tag, link, icon, pagination": 1,
+      "modal": 1,
+      "process-list": 1,
+      "search": 1,
+      "all": 1,
+      "side-navigation": 1,
+      "step-indicator": 1,
+      "summary-box": 1,
+      "table": 1,
+      "text-input": 1
+    },
+    "paragraphType": {
+      "uswds_accordion": 1,
+      "uswds_alert": 1,
+      "uswds_card": 1,
+      "uswds_modal": 1,
+      "uswds_process_list": 1,
+      "uswds_step_indicator": 1,
+      "uswds_summary_box": 1
+    },
+    "themeRegion": {
+      "header_top": 1,
+      "breadcrumb": 1,
+      "footer_menu, footer, footer_secondary": 1,
+      "header, primary_menu, secondary_menu": 1,
+      "secondary_menu": 1,
+      "sidebar_first": 1
+    },
+    "complexity": {
+      "simple": 10,
+      "moderate": 9,
+      "complex": 1
+    },
+    "drupalVersion": {
+      "^10.1 || ^11 || ^12": 8,
+      "^10 || ^11": 11,
+      "^11.3 || ^12": 1
+    }
+  }
+}

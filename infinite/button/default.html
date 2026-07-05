@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Button via custom Twig.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Button (Drupal Custom Twig)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "button/default.html",
+  "title": "Button (Drupal Custom Twig)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "button",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["CTA buttons in content", "Form submit buttons", "Action buttons"],
+  "avoidWhen": ["When a link should look like a button (use usa-button class on <a>)"],
+  "agentPrompt": "No paragraph bundle exists for buttons. For form buttons, override form-element.html.twig or input.html.twig in your theme to add usa-button classes. For content buttons, use Twig Tweak's drupal_link() with usa-button class, or write a custom block plugin.",
+  "twigTemplate": "input--submit.html.twig, form-element.html.twig, or field--field-link.html.twig in themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_input() — add usa-button class to submit inputs. mytheme_preprocess_link() — add usa-button to link buttons.",
+  "drushCommands": ["drush pm:enable twig_tweak"],
+  "scssSettings": "$theme-button-border-radius, $theme-button-font-family, $theme-color-primary",
+  "dependencies": ["uswds theme", "twig_tweak (optional, for content buttons)"],
+  "editableAreas": ["Button variant class (usa-button--secondary, --outline, --big, etc.)", "Button text", "Button type attribute (submit, button, reset)"],
+  "preserveElements": ["usa-button base class", "type='submit' on form buttons", "aria-label if icon-only button"],
+  "knownLimitations": ["Drupal's Form API generates inputs, not <button> elements by default — use #type => 'button' for <button> tag", "Button variants must be added programmatically in preprocess"],
+  "tier": "curated",
+  "tags": ["button", "twig", "custom", "form", "cta", "action"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Button — Drupal Custom Twig</h1>
+<p>No paragraph bundle exists. Implement via template overrides and preprocess functions.</p>
+<h2>Form submit buttons</h2>
+<pre>
+{# input--submit.html.twig #}
+&lt;input{{ attributes.addClass('usa-button') }} /&gt;
+</pre>
+<h2>Content link buttons (via Twig Tweak)</h2>
+<pre>
+{{ drupal_link('Learn More', '/about', { 'class': ['usa-button'] }) }}
+</pre>
+</body>
+</html>

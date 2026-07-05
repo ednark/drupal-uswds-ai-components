@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Table via custom Twig.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Table (Drupal Custom Twig)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "table.html",
+  "title": "Table (Drupal Custom Twig)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "table",
+  "complexity": "moderate",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": ["Data tables in content", "Views table displays", "Comparison tables"],
+  "avoidWhen": ["Layout grids (use CSS grid instead)", "Simple key-value pairs (use definition lists)"],
+  "agentPrompt": "Override table.html.twig in your theme to add usa-table class to all Drupal tables. For Views tables, override views-view-table.html.twig. For stacked/borderless/striped variants, add the variant class in preprocess based on a field or view setting.",
+  "twigTemplate": "table.html.twig, views-view-table.html.twig in themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_table() — add usa-table class. mytheme_preprocess_views_view_table() — add variant classes.",
+  "drushCommands": [],
+  "scssSettings": "",
+  "dependencies": ["uswds theme"],
+  "editableAreas": ["Table variant class (usa-table--striped, --borderless, --scrollable, --stacked)", "Responsive wrapper div for scrollable tables", "data-label attributes for stacked variant"],
+  "preserveElements": ["usa-table base class", "thead/tbody structure", "scope='col' on th elements", "caption element for accessibility"],
+  "knownLimitations": ["Drupal Views tables have different template suggestions than content tables", "Stacked variant requires data-label attributes on td elements (manual in Twig)", "Scrollable variant needs a wrapper div around the table"],
+  "tier": "curated",
+  "tags": ["table", "twig", "custom", "views", "data", "striped", "borderless", "stacked"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Table — Drupal Custom Twig</h1>
+<p>Override <code>table.html.twig</code> to add <code>usa-table</code> class to all Drupal tables.</p>
+<h2>Base override</h2>
+<pre>
+{# table.html.twig #}
+&lt;table{{ attributes.addClass('usa-table') }}&gt;
+  ...
+&lt;/table&gt;
+</pre>
+<h2>Views table</h2>
+<pre>
+{# views-view-table.html.twig #}
+&lt;table{{ attributes.addClass('usa-table', 'usa-table--striped') }}&gt;
+  ...
+&lt;/table&gt;
+</pre>
+</body>
+</html>
