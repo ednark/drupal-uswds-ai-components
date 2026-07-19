@@ -58,6 +58,12 @@ Step 2: Query drupal-uswds-ai-components (this registry)
 | `twig_template` | Requires custom Twig template in theme | button, table, form, text-input, tag, link, icon, pagination |
 | `custom_module` | Requires a custom Drupal module | (rare — most components fit one of the above) |
 
+## Theme Override Guidance
+
+Use the [Drupal USWDS Theme Override Guide](guides/uswds-theme-overrides.md) when deciding whether a customization belongs in a USWDS Sass setting, scoped custom CSS, a CSS custom property, Drupal preprocess, Twig, JavaScript, or an exceptional inline value.
+
+The companion `uswds-theme-overrides` skill is available at `.claude/skills/uswds-theme-overrides/SKILL.md` and is discoverable by Claude Code and OpenCode.
+
 ## Quick Start
 
 1. Filter vocab (tiny): GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json

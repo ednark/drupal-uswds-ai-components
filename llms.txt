@@ -51,6 +51,18 @@ Step 2: Query this registry for implementation guidance (which module, paragraph
 
 ---
 
+## Theme override guidance
+
+Canonical guide:
+
+> https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md
+
+Use the lowest appropriate layer: existing USWDS component or utility, USWDS Sass setting, scoped custom style, runtime CSS custom property, Drupal render array or preprocess, specific Twig override, then Drupal JavaScript behavior. Avoid inline styles and preserve every component constraint.
+
+The absence of a paragraph bundle does not by itself justify a Twig override.
+
+---
+
 ## Adaptation metadata fields
 
 Each tile includes:

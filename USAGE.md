@@ -63,6 +63,22 @@ curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main
 Restart opencode. The skill auto-triggers when you mention USWDS components,
 government websites, or Drupal theming.
 
+### Install the cross-tool theme override skill
+
+The Drupal USWDS theme override skill works with Claude Code and OpenCode from the same location:
+
+```bash
+mkdir -p /path/to/your-project/.claude/skills/uswds-theme-overrides
+curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/.claude/skills/uswds-theme-overrides/SKILL.md \
+  -o /path/to/your-project/.claude/skills/uswds-theme-overrides/SKILL.md
+```
+
+The skill loads the canonical guide at:
+
+https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md
+
+Restart the agent after installing the skill.
+
 ## Approach 4: opencode Agents (Subagents)
 
 Each repo ships agent definitions in `.opencode/agents/`:
@@ -135,8 +151,11 @@ Combined with the registries above, the agent can:
 | `USAGE.md` | This guide |
 | `opencode.json` | opencode config with references |
 | `.opencode/skills/uswds-registry/SKILL.md` | Global skill (USWDS + Drupal combined) |
+| `.claude/skills/uswds-theme-overrides/SKILL.md` | Cross-tool Drupal USWDS override workflow |
 | `.opencode/agents/uswds-drupal-agent.md` | Subagent for Drupal implementation |
-| `templates/AGENTS.md` | Template for copying into Drupal projects |
+| `guides/uswds-theme-overrides.md` | Canonical Drupal USWDS override policy |
+| `templates/AGENTS.md` | Agent instruction template for Drupal projects |
+| `templates/CLAUDE.md` | Claude Code instruction template for Drupal projects |
 
 ### uswds-ai-components repo
 
@@ -163,6 +182,10 @@ curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main
 # Check the skills are accessible
 curl -s https://raw.githubusercontent.com/ednark/uswds-ai-components/main/.opencode/skills/uswds-design/SKILL.md | head -1
 curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/.opencode/skills/uswds-registry/SKILL.md | head -1
+curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/.claude/skills/uswds-theme-overrides/SKILL.md | head -1
+
+# Check the theme override guide is accessible
+curl -s https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md | head -1
 
 # Check the agents are accessible
 curl -s https://raw.githubusercontent.com/ednark/uswds-ai-components/main/.opencode/agents/uswds-design-agent.md | head -1

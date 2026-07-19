@@ -25,6 +25,20 @@
     "GET tile by file",
     "read drupal-uswds-agent-meta block for Drupal implementation guidance"
   ],
+  "guides": [
+    {
+      "id": "uswds-theme-overrides",
+      "title": "Drupal USWDS Theme Override Guide",
+      "description": "Decision hierarchy and placement rules for USWDS Sass settings, scoped CSS, Drupal preprocess hooks, Twig overrides, JavaScript, and inline styles.",
+      "path": "guides/uswds-theme-overrides.md",
+      "url": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md",
+      "appliesTo": [
+        "theme_region",
+        "twig_template",
+        "custom_module"
+      ]
+    }
+  ],
   "companionRegistry": {
     "name": "uswds-ai-components",
     "description": "USWDS design knowledge registry (component patterns, when to use, adaptation guidance)",

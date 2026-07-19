@@ -41,10 +41,20 @@ After selecting a USWDS component, fetch the corresponding Drupal implementation
    which templates to override, and provide the adapted markup
 ```
 
+## Theme Override Guidance
+
+Before changing a Drupal USWDS sub-theme, read:
+
+https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md
+
+Use the lowest appropriate override layer: existing component or utility, USWDS Sass setting, scoped custom style, CSS custom property for runtime values, Drupal render array or preprocess, specific Twig override, then Drupal JavaScript behavior. Avoid inline styles.
+
+Do not treat the absence of a paragraph bundle as sufficient reason to create a Twig override. Preserve the selected tile's semantic structure, ARIA relationships, keyboard behavior, focus behavior, reduced-motion support, forced-colors support, and required classes.
+
 ## Rules
 
 - ALWAYS query the registries before generating UI. Do not guess USWDS class names.
 - Prefer components with `requiresJs: "no"` unless the task explicitly needs JS.
 - Preserve `preserveElements` — never remove ARIA attributes or required class structures.
 - Check `govCompliance` — all components must meet Section 508 / WCAG 2.1 AA.
-- When no Drupal paragraph bundle exists, use Twig template overrides (see the `twig_template` tiles).
+- When no Drupal paragraph bundle exists, evaluate render arrays, preprocess, form alters, theme settings, existing base templates, and module ownership before creating a Twig override.

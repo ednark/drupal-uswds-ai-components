@@ -17,6 +17,12 @@ A Drupal implementation knowledge registry for USWDS components. Maps each USWDS
 2. Fetch the tile, read the `drupal-uswds-agent-meta` JSON block
 3. Follow the module installation, paragraph type, Twig template, and Drush commands
 
+## Theme Override Guidance
+
+When authoring or reviewing Drupal theme implementation guidance, read `guides/uswds-theme-overrides.md`. Prefer existing USWDS components and utilities, then USWDS Sass settings, scoped custom styles, Drupal render arrays or preprocess, and only then a specific Twig override. Preserve every tile's semantic, accessibility, and component constraints.
+
+Do not treat the absence of a paragraph bundle as sufficient reason to create a Twig override.
+
 ## Companion Registry
 
 For USWDS design knowledge (HTML patterns, when to use, a11y guidance), query:

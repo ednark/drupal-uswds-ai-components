@@ -33,6 +33,14 @@ For USWDS design knowledge (HTML patterns, when to use), also query:
    - SCSS settings (`scssSettings`)
    - Dependencies (`dependencies`)
 
+## Theme Override Decisions
+
+Before recommending a Drupal theme override, read:
+
+https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/guides/uswds-theme-overrides.md
+
+Use the lowest appropriate layer. Do not treat the absence of a paragraph bundle as sufficient reason to create a Twig override. Preserve each selected tile's semantic, accessibility, class, and behavior constraints.
+
 ## Implementation Types
 
 - `paragraph_bundle` — ready-to-use Paragraph type from uswds_paragraph_components

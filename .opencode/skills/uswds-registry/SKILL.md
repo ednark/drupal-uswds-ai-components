@@ -53,4 +53,5 @@ When building or modifying UI for a USWDS-based government website, query these 
 - Prefer `requiresJs: "no"` components unless the task explicitly needs JS
 - Preserve `preserveElements` — never remove ARIA attributes or required class structures
 - When implementing in Drupal, fetch the Drupal tile to get module/paragraph/Twig/Drush info
-- If no Drupal paragraph bundle exists, use Twig template overrides (see `twig_template` tiles)
+- Before recommending a theme override, load the `uswds-theme-overrides` skill and follow the canonical guide
+- If no Drupal paragraph bundle exists, evaluate render arrays, preprocess, form alters, theme settings, existing base templates, and module ownership before creating a Twig override
