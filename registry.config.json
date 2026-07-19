@@ -40,5 +40,16 @@
     "WCAG 2.1 AA",
     "21st Century IDEA"
   ],
+  "mcp": {
+    "enabled": true,
+    "server": "_base/mcp/server.mjs",
+    "transport": "stdio",
+    "tools": [
+      "search_components",
+      "get_component",
+      "list_facets",
+      "get_index"
+    ]
+  },
   "updated": "1.0.0"
 }

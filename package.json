@@ -1,0 +1,14 @@
+{
+  "name": "drupal-uswds-ai-components",
+  "version": "1.0.0",
+  "description": "Drupal implementation registry for USWDS components (includes MCP server entry point).",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "mcp": "node _base/mcp/server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.8"
+  }
+}
