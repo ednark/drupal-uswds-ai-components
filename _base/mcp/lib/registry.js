@@ -100,3 +100,51 @@ export function readAdapterManifest() {
   if (!existsSync(path)) return null;
   return JSON.parse(readFileSync(path, 'utf-8'));
 }
+
+/**
+ * Family-level cross-system compatibility map (e.g. USWDS → GOV.UK / Carbon).
+ * Location: `compatibilityPath` from registry.config.json (relative to the
+ * registry root; defaults to ./compatibility.json for single-registry repos —
+ * monorepo registries point at a shared cross/ directory).
+ */
+export function readCompatibility() {
+  const { compatibilityPath = 'compatibility.json' } = loadConfig();
+  const path = join(REGISTRY_ROOT, compatibilityPath);
+  if (!existsSync(path)) return null;
+  return JSON.parse(readFileSync(path, 'utf-8'));
+}
+
+/**
+ * Surface 4: Component Recipes.
+ * Recipes live at {tileDir}/recipes/{name}.json with an index.json manifest.
+ */
+export function listRecipes() {
+  const { tileDir = 'infinite' } = loadConfig();
+  const manifestPath = join(REGISTRY_ROOT, tileDir, 'recipes', 'index.json');
+  if (!existsSync(manifestPath)) return { schemaVersion: 1, count: 0, recipes: [] };
+  return JSON.parse(readFileSync(manifestPath, 'utf-8'));
+}
+
+export function readRecipe(name) {
+  const { tileDir = 'infinite' } = loadConfig();
+  const safe = String(name).replace(/[^a-z0-9-]/gi, '');
+  const path = join(REGISTRY_ROOT, tileDir, 'recipes', `${safe}.json`);
+  if (!existsSync(path)) {
+    throw new Error(`Recipe not found: ${safe}. Use list_recipes or get_recipe without a name to see available recipes.`);
+  }
+  return JSON.parse(readFileSync(path, 'utf-8'));
+}
+
+/**
+ * Version-history groundwork (Surface 5, planned). Reads
+ * {tileDir}/versions.json if the registry publishes one; returns
+ * { available: false } otherwise so agents can probe without failing.
+ */
+export function readVersions(component) {
+  const { tileDir = 'infinite' } = loadConfig();
+  const path = component
+    ? join(REGISTRY_ROOT, tileDir, component, 'versions.json')
+    : join(REGISTRY_ROOT, tileDir, 'versions.json');
+  if (!existsSync(path)) return { available: false, note: 'This registry does not publish version history yet (Surface 5).' };
+  return { available: true, ...JSON.parse(readFileSync(path, 'utf-8')) };
+}

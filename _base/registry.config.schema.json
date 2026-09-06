@@ -84,6 +84,11 @@
       "type": "string",
       "description": "Base URL for adapter registry (cross-design system semantic mappings)"
     },
+    "compatibilityPath": {
+      "type": "string",
+      "description": "Path to the family-level compatibility map, relative to the registry root (default: compatibility.json; monorepo registries may point at a shared cross/ directory)",
+      "default": "compatibility.json"
+    },
     "mcp": {
       "type": "object",
       "description": "MCP server capability advertisement",
@@ -114,8 +119,25 @@
             "list_facets",
             "get_index",
             "get_adapter",
-            "translate_component"
+            "translate_component",
+            "get_recipe",
+            "query_compliance",
+            "get_versions"
           ]
+        }
+      }
+    },
+    "tokenProfiles": {
+      "type": "object",
+      "description": "Named token override sets components can declare support for (e.g. highContrast, darkMode, compactDensity). Keys are profile names; values have description + tokenOverrides.",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "tokenOverrides": {
+            "type": "object",
+            "description": "Token name → override value applied when this profile is active"
+          }
         }
       }
     },
