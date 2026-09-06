@@ -8,7 +8,7 @@
  *   4. Else fall back to portableInvariants only and report a gap
  */
 
-import { readAdapter } from './registry.js';
+import { readAdapter, readCompatibility } from './registry.js';
 
 /**
  * Build a USWDS-class -> target-class replacement map for a component + target.
@@ -23,17 +23,26 @@ function buildClassMap(meta, target) {
   };
 
   // 1. Tile-level classMapping (simple substitution)
+  // The source base class is registry-specific — derive it from the tile's
+  // discovery class field (canadaClass/frClass/govukClass/eclClass/uswdClass).
+  const sourceBase =
+    meta?.discovery?.canadaClass ||
+    meta?.discovery?.frClass ||
+    meta?.discovery?.govukClass ||
+    meta?.discovery?.eclClass ||
+    meta?.discovery?.uswdClass ||
+    'usa-button';
   const cm = meta?.portability?.classMapping?.[target];
   if (cm && typeof cm === 'object') {
     result.source = 'classMapping';
-    if (cm.base) result.map['usa-button'] = cm.base;
-    if (cm.default) result.map['usa-button'] = cm.default;
+    if (cm.base) result.map[sourceBase] = cm.base;
+    if (cm.default) result.map[sourceBase] = cm.default;
     for (const [variant, targetClass] of Object.entries(cm)) {
       if (variant === 'base' || variant === 'default') continue;
       if (targetClass == null) {
-        result.map[`usa-button--${variant}`] = null; // explicit "no equivalent"
+        result.map[`${sourceBase}--${variant}`] = null; // explicit "no equivalent"
       } else {
-        result.map[`usa-button--${variant}`] = targetClass;
+        result.map[`${sourceBase}--${variant}`] = targetClass;
       }
     }
     return result;
@@ -41,8 +50,7 @@ function buildClassMap(meta, target) {
 
   // 2. Adapter registry mapping
   const component = meta?.discovery?.uswdsComponentType || meta?.file?.split('/')[0];
-  const adapter = component ? readAdapter(component) : null;
-  const mapping = adapter?.mappings?.[target];
+  const adapter = component ? readAdapter(component) : null;  const mapping = adapter?.mappings?.[target];
   if (mapping) {
     result.source = 'adapter';
     result.limitations = mapping.limitations || [];
@@ -69,7 +77,41 @@ function buildClassMap(meta, target) {
     return result;
   }
 
-  // 3. No mapping available
+  // 3. Family-level compatibility map (USWDS → GOV.UK / Carbon etc.)
+  const compat = readCompatibility();
+  const compatKey = Object.keys(compat || {}).find(
+    (k) => k.endsWith(`-to-${target}`) && compat[k] && typeof compat[k] === 'object' && compat[k].target
+  );
+  const compatSection = compatKey ? compat[compatKey] : null;
+  const compatEntry = compatSection?.[component];
+  if (compatEntry) {
+    if (compatEntry.adaptation === 'css-only' && compatEntry.classMap) {
+      result.source = 'compatibility';
+      result.map = { ...compatEntry.classMap };
+      result.semanticNotes = [
+        ...(compatEntry.notes ? [compatEntry.notes] : []),
+        ...(compatSection.target ? [`Target: ${compatSection.target.designSystem} ${compatSection.target.version || ''}`.trim()] : []),
+      ];
+      result.limitations = compatEntry.mismatches || [];
+      return result;
+    }
+    // structural / framework adaptation: advisory only, no class substitution
+    result.source = `compatibility-advisory (${compatEntry.adaptation})`;
+    result.semanticNotes = [
+      `Target component: ${compatEntry.target_component || 'unknown'}`,
+      ...(compatEntry.notes ? [compatEntry.notes] : []),
+      ...(compatSection.target ? [`Target: ${compatSection.target.designSystem} ${compatSection.target.version || ''}`.trim()] : []),
+    ];
+    result.limitations = compatEntry.mismatches || [];
+    result.advisory = {
+      targetComponent: compatEntry.target_component,
+      adaptation: compatEntry.adaptation,
+      mismatches: compatEntry.mismatches || [],
+    };
+    return result;
+  }
+
+  // 4. No mapping available
   return result;
 }
 
@@ -134,6 +176,7 @@ export function translateTile({ html, meta, target }) {
     enforcedInvariants: portableInvariants,
     semanticNotes: classInfo.semanticNotes,
     limitations: classInfo.limitations,
+    advisory: classInfo.advisory,
     gaps,
   };
 }
