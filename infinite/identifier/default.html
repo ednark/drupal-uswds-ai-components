@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Identifier as a custom block in the footer region.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Identifier (Drupal Custom Block)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "identifier/default.html",
+  "title": "Identifier (Drupal Custom Block)",
+  "implementationType": "twig_template",
+  "drupalModule": "custom",
+  "uswdsComponent": "identifier",
+  "complexity": "simple",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": [
+    "Required on all federal websites per 21st Century IDEA",
+    "Agency identity, parent agency disclaimer, and required links (Accessibility, Privacy, FOIA, Vulnerability Disclosure)",
+    "Site-wide footer legal identifier"
+  ],
+  "avoidWhen": [
+    "Non-government sites",
+    "When the base theme already ships a complete identifier (some subthemes do — check first)"
+  ],
+  "agentPrompt": "The uswds base theme does not ship a discrete identifier region. Place a custom block in the footer_secondary region rendering the usa-identifier markup. Create a Plugin Block (@Block) with configurable fields for parent agency, disclaimer text, and required links, then render block--uswds_identifier.html.twig. Alternatively, override footer.html.twig in the subtheme to print usa-identifier directly at the bottom.",
+  "twigTemplate": "block--uswds-identifier.html.twig (custom block template) or footer.html.twig (subtheme override). Place in themes/custom/mytheme/templates/",
+  "preprocessFunction": "mytheme_preprocess_block__uswds_identifier() — populate $variables['parent_agency'], $variables['disclaimer'], $variables['required_links'] from block config. Alternative: mytheme_preprocess_page() to inject identifier into footer variables.",
+  "drushCommands": [
+    "drush pm:enable block",
+    "drush config-set block.block.mytheme_identifier region footer_secondary"
+  ],
+  "configYaml": "# Custom block plugin: src/Plugin/Block/UswdsIdentifierBlock.php\n# Configurable fields: parent_agency, disclaimer, required_links (Accessibility, Privacy, FOIA, Vuln Disclosure)\n# Place via /admin/structure/block in the footer_secondary region",
+  "scssSettings": "$theme-identifier-font-family, $theme-identifier-background-color, $theme-identifier-identity-domain-color",
+  "dependencies": ["uswds theme", "drupal:block"],
+  "editableAreas": [
+    "Parent agency name and URL (usa-identifier__identity-disclaimer link)",
+    "Site disclaimer text (usa-identifier__identity-disclaimer)",
+    "Required links list: Accessibility, Privacy, FOIA, Vulnerability Disclosure (usa-identifier__required-links-list)",
+    "Logo or domain text in usa-identifier__identity"
+  ],
+  "preserveElements": [
+    "usa-identifier container with role='region' or aria-label",
+    "usa-identifier__identity section structure",
+    "usa-identifier__identity-disclaimer paragraph",
+    "usa-identifier__required-links-list as <ul> with usa-identifier__required-links-item <li> and usa-identifier__required-link <a>",
+    "aria-label on the identifier region"
+  ],
+  "knownLimitations": [
+    "Required links are mandated by 21st Century IDEA — Accessibility, Privacy, FOIA must be present",
+    "Identifier is bundled with the footer tile conceptually but rendered as a distinct component — keep markup separate from usa-footer for a11y clarity",
+    "Parent agency relationship (e.g., USAGov is an official site of GSA) must be explicit text, not implied"
+  ],
+  "tier": "curated",
+  "tags": ["identifier", "footer", "twig", "custom", "block", "required", "government", "legal", "21st-century-idea"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Identifier — Drupal Custom Block</h1>
+<p>The <code>usa-identifier</code> is a required footer component on federal sites. It is distinct from the <code>usa-footer</code> and rendered as a custom block in the <code>footer_secondary</code> region.</p>
+<h2>Structure</h2>
+<pre>&lt;div class="usa-identifier"&gt;
+  &lt;section class="usa-identifier__section usa-identifier__section--usagov"
+           aria-label="Agency identifier"&gt;
+    &lt;div class="usa-identifier__container"&gt;
+      &lt;section class="usa-identifier__identity"
+               aria-label="Agency description"&gt;
+        &lt;p class="usa-identifier__identity-disclaimer"&gt;
+          An official website of the &lt;a href="..."&gt;Parent Agency&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;nav class="usa-identifier__section usa-identifier__section--required-links"
+       aria-label="Important links"&gt;
+    &lt;div class="usa-identifier__container"&gt;
+      &lt;ul class="usa-identifier__required-links-list"&gt;
+        &lt;li class="usa-identifier__required-links-item"&gt;
+          &lt;a href="/accessibility" class="usa-identifier__required-link usa-link"&gt;Accessibility&lt;/a&gt;
+        &lt;/li&gt;
+        ...
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/nav&gt;
+&lt;/div&gt;</pre>
+<h2>Placement</h2>
+<pre>region: footer_secondary
+block: uswds_identifier (custom Plugin Block)</pre>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Drupal implementation of USWDS Header with TB Mega Menu pattern (gsa.gov style).">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Mega Menu Header (Drupal Custom Twig)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "mega-menu/default.html",
+  "title": "Mega Menu Header (Drupal Custom Twig)",
+  "implementationType": "twig_template",
+  "drupalModule": "tb_megamenu",
+  "uswdsComponent": "header",
+  "complexity": "complex",
+  "drupalVersion": "^10 || ^11",
+  "useWhen": [
+    "Top-level navigation has more than ~8 items with second-level groupings",
+    "Agency sites that need rich mega-menu panels with featured topics (e.g., gsa.gov 'Buy through us', 'Real estate')",
+    "When each top-level item needs to expose 6+ child links plus a 'Featured Topics' column with descriptions"
+  ],
+  "avoidWhen": [
+    "Simple sites where the base usa-nav__primary accordion (header/default tile) is sufficient",
+    "When 21st Century IDEA / Section 508 mega-menu a11y cannot be validated",
+    "Mobile-first sites where the mega-menu never opens (use standard usa-nav accordion instead)"
+  ],
+  "agentPrompt": "Install TB Mega Menu (composer require drupal/tb_megamenu) and place its block in the primary_menu region. Then override the TB Mega Menu templates in your subtheme to wrap the markup in usa-nav / usa-nav__inner / usa-nav__primary usa-accordion so the visual chrome matches USWDS. Crucially: keep the TB Mega Menu data attributes (data-breakpoint, aria-expanded, aria-controls) intact so the contrib JS still works, but add usa-* classes via preprocess. This mirrors the gsa.gov pattern: tbm-nav inside usa-nav usa-header--extended.",
+  "twigTemplate": "tbm-nav.html.twig, tbm-link.html.twig, tbm-subnav.html.twig, and tb-megamenu-column-inner.html.twig in themes/custom/mytheme/templates/. Wrap the entire <nav class=\"tbm\"> in <div class=\"usa-nav__inner\"> and each <ul class=\"tbm-nav\"> becomes a usa-nav__primary usa-accordion list. Override menu.html.twig (the 'Featured Topics' menu block inside the mega menu) to render as a usa-list with usa-link anchors and usa-sr-only headings.",
+  "preprocessFunction": "mytheme_preprocess_tbm_nav() — add usa-accordion and usa-nav__primary classes to $variables['classes_array']. mytheme_preprocess_tbm_link() — add usa-nav__link class to anchor. mytheme_preprocess_menu__featured_topics() — render 'Featured Topics' menu as a usa-list with navigation__link-description spans under each link (mirrors gsa.gov usa-featured--topics block).",
+  "drushCommands": [
+    "composer require drupal/tb_megamenu",
+    "drush pm:enable tb_megamenu",
+    "drush config-set block.block.mytheme_main_menu region primary_menu",
+    "drush config-set block.block.mytheme_main_menu plugin tb_megamenu_menu_block:main",
+    "drush cache:rebuild"
+  ],
+  "configYaml": "# /admin/structure/tb-megamenu\n# Configure a mega menu based on the 'main' menu.\n# Set data-breakpoint to match $theme-header-min-width (typically 1200 for extended header).\n\n# Featured Topics column:\n# Create a separate Drupal menu (machine name: featured_topics) with menu items that include a description.\n# Place it inside the mega menu's last column via the TB Mega Menu admin UI as a 'menu block'.\n# Override its template to render as usa-list with navigation__link-description.",
+  "scssSettings": "$theme-header-min-width (match tbm data-breakpoint), $theme-nav-link-color, $theme-nav-link-color-hover, $theme-font-family-sans",
+  "dependencies": [
+    "uswds theme",
+    "drupal:tb_megamenu",
+    "drupal:block",
+    "drupal:system (menu)"
+  ],
+  "editableAreas": [
+    "Top-level nav items (via Drupal menu admin at /admin/structure/menu/manage/main)",
+    "Mega menu column structure (via TB Mega Menu admin UI at /admin/structure/tb-megamenu)",
+    "Featured Topics menu items and descriptions (/admin/structure/menu/manage/featured_topics)",
+    "Mobile breakpoint (data-breakpoint attribute — match to $theme-header-min-width)"
+  ],
+  "preserveElements": [
+    "usa-header usa-header--extended wrapper (from base theme header tile)",
+    "usa-nav usa-nav__inner structure (subtheme overrides page.html.twig to add usa-nav around the tbm block)",
+    "usa-menu-btn and usa-nav__close buttons (subtheme renders these via region-primary_menu)",
+    "tbm-nav classes and data-breakpoint attribute (TB Mega Menu JS depends on them)",
+    "aria-expanded and aria-controls on tbm-toggle buttons (contrib a11y)",
+    "navigation__link-description spans on featured topics (gsa.gov pattern, supports screen readers)"
+  ],
+  "knownLimitations": [
+    "TB Mega Menu ships its own CSS that fights with USWDS — disable tbm CSS libraries and reimplement with USWDS utility classes in the subtheme",
+    "The base theme's header/default tile assumes the standard usa-nav accordion; this mega-menu variant replaces that with tbm markup, so the base theme's nav preprocess must be disabled or scoped",
+    "Featured Topics column with descriptions requires a separate menu (Featured Topics) and a custom menu--featured-topics.html.twig template",
+    "Mobile experience: TB Mega Menu's mobile drawer differs from the USWDS usa-nav mobile drawer — choose one or harmonize via template",
+    "WCAG keyboard navigation must be retested — TB Mega Menu's keyboard handling is not identical to USWDS's"
+  ],
+  "tier": "curated",
+  "tags": ["header", "mega-menu", "tb-megamenu", "twig", "custom", "navigation", "gsa", "extended-header"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Mega Menu Header — Custom Twig Variant</h1>
+<p>Implements the <strong>extended header with a mega menu</strong> pattern seen on gsa.gov, wrapping TB Mega Menu output inside USWDS <code>usa-nav</code> chrome.</p>
+<h2>Reference implementation</h2>
+<p>gsa.gov: <code>&lt;header class="usa-header usa-header--extended"&gt;</code> with <code>&lt;nav class="tbm tbm-main tbm-arrows" data-breakpoint="1200"&gt;</code> inside <code>&lt;div class="usa-nav__inner"&gt;</code>. Each top-level item opens a mega menu panel with subnav lists plus a final <code>usa-featured--topics</code> column rendering a separate Drupal menu with link descriptions.</p>
+<h2>Why this tile exists</h2>
+<p>The base <code>header/default.html</code> tile covers standard USWDS basic and extended headers using the theme's built-in <code>usa-nav__primary usa-accordion</code>. Large agency sites (gsa.gov, ferc.gov) need richer mega menu panels with featured columns — this variant documents that integration.</p>
+<h2>Markup pattern (simplified)</h2>
+<pre>&lt;header class="usa-header usa-header--extended"&gt;
+  &lt;div class="usa-navbar"&gt;...logo...&lt;/div&gt;
+  &lt;div class="usa-nav overlay-trigger" role="navigation"&gt;
+    &lt;div class="usa-nav__inner"&gt;
+      &lt;nav class="tbm tbm-main" data-breakpoint="1200"&gt;
+        &lt;ul class="tbm-nav level-0"&gt;
+          &lt;li class="tbm-item tbm-item--has-dropdown"&gt;
+            &lt;button class="tbm-link tbm-toggle" aria-expanded="false"&gt;Buy through us&lt;/button&gt;
+            &lt;div class="tbm-submenu"&gt;...subnav...&lt;/div&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/header&gt;</pre>
+</body>
+</html>

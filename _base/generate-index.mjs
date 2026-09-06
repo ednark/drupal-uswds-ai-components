@@ -11,7 +11,7 @@
  *
  * Supports both metadata schema v1 (flat) and v2 (categorized):
  *   - v1: all fields at top level (legacy)
- *   - v2: fields organized into discovery/selection/instruction/constraints
+ *   - v2: fields organized into discovery/selection/instruction/coordination/constraints
  *
  * Usage:
  *   node _base/generate-index.mjs                    # reads registry.config.json from cwd
@@ -111,6 +111,11 @@ function extractBasicMeta(htmlContent, filePath) {
  * Normalize v2 categorized metadata into the flat index format.
  * The index always uses flat fields for backward compatibility with
  * existing agent code that filters by top-level facet names.
+ *
+ * Leanness rule: the index carries discovery facets and lean summary
+ * fields ONLY. Adaptation prose (agentPrompt, useWhen/avoidWhen,
+ * preserve/editable/limitations, portability maps) travels in the tile's
+ * agent-meta block — one fetch returns code + instructions together.
  */
 function normalizeV2ToFlat(meta) {
   const flat = {
@@ -123,29 +128,59 @@ function normalizeV2ToFlat(meta) {
     Object.assign(flat, meta.discovery);
   }
 
-  if (meta.selection) {
-    if (meta.selection.useWhen) flat.useWhen = meta.selection.useWhen;
-    if (meta.selection.avoidWhen) flat.avoidWhen = meta.selection.avoidWhen;
+  // Compliance & mobileUX: keep the full blocks out of the index; expose only
+  // flattened summary fields for facet filtering.
+  const compliance = meta.discovery?.compliance || meta.compliance;
+  if (compliance) {
+    if (compliance.fedRampLevel !== undefined) flat.fedRampLevel = compliance.fedRampLevel;
+    if (compliance.piiHandling !== undefined) flat.piiHandling = compliance.piiHandling;
+    if (compliance.auditTrailCompatible !== undefined) flat.auditTrailCompatible = compliance.auditTrailCompatible;
+    if (Array.isArray(compliance.nistControls)) flat.nistControls = compliance.nistControls;
+    delete flat.compliance;
+  }
+  const mobileUX = meta.discovery?.mobileUX || meta.mobileUX;
+  if (mobileUX) {
+    if (mobileUX.touchTargetSize !== undefined) flat.touchTargetSize = mobileUX.touchTargetSize;
+    delete flat.mobileUX;
+  }
+  if (Array.isArray(meta.supportedTokenProfiles)) {
+    flat.supportedTokenProfiles = meta.supportedTokenProfiles;
   }
 
+  // Selection: useWhen/avoidWhen are prose and live in the tile only.
+  // Agents read them from the tile after selecting it.
+
+  // Instruction: keep name-list fields; prose (agentPrompt) stays in the tile.
   if (meta.instruction) {
-    if (meta.instruction.agentPrompt) flat.agentPrompt = meta.instruction.agentPrompt;
     if (meta.instruction.relatedComponents) flat.relatedComponents = meta.instruction.relatedComponents;
-    for (const [k, v] of Object.entries(meta.instruction)) {
-      if (k !== 'agentPrompt' && k !== 'relatedComponents') flat[k] = v;
+    if (meta.instruction.variants) flat.variants = meta.instruction.variants;
+  }
+
+  // Coordination: only lean summary fields go into the index.
+  // Verbose detail (reasons, sequences, full cost object) stays in the tile.
+  if (meta.coordination) {
+    const coord = meta.coordination;
+    if (Array.isArray(coord.prerequisiteComponents)) {
+      flat.prerequisites = coord.prerequisiteComponents
+        .map((p) => (typeof p === 'string' ? p : p.name))
+        .filter(Boolean);
+    }
+    if (Array.isArray(coord.incompatibleWith)) {
+      flat.incompatibleWith = coord.incompatibleWith
+        .map((p) => (typeof p === 'string' ? p : p.name))
+        .filter(Boolean);
+    }
+    if (coord.compositionCost && coord.compositionCost.costTier) {
+      flat.costTier = coord.compositionCost.costTier;
+    }
+    if (Array.isArray(coord.compositionRecipes)) {
+      flat.compositionRecipes = coord.compositionRecipes;
     }
   }
 
-  if (meta.constraints) {
-    if (meta.constraints.preserve) flat.preserveElements = meta.constraints.preserve;
-    if (meta.constraints.portableInvariants) flat.portableInvariants = meta.constraints.portableInvariants;
-    if (meta.constraints.editable) flat.editableAreas = meta.constraints.editable;
-    if (meta.constraints.limitations) flat.knownLimitations = meta.constraints.limitations;
-  }
-
-  if (meta.portability) {
-    flat.portability = meta.portability;
-  }
+  // Constraints & portability: never in the index — enforced at tile level
+  // (constraints.preserve/editable/limitations, portableInvariants,
+  // portability.classMapping). One tile fetch returns code + instructions.
 
   return flat;
 }
@@ -158,7 +193,16 @@ function normalizeMeta(meta) {
   if (version >= 2) {
     return normalizeV2ToFlat(meta);
   }
-  return meta;
+  // v1 (flat) tiles: strip known prose fields so the index stays lean for
+  // legacy registries too — the leanness rule applies regardless of schema.
+  const PROSE_FIELDS = [
+    'agentPrompt', 'useWhen', 'avoidWhen',
+    'preserveElements', 'editableAreas', 'knownLimitations',
+    'portableInvariants', 'portability', 'settings', 'tokenOverrides',
+  ];
+  const lean = { ...meta };
+  for (const f of PROSE_FIELDS) delete lean[f];
+  return lean;
 }
 
 // --- Generic facet building ---

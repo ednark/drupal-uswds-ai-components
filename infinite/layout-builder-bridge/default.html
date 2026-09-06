@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Layout Builder + uswds-paragraph-blocks block content bridge recipe for Drupal USWDS sites.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Layout Builder Bridge (Drupal Custom Module)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "layout-builder-bridge/default.html",
+  "title": "USWDS Layout Builder Bridge (Drupal Custom Module)",
+  "implementationType": "custom_module",
+  "drupalModule": "layout_builder + block_content + paragraphs",
+  "uswdsComponent": "all",
+  "complexity": "complex",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": [
+    "Editors need to compose landing pages by dragging USWDS paragraph bundles into regions",
+    "Multiple USWDS paragraph bundles need to be placed in arbitrary layouts (grid rows, grid columns, breakpoints)",
+    "Site needs editorial Layout Builder UX without losing the structural safety of paragraph bundles",
+    "Following the pattern used by pandemicoversight.gov (block-content--type-uswds-paragraph-blocks + field_uswds_bundles ER-revisions)"
+  ],
+  "avoidWhen": [
+    "Simple content types with a fixed paragraph field on the node (use the paragraph_bundle tiles directly)",
+    "Sites that do not enable Layout Builder",
+    "When the editor team is not trained on Layout Builder UX"
+  ],
+  "agentPrompt": "Build a small custom module (e.g., mytheme_uswds_layouts) that ships: (1) a 'uswds_paragraph_blocks' block content type with an ER-revisions field 'field_uswds_bundles' allowing any uswds_* paragraph bundle as children; (2) a layout plugin based on layout_discovery's 'layout_onecol' but emitting USWDS grid classes (grid-row, grid-gap, desktop:grid-col-*); (3) a block template block--block-content--uswds-paragraph-blocks.html.twig that renders the paragraph children. Editors place this custom block into Layout Builder sections, then add USWDS paragraph children inside. This mirrors the pandemicoversight.gov pattern (prac_additional_uswds_paragraph_components + block-content--type-uswds-paragraph-blocks).",
+  "twigTemplate": "block--block-content--uswds-paragraph-blocks.html.twig in themes/custom/mytheme/templates/. Layout plugin template: layouts--uswds-grid--twocol.html.twig. Both rely on the paragraphs ER-revisions field rendering the child bundles (uswds_card_group_regular, uswds_accordion, uswds_alert, etc.).",
+  "preprocessFunction": "mytheme_uswds_layouts_preprocess_block__block_content__uswds_paragraph_blocks() — set $variables['uswds_bundles'] from field_uswds_bundles. Optional: mytheme_preprocess_layout() to inject USWDS grid classes based on the layout configuration.",
+  "drushCommands": [
+    "composer require drupal/layout_builder drupal/paragraphs drupal/entity_reference_revisions drupal/block_content",
+    "drush pm:enable layout_builder paragraphs entity_reference_revisions block_content",
+    "drush pm:enable mytheme_uswds_layouts",
+    "drush config:import --module=mytheme_uswds_layouts --directory=config/install",
+    "drush cache:rebuild"
+  ],
+  "configYaml": "# modules/custom/mytheme_uswds_layouts/mytheme_uswds_layouts.info.yml\nname: 'USWDS Layout Builder Bridge'\ntype: module\ndependencies:\n  - layout_builder\n  - block_content\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# block_content type: uswds_paragraph_blocks\n# field: field_uswds_bundles (entity_reference_revisions, target_type=paragraph, unlimited)\n# allowed bundles: all uswds_* paragraph types enabled on the site\n\n# Enable Layout Builder on the target content type (e.g., landing_page):\n# /admin/structure/types/manage/landing_page/display/default\n# → Use Layout Builder: ✓\n# → Allow custom layouts: ✓",
+  "scssSettings": "$theme-grid-gap, $theme-grid-gutter, $theme-container-max-width — keep layouts aligned with USWDS grid utilities",
+  "dependencies": [
+    "drupal:layout_builder",
+    "drupal:block_content",
+    "drupal:paragraphs",
+    "drupal:entity_reference_revisions",
+    "uswds_paragraph_components"
+  ],
+  "fieldDefinitions": {
+    "field_uswds_bundles": "Entity reference revisions to paragraph (unlimited). Allowed bundles: uswds_accordion, uswds_alert, uswds_card_group_regular, uswds_card_group_flag, uswds_modal, uswds_process_list, uswds_step_indicator, uswds_summary_box, plus any custom uswds_* bundles the site defines"
+  },
+  "editableAreas": [
+    "Allowed paragraph bundles on field_uswds_bundles (limit to which editors may place)",
+    "Layout plugin grid columns (desktop:grid-col-4, grid-col-6, grid-col-8, etc.)",
+    "Section spacing utilities added via Layout Builder section config",
+    "Custom block template wrapper classes (usa-section, grid-container, maxw-widescreen)"
+  ],
+  "preserveElements": [
+    "ER-revisions relationship between block-content and paragraph children (NOT ER — revisions are required for paragraph bundles)",
+    "Paragraph bundle Twig templates remain unchanged (paragraph--uswds-card.html.twig etc. still render the inner markup)",
+    "USWDS grid utility classes (grid-row, grid-col-*, grid-gap) on layout plugin templates",
+    "Layout Builder section config in display mode"
+  ],
+  "knownLimitations": [
+    "Paragraph children inside a block-content do not benefit from node-level revisioning — review workflow",
+    "Layout Builder permissions must be carefully scoped (typically only editors get 'configure layouts')",
+    "Performance: rendering many paragraphs in a layout can be cache-fragmenting; tag block cache by paragraph list",
+    "Existing paragraph_bundle tiles describe attaching a Paragraphs field to a content type — the bridge recipe replaces that with a reusable block-content pattern placed via Layout Builder"
+  ],
+  "tier": "curated",
+  "tags": ["layout-builder", "block-content", "paragraphs", "custom-module", "bridge", "integration", "grid"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Layout Builder Bridge — Custom Module</h1>
+<p>Bridges <code>uswds_paragraph_components</code> bundles into Drupal's Layout Builder via a reusable <code>block_content</code> type.</p>
+<h2>Architecture</h2>
+<pre>Layout Builder section (layout plugin emits grid-row, grid-gap)
+└── block_content: uswds_paragraph_blocks (placed inline)
+    └── field_uswds_bundles (ER revisions, unlimited)
+        ├── paragraph: uswds_card_group_regular
+        │   └── uswds_card (children)
+        ├── paragraph: uswds_alert
+        └── paragraph: uswds_accordion
+            └── uswds_accordion_item (children)</pre>
+<h2>Reference implementation</h2>
+<p>pandemicoversight.gov (Drupal 11) ships <code>prac_additional_uswds_paragraph_components</code> with this exact pattern. The <code>block-content--type-uswds-paragraph-blocks</code> bundle wraps <code>field_uswds_bundles</code> and is placed via Layout Builder into <code>grid-row grid-gap</code> sections.</p>
+<h2>Why this tile exists</h2>
+<p>The other <code>paragraph_bundle</code> tiles describe attaching a Paragraphs field to a content type — fine for simple pages. Editorial landing pages with arbitrary layout need the bridge recipe: one block content type, reusable across any Layout Builder section, holding any mix of USWDS paragraph children.</p>
+</body>
+</html>

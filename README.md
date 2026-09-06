@@ -55,8 +55,8 @@ Step 2: Query drupal-uswds-ai-components (this registry)
 | `paragraph_bundle` | Ready-to-use Paragraph type from uswds_paragraph_components | accordion, alert, card, modal, process-list, step-indicator, summary-box |
 | `theme_region` | Placed via the uswds base theme's region system | header, footer, banner, breadcrumb, search, side-navigation |
 | `field_type` | Provided by a contrib module as a field type | data-visualizations (plotly_js) |
-| `twig_template` | Requires custom Twig template in theme | button, table, form, text-input, tag, link, icon, pagination |
-| `custom_module` | Requires a custom Drupal module | (rare — most components fit one of the above) |
+| `twig_template` | Requires custom Twig template in theme | button, table, form, text-input, tag, link, icon, pagination, identifier, mega-menu (header variant) |
+| `custom_module` | Requires a custom Drupal module | setup, layout-builder-bridge, icon-list + collection bundles |
 
 ## Theme Override Guidance
 

@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A Drupal implementation knowledge registry for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and Drush commands. 20 tiles covering 5 implementation types.
+A Drupal implementation knowledge registry for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and Drush commands. 24 tiles covering 5 implementation types.
 
 ## How to Query This Registry
 

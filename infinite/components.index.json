@@ -1,8 +1,9 @@
 {
   "schemaVersion": 1,
+  "metadataSchemaVersion": 1,
   "generatedBy": "_base/generate-index.mjs",
   "counts": {
-    "total": 20
+    "total": 24
   },
   "components": [
     {
@@ -14,16 +15,6 @@
       "paragraphType": "uswds_accordion",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "FAQ pages",
-        "Collapsible content sections",
-        "Progressive disclosure of information"
-      ],
-      "avoidWhen": [
-        "Content that should always be visible",
-        "Mobile-accordion-only patterns (use details element instead)"
-      ],
-      "agentPrompt": "Enable the uswds_paragraph_components_accordion submodule. Add a Paragraphs field to your content type. Select 'USWDS Accordion' as an allowed bundle. Editors create accordion items as child paragraphs.",
       "twigTemplate": "paragraph--uswds-accordion.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_accordion/templates/",
       "preprocessFunction": "uswds_paragraph_components_accordion_preprocess_paragraph__uswds_accordion()",
       "drushCommands": [
@@ -38,21 +29,6 @@
         "uswds_paragraph_components",
         "paragraphs",
         "entity_reference_revisions"
-      ],
-      "editableAreas": [
-        "Template override in theme: copy to themes/custom/mytheme/templates/paragraph--uswds-accordion.html.twig",
-        "Field labels and help text",
-        "Allowed bundles on the parent paragraph field"
-      ],
-      "preserveElements": [
-        "usa-accordion class structure",
-        "aria-expanded and aria-controls attributes",
-        "button.usa-accordion__button",
-        "hidden attribute on content panels"
-      ],
-      "knownLimitations": [
-        "Uses jQuery-based USWDS JS by default",
-        "Accordion items are child paragraphs — cannot reference existing nodes"
       ],
       "tier": "curated",
       "tags": [
@@ -73,16 +49,6 @@
       "paragraphType": "uswds_alert",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Page-level alerts",
-        "Emergency notices",
-        "Success/error feedback in content"
-      ],
-      "avoidWhen": [
-        "Form validation errors (use Drupal's native form error handling)",
-        "Site-wide alerts (use site_alert module instead)"
-      ],
-      "agentPrompt": "Enable the uswds_paragraph_components_alert submodule. Add a Paragraphs field allowing 'USWDS Alert' bundle. Editor selects alert type (info, success, warning, error) and enters body text.",
       "twigTemplate": "paragraph--uswds-alert.html.twig",
       "preprocessFunction": "uswds_paragraph_components_alert_preprocess_paragraph__uswds_alert()",
       "drushCommands": [
@@ -96,20 +62,6 @@
       "dependencies": [
         "uswds_paragraph_components",
         "paragraphs"
-      ],
-      "editableAreas": [
-        "Template override for custom alert styling",
-        "Field options for alert type",
-        "Help text for editors"
-      ],
-      "preserveElements": [
-        "usa-alert class and variant classes (usa-alert--success, etc.)",
-        "role='alert' or role='status'",
-        "usa-alert__body structure"
-      ],
-      "knownLimitations": [
-        "For site-wide alerts, use Drupal's site_alert module instead",
-        "Alert type is fixed at creation time — no dynamic state changes"
       ],
       "tier": "curated",
       "tags": [
@@ -133,15 +85,6 @@
       "themeRegion": "header_top",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Required on all federal government websites",
-        "The 'official website' indicator banner"
-      ],
-      "avoidWhen": [
-        "Non-government sites",
-        "State/local government (optional but recommended)"
-      ],
-      "agentPrompt": "The uswds base theme includes the government banner in the header_top region by default. It uses the usa-banner markup with accordion behavior. Override the template in your subtheme to customize.",
       "twigTemplate": "usa-banner.html.twig in themes/contrib/uswds/templates/. Override in themes/custom/mytheme/templates/usa-banner.html.twig",
       "preprocessFunction": "mytheme_preprocess_usa_banner()",
       "drushCommands": [
@@ -150,22 +93,6 @@
       "scssSettings": "$theme-banner-max-width, $theme-banner-background-color",
       "dependencies": [
         "uswds theme"
-      ],
-      "editableAreas": [
-        "Banner text (agency name)",
-        "Banner variant (default, medium, slim)",
-        "How you know content"
-      ],
-      "preserveElements": [
-        "usa-banner class structure",
-        "usa-banner__header-text",
-        "usa-accordion__button usa-banner__button",
-        "usa-banner__content with guidance",
-        "aria-expanded attribute on toggle"
-      ],
-      "knownLimitations": [
-        "Banner is built into the theme — customizing requires template override",
-        "The until-found hidden pattern needs custom JS"
       ],
       "tier": "curated",
       "tags": [
@@ -188,16 +115,6 @@
       "themeRegion": "breadcrumb",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Multi-level content hierarchies",
-        "Documentation sites",
-        "Any page deeper than 2 levels"
-      ],
-      "avoidWhen": [
-        "Single-level sites",
-        "Homepage"
-      ],
-      "agentPrompt": "The uswds base theme maps Drupal's breadcrumb to usa-breadcrumb markup. Place the system breadcrumb block in the breadcrumb region. The theme handles the Twig conversion from Drupal's breadcrumb trail to usa-breadcrumb__list items.",
       "twigTemplate": "breadcrumb.html.twig in themes/contrib/uswds/templates/. The base theme converts Drupal's breadcrumb variables into usa-breadcrumb__list structure.",
       "preprocessFunction": "mytheme_preprocess_breadcrumb() — modify $variables['breadcrumb'] array",
       "drushCommands": [
@@ -208,21 +125,6 @@
         "uswds theme",
         "drupal:block",
         "drupal:system"
-      ],
-      "editableAreas": [
-        "Breadcrumb block placement (which pages show it)",
-        "Wrap variant via template override",
-        "Custom breadcrumb logic via preprocess"
-      ],
-      "preserveElements": [
-        "usa-breadcrumb class",
-        "usa-breadcrumb__list and usa-breadcrumb__list-item",
-        "usa-breadcrumb__link",
-        "aria-label='Breadcrumb' on nav"
-      ],
-      "knownLimitations": [
-        "Drupal's breadcrumb builder determines the trail — theme just styles it",
-        "Wrap and naviprev-next variants need custom preprocess logic"
       ],
       "tier": "curated",
       "tags": [
@@ -243,15 +145,6 @@
       "uswdsComponent": "button",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "CTA buttons in content",
-        "Form submit buttons",
-        "Action buttons"
-      ],
-      "avoidWhen": [
-        "When a link should look like a button (use usa-button class on <a>)"
-      ],
-      "agentPrompt": "No paragraph bundle exists for buttons. For form buttons, override form-element.html.twig or input.html.twig in your theme to add usa-button classes. For content buttons, use Twig Tweak's drupal_link() with usa-button class, or write a custom block plugin.",
       "twigTemplate": "input--submit.html.twig, form-element.html.twig, or field--field-link.html.twig in themes/custom/mytheme/templates/",
       "preprocessFunction": "mytheme_preprocess_input() — add usa-button class to submit inputs. mytheme_preprocess_link() — add usa-button to link buttons.",
       "drushCommands": [
@@ -261,20 +154,6 @@
       "dependencies": [
         "uswds theme",
         "twig_tweak (optional, for content buttons)"
-      ],
-      "editableAreas": [
-        "Button variant class (usa-button--secondary, --outline, --big, etc.)",
-        "Button text",
-        "Button type attribute (submit, button, reset)"
-      ],
-      "preserveElements": [
-        "usa-button base class",
-        "type='submit' on form buttons",
-        "aria-label if icon-only button"
-      ],
-      "knownLimitations": [
-        "Drupal's Form API generates inputs, not <button> elements by default — use #type => 'button' for <button> tag",
-        "Button variants must be added programmatically in preprocess"
       ],
       "tier": "curated",
       "tags": [
@@ -296,16 +175,6 @@
       "paragraphType": "uswds_card",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Topic landing pages",
-        "Feature highlights",
-        "Linkable content cards in grids"
-      ],
-      "avoidWhen": [
-        "Simple text content",
-        "When you need complex card interactions"
-      ],
-      "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
       "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
       "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
       "drushCommands": [
@@ -324,23 +193,6 @@
         "paragraphs",
         "drupal:media",
         "drupal:media_library"
-      ],
-      "editableAreas": [
-        "Card layout (regular vs flag)",
-        "Image style for card images",
-        "Link behavior (entire card vs button)",
-        "Breakpoint settings via uswds_paragraph_components_breakpoints submodule"
-      ],
-      "preserveElements": [
-        "usa-card-group wrapper",
-        "usa-card__container structure",
-        "usa-card__header, usa-card__body, usa-card__media hierarchy",
-        "make-link pattern for clickable cards"
-      ],
-      "knownLimitations": [
-        "Card group requires parent paragraph with child cards",
-        "Flag variant needs specific image dimensions",
-        "Breakpoint submodule needed for responsive grid"
       ],
       "tier": "curated",
       "tags": [
@@ -361,19 +213,6 @@
       "uswdsComponent": "data-visualizations",
       "complexity": "moderate",
       "drupalVersion": "^11.3 || ^12",
-      "useWhen": [
-        "Bar charts",
-        "Line charts",
-        "Pie charts",
-        "Scatter plots",
-        "Any data visualization on a Drupal government site"
-      ],
-      "avoidWhen": [
-        "Simple static images of charts",
-        "When USWDS's native (limited) chart patterns suffice",
-        "Drupal 10 sites (module requires ^11.3)"
-      ],
-      "agentPrompt": "Install plotly_js module: composer require drupal/plotly_js. Run drush plotly_js:download-plotly to get the library. Add a 'Plotly.js Graph' field to your content type. Editors configure chart type and data via the field widget. Graph templates (YAML) control rendering.",
       "twigTemplate": "plotly-js-graph.html.twig in modules/contrib/plotly_js/templates/. Graph templates in graph_templates/ directory (YAML-based, overrideable).",
       "preprocessFunction": "plotly_js_preprocess_field() — prepare graph data for JS rendering",
       "drushCommands": [
@@ -393,23 +232,6 @@
       "dependencies": [
         "plotly_js",
         "Plotly.js library (via drush download or remote)"
-      ],
-      "editableAreas": [
-        "Chart type per field instance",
-        "Graph template YAML files",
-        "Chart colors to match USWDS palette",
-        "Remote vs local library at /admin/config/content/plotly_js"
-      ],
-      "preserveElements": [
-        "Plotly.js library script include",
-        "Chart container div with unique ID",
-        "Accessibility: provide data table alternative for screen readers"
-      ],
-      "knownLimitations": [
-        "Requires Drupal 11.3+ or 12",
-        "Plotly.js is a large JS library (~3MB)",
-        "Not integrated with USWDS design tokens — colors must be set manually",
-        "Charts are JS-rendered (no server-side fallback)"
       ],
       "tier": "curated",
       "tags": [
@@ -434,14 +256,6 @@
       "themeRegion": "footer_menu, footer, footer_secondary",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Every government site",
-        "Site-wide footer with navigation links and agency info"
-      ],
-      "avoidWhen": [
-        "Single-page apps without Drupal theme"
-      ],
-      "agentPrompt": "The uswds base theme provides footer_menu, footer, and footer_secondary regions. Place a menu block in footer_menu for footer links. Place custom blocks in footer for agency info. Theme settings control slim vs big footer variant.",
       "twigTemplate": "page.html.twig — look for region-footer, region-footer_menu, region-footer_secondary. Override in your subtheme.",
       "preprocessFunction": "mytheme_preprocess_page() — set footer variant",
       "drushCommands": [
@@ -452,22 +266,6 @@
       "dependencies": [
         "uswds theme",
         "drupal:block"
-      ],
-      "editableAreas": [
-        "Footer variant (slim, big, default) in theme settings",
-        "Menu links via Drupal menu admin",
-        "Agency name and contact info via custom blocks",
-        "Identifier links (required by law)"
-      ],
-      "preserveElements": [
-        "usa-footer class and variant classes",
-        "usa-footer__primary-section structure",
-        "usa-footer__nav and usa-footer__primary-content",
-        "usa-identifier section (required for federal sites)"
-      ],
-      "knownLimitations": [
-        "Big footer with collapsible sections needs JS",
-        "Identifier component (usa-identifier) is separate — add as a custom block in footer_secondary"
       ],
       "tier": "curated",
       "tags": [
@@ -488,42 +286,12 @@
       "uswdsComponent": "form",
       "complexity": "complex",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Custom forms",
-        "Contact forms",
-        "Application forms",
-        "Survey forms"
-      ],
-      "avoidWhen": [
-        "Content editing forms (admin UI)",
-        "When a Webform module form suffices"
-      ],
-      "agentPrompt": "Use Drupal's Form API to build forms. Override form-element.html.twig and input.html.twig in your theme to add usa-form, usa-input, usa-label, usa-button classes. For the form wrapper, override form.html.twig to add usa-form class. Use #attributes to add USWDS classes in your form builder.",
       "twigTemplate": "form.html.twig, form-element.html.twig, input.html.twig, fieldset.html.twig, textarea.html.twig, select.html.twig in themes/custom/mytheme/templates/",
       "preprocessFunction": "mytheme_preprocess_form() — add usa-form class. mytheme_preprocess_form_element() — add usa-label, usa-input classes. mytheme_preprocess_input() — map input types to USWDS classes.",
       "drushCommands": [],
       "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-form-font-family",
       "dependencies": [
         "uswds theme"
-      ],
-      "editableAreas": [
-        "Form wrapper class (usa-form)",
-        "Input classes (usa-input, usa-select, usa-checkbox__input, usa-radio__input)",
-        "Label classes (usa-label)",
-        "Error message styling (usa-error-message)",
-        "Fieldset and legend classes"
-      ],
-      "preserveElements": [
-        "usa-form wrapper",
-        "usa-label + usa-input pairing",
-        "for/id attribute relationship",
-        "aria-describedby for hints and errors",
-        "required attribute and aria-required"
-      ],
-      "knownLimitations": [
-        "Drupal's Form API generates its own markup — significant template overrides needed",
-        "Drupal's error handling uses different markup than USWDS validation patterns",
-        "Checkbox and radio groups need fieldset wrapper with usa-fieldset class"
       ],
       "tier": "curated",
       "tags": [
@@ -547,14 +315,6 @@
       "themeRegion": "header, primary_menu, secondary_menu",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Every government site",
-        "Site-wide header navigation"
-      ],
-      "avoidWhen": [
-        "Single-page apps without Drupal theme"
-      ],
-      "agentPrompt": "The uswds base theme provides header_top, header, primary_menu, and secondary_menu regions. Place menu blocks in primary_menu and secondary_menu. The theme settings page (/admin/appearance/settings/uswds) controls header variant (basic vs extended).",
       "twigTemplate": "page.html.twig in themes/contrib/uswds/templates/ — look for region-header, region-primary_menu blocks. Override in themes/custom/mytheme/templates/page.html.twig",
       "preprocessFunction": "mytheme_preprocess_page() — set $variables['header_variant'] = 'extended'",
       "drushCommands": [
@@ -569,23 +329,6 @@
         "drupal:block",
         "drupal:system (menu)"
       ],
-      "editableAreas": [
-        "Header variant (basic vs extended) in theme settings",
-        "Logo image in theme settings",
-        "Menu structure via Drupal menu admin",
-        "Search block placement in secondary_menu region"
-      ],
-      "preserveElements": [
-        "usa-header class structure",
-        "usa-logo and usa-logo__text",
-        "usa-nav__primary and usa-nav__link",
-        "usa-menu-btn and usa-nav__close buttons",
-        "aria-label on nav"
-      ],
-      "knownLimitations": [
-        "Extended header variant requires specific region block placement",
-        "Megamenu requires custom Twig work — not provided by base theme"
-      ],
       "tier": "curated",
       "tags": [
         "header",
@@ -598,6 +341,166 @@
       "id": "header-default"
     },
     {
+      "file": "icon-list/default.html",
+      "title": "Icon List & Collection (Drupal Custom Paragraph Bundles)",
+      "implementationType": "custom_module",
+      "drupalModule": "custom (*_additional_uswds_paragraph_components)",
+      "uswdsComponent": "icon-list, collection",
+      "complexity": "moderate",
+      "drupalVersion": "^10.1 || ^11 || ^12",
+      "twigTemplate": "paragraph--uswds-icon-list.html.twig, paragraph--uswds-icon-list-item.html.twig, paragraph--uswds-collection.html.twig, paragraph--uswds-collection-item.html.twig in modules/custom/{project}_additional_uswds_paragraph_components/modules/{project}_uswds_icon_list/templates/ and .../{project}_uswds_collection/templates/",
+      "preprocessFunction": "{project}_uswds_icon_list_preprocess_paragraph__uswds_icon_list() and {project}_uswds_collection_preprocess_paragraph__uswds_collection() — populate icon sprite references, item arrays, and variant classes",
+      "drushCommands": [
+        "drush pm:enable {project}_additional_uswds_paragraph_components",
+        "drush pm:enable {project}_uswds_icon_list {project}_uswds_collection",
+        "drush cache:rebuild"
+      ],
+      "configYaml": "# modules/custom/{project}_additional_uswds_paragraph_components/{project}_additional_uswds_paragraph_components.info.yml\nname: 'Additional USWDS Paragraph Components'\ntype: module\ndependencies:\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# Submodule: {project}_uswds_icon_list/{project}_uswds_icon_list.info.yml\ndependencies:\n  - {project}_additional_uswds_paragraph_components\n  - paragraphs\n\n# Paragraph bundle: uswds_icon_list (parent) with field_uswds_icon_list_items (ER-revisions, target=uswds_icon_list_item, unlimited)\n# Paragraph bundle: uswds_icon_list_item with fields: field_uswds_icon (svg via media library or sprite name text), field_uswds_heading, field_uswds_body, field_uswds_link\n\n# Submodule: {project}_uswds_collection/{project}_uswds_collection.info.yml\n# Paragraph bundle: uswds_collection (parent) with field_uswds_collection_items (ER-revisions, target=uswds_collection_item)\n# Paragraph bundle: uswds_collection_item with fields: field_uswds_heading, field_uswds_body, field_uswds_link, field_uswds_meta (optional author/date)",
+      "scssSettings": "$theme-icon-list-font-family, $theme-collection-font-family — typically just consume USWDS utility classes; minimal custom SCSS",
+      "dependencies": [
+        "paragraphs",
+        "entity_reference_revisions",
+        "uswds_paragraph_components",
+        "drupal:media (optional, for icon media library)",
+        "drupal:link"
+      ],
+      "fieldDefinitions": {
+        "uswds_icon_list.field_uswds_icon_list_items": "Entity reference revisions to uswds_icon_list_item (unlimited)",
+        "uswds_icon_list_item.field_uswds_icon": "Text field for USWDS sprite name (e.g., 'check_circle', 'arrow_forward') or media reference to SVG",
+        "uswds_icon_list_item.field_uswds_heading": "Text field for item heading",
+        "uswds_icon_list_item.field_uswds_body": "Text formatted field for item body",
+        "uswds_collection.field_uswds_collection_items": "Entity reference revisions to uswds_collection_item (unlimited)",
+        "uswds_collection_item.field_uswds_heading": "Text field for item heading",
+        "uswds_collection_item.field_uswds_body": "Text formatted field for item body",
+        "uswds_collection_item.field_uswds_link": "Link field for item URL",
+        "uswds_collection_item.field_uswds_meta": "Text field for meta info (author, date)"
+      },
+      "tier": "curated",
+      "tags": [
+        "icon-list",
+        "collection",
+        "paragraph",
+        "custom-module",
+        "extension",
+        "pandemic-oversight",
+        "uswds_paragraph_components"
+      ],
+      "id": "icon-list-default"
+    },
+    {
+      "file": "identifier/default.html",
+      "title": "Identifier (Drupal Custom Block)",
+      "implementationType": "twig_template",
+      "drupalModule": "custom",
+      "uswdsComponent": "identifier",
+      "complexity": "simple",
+      "drupalVersion": "^10 || ^11",
+      "twigTemplate": "block--uswds-identifier.html.twig (custom block template) or footer.html.twig (subtheme override). Place in themes/custom/mytheme/templates/",
+      "preprocessFunction": "mytheme_preprocess_block__uswds_identifier() — populate $variables['parent_agency'], $variables['disclaimer'], $variables['required_links'] from block config. Alternative: mytheme_preprocess_page() to inject identifier into footer variables.",
+      "drushCommands": [
+        "drush pm:enable block",
+        "drush config-set block.block.mytheme_identifier region footer_secondary"
+      ],
+      "configYaml": "# Custom block plugin: src/Plugin/Block/UswdsIdentifierBlock.php\n# Configurable fields: parent_agency, disclaimer, required_links (Accessibility, Privacy, FOIA, Vuln Disclosure)\n# Place via /admin/structure/block in the footer_secondary region",
+      "scssSettings": "$theme-identifier-font-family, $theme-identifier-background-color, $theme-identifier-identity-domain-color",
+      "dependencies": [
+        "uswds theme",
+        "drupal:block"
+      ],
+      "tier": "curated",
+      "tags": [
+        "identifier",
+        "footer",
+        "twig",
+        "custom",
+        "block",
+        "required",
+        "government",
+        "legal",
+        "21st-century-idea"
+      ],
+      "id": "identifier-default"
+    },
+    {
+      "file": "layout-builder-bridge/default.html",
+      "title": "USWDS Layout Builder Bridge (Drupal Custom Module)",
+      "implementationType": "custom_module",
+      "drupalModule": "layout_builder + block_content + paragraphs",
+      "uswdsComponent": "all",
+      "complexity": "complex",
+      "drupalVersion": "^10.1 || ^11 || ^12",
+      "twigTemplate": "block--block-content--uswds-paragraph-blocks.html.twig in themes/custom/mytheme/templates/. Layout plugin template: layouts--uswds-grid--twocol.html.twig. Both rely on the paragraphs ER-revisions field rendering the child bundles (uswds_card_group_regular, uswds_accordion, uswds_alert, etc.).",
+      "preprocessFunction": "mytheme_uswds_layouts_preprocess_block__block_content__uswds_paragraph_blocks() — set $variables['uswds_bundles'] from field_uswds_bundles. Optional: mytheme_preprocess_layout() to inject USWDS grid classes based on the layout configuration.",
+      "drushCommands": [
+        "composer require drupal/layout_builder drupal/paragraphs drupal/entity_reference_revisions drupal/block_content",
+        "drush pm:enable layout_builder paragraphs entity_reference_revisions block_content",
+        "drush pm:enable mytheme_uswds_layouts",
+        "drush config:import --module=mytheme_uswds_layouts --directory=config/install",
+        "drush cache:rebuild"
+      ],
+      "configYaml": "# modules/custom/mytheme_uswds_layouts/mytheme_uswds_layouts.info.yml\nname: 'USWDS Layout Builder Bridge'\ntype: module\ndependencies:\n  - layout_builder\n  - block_content\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# block_content type: uswds_paragraph_blocks\n# field: field_uswds_bundles (entity_reference_revisions, target_type=paragraph, unlimited)\n# allowed bundles: all uswds_* paragraph types enabled on the site\n\n# Enable Layout Builder on the target content type (e.g., landing_page):\n# /admin/structure/types/manage/landing_page/display/default\n# → Use Layout Builder: ✓\n# → Allow custom layouts: ✓",
+      "scssSettings": "$theme-grid-gap, $theme-grid-gutter, $theme-container-max-width — keep layouts aligned with USWDS grid utilities",
+      "dependencies": [
+        "drupal:layout_builder",
+        "drupal:block_content",
+        "drupal:paragraphs",
+        "drupal:entity_reference_revisions",
+        "uswds_paragraph_components"
+      ],
+      "fieldDefinitions": {
+        "field_uswds_bundles": "Entity reference revisions to paragraph (unlimited). Allowed bundles: uswds_accordion, uswds_alert, uswds_card_group_regular, uswds_card_group_flag, uswds_modal, uswds_process_list, uswds_step_indicator, uswds_summary_box, plus any custom uswds_* bundles the site defines"
+      },
+      "tier": "curated",
+      "tags": [
+        "layout-builder",
+        "block-content",
+        "paragraphs",
+        "custom-module",
+        "bridge",
+        "integration",
+        "grid"
+      ],
+      "id": "layout-builder-bridge-default"
+    },
+    {
+      "file": "mega-menu/default.html",
+      "title": "Mega Menu Header (Drupal Custom Twig)",
+      "implementationType": "twig_template",
+      "drupalModule": "tb_megamenu",
+      "uswdsComponent": "header",
+      "complexity": "complex",
+      "drupalVersion": "^10 || ^11",
+      "twigTemplate": "tbm-nav.html.twig, tbm-link.html.twig, tbm-subnav.html.twig, and tb-megamenu-column-inner.html.twig in themes/custom/mytheme/templates/. Wrap the entire <nav class=\"tbm\"> in <div class=\"usa-nav__inner\"> and each <ul class=\"tbm-nav\"> becomes a usa-nav__primary usa-accordion list. Override menu.html.twig (the 'Featured Topics' menu block inside the mega menu) to render as a usa-list with usa-link anchors and usa-sr-only headings.",
+      "preprocessFunction": "mytheme_preprocess_tbm_nav() — add usa-accordion and usa-nav__primary classes to $variables['classes_array']. mytheme_preprocess_tbm_link() — add usa-nav__link class to anchor. mytheme_preprocess_menu__featured_topics() — render 'Featured Topics' menu as a usa-list with navigation__link-description spans under each link (mirrors gsa.gov usa-featured--topics block).",
+      "drushCommands": [
+        "composer require drupal/tb_megamenu",
+        "drush pm:enable tb_megamenu",
+        "drush config-set block.block.mytheme_main_menu region primary_menu",
+        "drush config-set block.block.mytheme_main_menu plugin tb_megamenu_menu_block:main",
+        "drush cache:rebuild"
+      ],
+      "configYaml": "# /admin/structure/tb-megamenu\n# Configure a mega menu based on the 'main' menu.\n# Set data-breakpoint to match $theme-header-min-width (typically 1200 for extended header).\n\n# Featured Topics column:\n# Create a separate Drupal menu (machine name: featured_topics) with menu items that include a description.\n# Place it inside the mega menu's last column via the TB Mega Menu admin UI as a 'menu block'.\n# Override its template to render as usa-list with navigation__link-description.",
+      "scssSettings": "$theme-header-min-width (match tbm data-breakpoint), $theme-nav-link-color, $theme-nav-link-color-hover, $theme-font-family-sans",
+      "dependencies": [
+        "uswds theme",
+        "drupal:tb_megamenu",
+        "drupal:block",
+        "drupal:system (menu)"
+      ],
+      "tier": "curated",
+      "tags": [
+        "header",
+        "mega-menu",
+        "tb-megamenu",
+        "twig",
+        "custom",
+        "navigation",
+        "gsa",
+        "extended-header"
+      ],
+      "id": "mega-menu-default"
+    },
+    {
       "file": "misc/default.html",
       "title": "Tag, Link, Icon, Pagination (Drupal Custom Twig)",
       "implementationType": "twig_template",
@@ -605,39 +508,12 @@
       "uswdsComponent": "tag, link, icon, pagination",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Tags and labels",
-        "Content links",
-        "USWDS icons via sprite",
-        "Views pagination"
-      ],
-      "avoidWhen": [
-        "When a paragraph bundle or theme region already handles the component"
-      ],
-      "agentPrompt": "These components have no dedicated paragraph bundle. Implement via Twig template overrides: field.html.twig for tags (add usa-tag), link.html.twig for links (add usa-link), menu.html.twig for pagination (add usa-pagination), and use USWDS sprite SVGs for icons.",
       "twigTemplate": "field--type-list-string.html.twig (for tags), link.html.twig, menu.html.twig (for pagination), field--field-icon.html.twig (for icons)",
       "preprocessFunction": "mytheme_preprocess_field() — detect tag fields and add usa-tag class. mytheme_preprocess_link() — add usa-link. mytheme_preprocess_menu() — add usa-pagination for pager menus.",
       "drushCommands": [],
       "scssSettings": "$theme-link-color, $theme-tag-font-family",
       "dependencies": [
         "uswds theme"
-      ],
-      "editableAreas": [
-        "Tag content and variant (usa-tag--big)",
-        "Link variant (usa-link--external, --download)",
-        "Icon name from USWDS sprite",
-        "Pagination page range and current page"
-      ],
-      "preserveElements": [
-        "usa-tag, usa-link, usa-icon, usa-pagination class structure",
-        "xlink:href to USWDS sprite.svg for icons",
-        "aria-current='page' on current pagination item",
-        "rel='external' or download attribute on special links"
-      ],
-      "knownLimitations": [
-        "USWDS sprite.svg must be in theme assets directory",
-        "Pagination via Views pager needs separate template (views-mini-pager.html.twig)",
-        "External link detection requires custom logic in preprocess"
       ],
       "tier": "curated",
       "tags": [
@@ -660,16 +536,6 @@
       "paragraphType": "uswds_modal",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Dialog interactions in content",
-        "Supplemental information that shouldn't need a full page",
-        "Image or video lightboxes"
-      ],
-      "avoidWhen": [
-        "Form modals (use Drupal's modal API instead)",
-        "Critical content that must always be visible"
-      ],
-      "agentPrompt": "Enable uswds_paragraph_components_modal submodule. Editor creates a modal paragraph with trigger text, heading, and body content. USWDS JS handles open/close behavior.",
       "twigTemplate": "paragraph--uswds-modal.html.twig",
       "preprocessFunction": "uswds_paragraph_components_modal_preprocess_paragraph__uswds_modal()",
       "drushCommands": [
@@ -684,22 +550,6 @@
       "dependencies": [
         "uswds_paragraph_components",
         "paragraphs"
-      ],
-      "editableAreas": [
-        "Trigger button styling",
-        "Modal width (default vs lg)",
-        "Close button text"
-      ],
-      "preserveElements": [
-        "data-open-modal attribute on trigger",
-        "usa-modal structure",
-        "aria-labelledby and aria-describedby",
-        "usa-modal__close button"
-      ],
-      "knownLimitations": [
-        "Requires USWDS JS for open/close",
-        "Not integrated with Drupal's modal API",
-        "Content inside modal is not lazy-loaded"
       ],
       "tier": "curated",
       "tags": [
@@ -720,16 +570,6 @@
       "paragraphType": "uswds_process_list",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Step-by-step guides",
-        "How-to content",
-        "Procedural instructions"
-      ],
-      "avoidWhen": [
-        "Non-sequential content",
-        "Simple bullet lists (use regular list instead)"
-      ],
-      "agentPrompt": "Enable uswds_paragraph_components_process_list submodule. Create a parent 'uswds_process_list' paragraph, then add 'uswds_process_item' children. Each item has a heading and body.",
       "twigTemplate": "paragraph--uswds-process-list.html.twig and paragraph--uswds-process-item.html.twig",
       "preprocessFunction": "uswds_paragraph_components_process_list_preprocess_paragraph()",
       "drushCommands": [
@@ -745,18 +585,6 @@
         "uswds_paragraph_components",
         "paragraphs",
         "entity_reference_revisions"
-      ],
-      "editableAreas": [
-        "Template override for custom step numbering",
-        "Field labels for editor UX"
-      ],
-      "preserveElements": [
-        "usa-process-list structure",
-        "usa-process-list__item heading and body hierarchy"
-      ],
-      "knownLimitations": [
-        "Process items are child paragraphs",
-        "Numbering is automatic via CSS counters"
       ],
       "tier": "curated",
       "tags": [
@@ -778,15 +606,6 @@
       "themeRegion": "secondary_menu",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Sites with search functionality",
-        "Header search bar"
-      ],
-      "avoidWhen": [
-        "Sites without search",
-        "When search is in a dropdown panel (custom Twig needed)"
-      ],
-      "agentPrompt": "Place the Drupal search form block in the secondary_menu region. The uswds theme converts Drupal's search form to usa-search markup. For usa-search--small or --big variants, override the template.",
       "twigTemplate": "search.html.twig or form--search-form.html.twig in themes/contrib/uswds/templates/. Override to change variant (default, big, small).",
       "preprocessFunction": "mytheme_preprocess_form() — check for search form and add usa-search--small class",
       "drushCommands": [
@@ -797,23 +616,6 @@
       "dependencies": [
         "uswds theme",
         "drupal:search"
-      ],
-      "editableAreas": [
-        "Search form block placement",
-        "Search variant (default, big, small) via template override",
-        "Placeholder text",
-        "Submit button text/icon"
-      ],
-      "preserveElements": [
-        "usa-search class",
-        "usa-input type='search'",
-        "usa-button submit",
-        "role='search' on form"
-      ],
-      "knownLimitations": [
-        "Drupal's search form has extra div wrappers that need CSS normalization",
-        "Big/small variants require template override",
-        "Search API integration requires additional configuration"
       ],
       "tier": "curated",
       "tags": [
@@ -834,15 +636,6 @@
       "uswdsComponent": "all",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Starting a new Drupal + USWDS government site",
-        "Setting up the USWDS ecosystem on an existing Drupal site"
-      ],
-      "avoidWhen": [
-        "Non-Drupal projects",
-        "Sites not using USWDS"
-      ],
-      "agentPrompt": "Run these composer and drush commands in order to install the full USWDS-Drupal stack. Then create a subtheme of uswds and configure USWDS SCSS settings.",
       "drushCommands": [
         "composer require drupal/uswds",
         "composer require drupal/uswds_paragraph_components",
@@ -865,20 +658,6 @@
       ],
       "twigTemplate": "themes/custom/mytheme/templates/",
       "preprocessFunction": "mytheme_preprocess_page() in mytheme.theme",
-      "editableAreas": [
-        "Theme name (mytheme)",
-        "SCSS settings in _uswds-theme.scss",
-        "Which paragraph submodules to enable"
-      ],
-      "preserveElements": [
-        "base theme: uswds",
-        "library dependencies",
-        "paragraph type configs"
-      ],
-      "knownLimitations": [
-        "USWDS SCSS compilation requires Node.js and gulp",
-        "Some paragraph bundles depend on others (Cards Flag depends on Cards)"
-      ],
       "tier": "curated",
       "tags": [
         "setup",
@@ -900,16 +679,6 @@
       "themeRegion": "sidebar_first",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Content pages with sidebar navigation",
-        "Documentation sites",
-        "Multi-level section navigation"
-      ],
-      "avoidWhen": [
-        "Full-width content layouts",
-        "Landing pages"
-      ],
-      "agentPrompt": "The uswds base theme auto-styles any menu block placed in sidebar_first as usa-sidenav. Drupal's menu system provides the hierarchy; the theme converts it to usa-sidenav markup with usa-current on the active trail.",
       "twigTemplate": "menu.html.twig in themes/contrib/uswds/templates/. The theme provides a usa-sidenav version of the menu template.",
       "preprocessFunction": "mytheme_preprocess_menu() — add custom classes or modify items",
       "drushCommands": [
@@ -920,23 +689,6 @@
         "uswds theme",
         "drupal:block",
         "drupal:system (menu)"
-      ],
-      "editableAreas": [
-        "Which menu to place in sidebar_first",
-        "Menu depth (how many levels to show)",
-        "Custom template for sublist expansion"
-      ],
-      "preserveElements": [
-        "usa-sidenav class",
-        "usa-sidenav__item",
-        "usa-sidenav__sublist for nested items",
-        "usa-current on active trail",
-        "active-trail class hierarchy"
-      ],
-      "knownLimitations": [
-        "Menu structure must be defined in Drupal's menu admin",
-        "usa-current is applied based on Drupal's active trail — may not match for views pages",
-        "Sub-list expansion requires menu depth > 1"
       ],
       "tier": "curated",
       "tags": [
@@ -959,16 +711,6 @@
       "paragraphType": "uswds_step_indicator",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Multi-step form progress",
-        "Wizard-style workflows in content",
-        "Showing completion status of a process"
-      ],
-      "avoidWhen": [
-        "Simple numbered lists (use process-list instead)",
-        "Navigation breadcrumbs (use breadcrumb component)"
-      ],
-      "agentPrompt": "Enable uswds_paragraph_components_step_indicator submodule. Create a parent 'uswds_step_indicator' paragraph, then add 'uswds_step_indicator_item' children. Mark one as current.",
       "twigTemplate": "paragraph--uswds-step-indicator.html.twig",
       "preprocessFunction": "uswds_paragraph_components_step_indicator_preprocess_paragraph()",
       "drushCommands": [
@@ -984,20 +726,6 @@
         "uswds_paragraph_components",
         "paragraphs",
         "entity_reference_revisions"
-      ],
-      "editableAreas": [
-        "Template for centered/no-labels variants",
-        "Step status field options"
-      ],
-      "preserveElements": [
-        "usa-step-indicator structure",
-        "usa-step-indicator__segment states (--complete, --current)",
-        "aria-label for progress"
-      ],
-      "knownLimitations": [
-        "Step items are child paragraphs",
-        "State management is manual (editor sets complete/current/incomplete)",
-        "Not integrated with Drupal's form API multi-step forms"
       ],
       "tier": "curated",
       "tags": [
@@ -1019,16 +747,6 @@
       "paragraphType": "uswds_summary_box",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "useWhen": [
-        "Key takeaways at top of content",
-        "Informational summaries",
-        "TL;DR sections"
-      ],
-      "avoidWhen": [
-        "Error summaries (use Drupal form error handling)",
-        "Regular body content"
-      ],
-      "agentPrompt": "Enable uswds_paragraph_components_summary_box submodule. Editor creates a summary box with heading and body text (can include list items).",
       "twigTemplate": "paragraph--uswds-summary-box.html.twig",
       "preprocessFunction": "uswds_paragraph_components_summary_box_preprocess_paragraph()",
       "drushCommands": [
@@ -1042,19 +760,6 @@
       "dependencies": [
         "uswds_paragraph_components",
         "paragraphs"
-      ],
-      "editableAreas": [
-        "Template for info/warning/error variants",
-        "Heading level (h2-h4)"
-      ],
-      "preserveElements": [
-        "usa-summary-box structure",
-        "role='region'",
-        "usa-summary-box__heading and __body hierarchy"
-      ],
-      "knownLimitations": [
-        "Variant (info/warning/error) styling may require custom CSS",
-        "Not auto-generated from content — editor must write summary"
       ],
       "tier": "curated",
       "tags": [
@@ -1075,38 +780,12 @@
       "uswdsComponent": "table",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Data tables in content",
-        "Views table displays",
-        "Comparison tables"
-      ],
-      "avoidWhen": [
-        "Layout grids (use CSS grid instead)",
-        "Simple key-value pairs (use definition lists)"
-      ],
-      "agentPrompt": "Override table.html.twig in your theme to add usa-table class to all Drupal tables. For Views tables, override views-view-table.html.twig. For stacked/borderless/striped variants, add the variant class in preprocess based on a field or view setting.",
       "twigTemplate": "table.html.twig, views-view-table.html.twig in themes/custom/mytheme/templates/",
       "preprocessFunction": "mytheme_preprocess_table() — add usa-table class. mytheme_preprocess_views_view_table() — add variant classes.",
       "drushCommands": [],
       "scssSettings": "",
       "dependencies": [
         "uswds theme"
-      ],
-      "editableAreas": [
-        "Table variant class (usa-table--striped, --borderless, --scrollable, --stacked)",
-        "Responsive wrapper div for scrollable tables",
-        "data-label attributes for stacked variant"
-      ],
-      "preserveElements": [
-        "usa-table base class",
-        "thead/tbody structure",
-        "scope='col' on th elements",
-        "caption element for accessibility"
-      ],
-      "knownLimitations": [
-        "Drupal Views tables have different template suggestions than content tables",
-        "Stacked variant requires data-label attributes on td elements (manual in Twig)",
-        "Scrollable variant needs a wrapper div around the table"
       ],
       "tier": "curated",
       "tags": [
@@ -1129,39 +808,12 @@
       "uswdsComponent": "text-input",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "useWhen": [
-        "Form text fields",
-        "Search inputs",
-        "Email/phone inputs"
-      ],
-      "avoidWhen": [
-        "When using Webform module (has its own theming)"
-      ],
-      "agentPrompt": "Override input.html.twig and form-element--type-textfield.html.twig in your theme. Add usa-input class to the input element and usa-label to the label. For error states, add usa-input--error and wrap error message in usa-error-message.",
       "twigTemplate": "input.html.twig, form-element--type-textfield.html.twig in themes/custom/mytheme/templates/",
       "preprocessFunction": "mytheme_preprocess_input() — add usa-input class. mytheme_preprocess_form_element() — add usa-label class to labels.",
       "drushCommands": [],
       "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-input-max-width",
       "dependencies": [
         "uswds theme"
-      ],
-      "editableAreas": [
-        "Input type attribute (text, email, tel, url, search, password)",
-        "Placeholder text",
-        "maxlength attribute",
-        "autocomplete attribute",
-        "Error/success variant classes"
-      ],
-      "preserveElements": [
-        "usa-input class",
-        "usa-label class on label",
-        "for/id attribute relationship",
-        "aria-describedby for hints",
-        "aria-invalid='true' on error"
-      ],
-      "knownLimitations": [
-        "Drupal wraps inputs in form-element divs that need CSS normalization",
-        "Error message markup differs between Drupal and USWDS"
       ],
       "tier": "curated",
       "tags": [

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="Custom Drupal paragraph bundles extending uswds_paragraph_components with Icon List and Collection patterns.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>USWDS Icon List & Collection (Drupal Custom Paragraph Bundles)</title>
+<script type="application/json" id="drupal-uswds-agent-meta">
+{
+  "file": "icon-list/default.html",
+  "title": "Icon List & Collection (Drupal Custom Paragraph Bundles)",
+  "implementationType": "custom_module",
+  "drupalModule": "custom (*_additional_uswds_paragraph_components)",
+  "uswdsComponent": "icon-list, collection",
+  "complexity": "moderate",
+  "drupalVersion": "^10.1 || ^11 || ^12",
+  "useWhen": [
+    "Lists where each item needs a USWDS sprite icon + heading + body (Icon List)",
+    "Dense lists of related links with optional thumbnails (Collection)",
+    "When uswds_paragraph_components contrib does not ship these bundles (it ships accordion, alert, cards, columns, modal, process-list, step-indicator, summary-box only)"
+  ],
+  "avoidWhen": [
+    "A simple bulleted list (use usa-list in body content instead)",
+    "When the site already ships these as part of a contrib module — check first"
+  ],
+  "agentPrompt": "Build a small custom module named {project}_additional_uswds_paragraph_components mirroring the structure of smustgrave's uswds_paragraph_components contrib module. Inside, ship two submodules: {project}_uswds_icon_list and {project}_uswds_collection. Each submodule declares a paragraph bundle (uswds_icon_list, uswds_icon_list_item, uswds_collection, uswds_collection_item) with field definitions, a Twig template (paragraph--uswds-icon-list.html.twig etc.), and a preprocess function. Wire CSS via a module-named library. This mirrors the pandemicoversight.gov pattern: prac_additional_uswds_paragraph_components with prac_uswds_collection and prac_uswds_icon_list submodules.",
+  "twigTemplate": "paragraph--uswds-icon-list.html.twig, paragraph--uswds-icon-list-item.html.twig, paragraph--uswds-collection.html.twig, paragraph--uswds-collection-item.html.twig in modules/custom/{project}_additional_uswds_paragraph_components/modules/{project}_uswds_icon_list/templates/ and .../{project}_uswds_collection/templates/",
+  "preprocessFunction": "{project}_uswds_icon_list_preprocess_paragraph__uswds_icon_list() and {project}_uswds_collection_preprocess_paragraph__uswds_collection() — populate icon sprite references, item arrays, and variant classes",
+  "drushCommands": [
+    "drush pm:enable {project}_additional_uswds_paragraph_components",
+    "drush pm:enable {project}_uswds_icon_list {project}_uswds_collection",
+    "drush cache:rebuild"
+  ],
+  "configYaml": "# modules/custom/{project}_additional_uswds_paragraph_components/{project}_additional_uswds_paragraph_components.info.yml\nname: 'Additional USWDS Paragraph Components'\ntype: module\ndependencies:\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# Submodule: {project}_uswds_icon_list/{project}_uswds_icon_list.info.yml\ndependencies:\n  - {project}_additional_uswds_paragraph_components\n  - paragraphs\n\n# Paragraph bundle: uswds_icon_list (parent) with field_uswds_icon_list_items (ER-revisions, target=uswds_icon_list_item, unlimited)\n# Paragraph bundle: uswds_icon_list_item with fields: field_uswds_icon (svg via media library or sprite name text), field_uswds_heading, field_uswds_body, field_uswds_link\n\n# Submodule: {project}_uswds_collection/{project}_uswds_collection.info.yml\n# Paragraph bundle: uswds_collection (parent) with field_uswds_collection_items (ER-revisions, target=uswds_collection_item)\n# Paragraph bundle: uswds_collection_item with fields: field_uswds_heading, field_uswds_body, field_uswds_link, field_uswds_meta (optional author/date)",
+  "scssSettings": "$theme-icon-list-font-family, $theme-collection-font-family — typically just consume USWDS utility classes; minimal custom SCSS",
+  "dependencies": [
+    "paragraphs",
+    "entity_reference_revisions",
+    "uswds_paragraph_components",
+    "drupal:media (optional, for icon media library)",
+    "drupal:link"
+  ],
+  "fieldDefinitions": {
+    "uswds_icon_list.field_uswds_icon_list_items": "Entity reference revisions to uswds_icon_list_item (unlimited)",
+    "uswds_icon_list_item.field_uswds_icon": "Text field for USWDS sprite name (e.g., 'check_circle', 'arrow_forward') or media reference to SVG",
+    "uswds_icon_list_item.field_uswds_heading": "Text field for item heading",
+    "uswds_icon_list_item.field_uswds_body": "Text formatted field for item body",
+    "uswds_collection.field_uswds_collection_items": "Entity reference revisions to uswds_collection_item (unlimited)",
+    "uswds_collection_item.field_uswds_heading": "Text field for item heading",
+    "uswds_collection_item.field_uswds_body": "Text formatted field for item body",
+    "uswds_collection_item.field_uswds_link": "Link field for item URL",
+    "uswds_collection_item.field_uswds_meta": "Text field for meta info (author, date)"
+  },
+  "editableAreas": [
+    "Icon sprite source (USWDS sprite.svg vs site-shipped custom icons)",
+    "Icon size variants (usa-icon--size-3, usa-icon--size-4)",
+    "Collection item layout (condensed vs default)",
+    "Heading level for items (h2-h4)"
+  ],
+  "preserveElements": [
+    "usa-icon-list container with grid-row grid-gap structure",
+    "usa-icon-list__item and usa-media-block__img / usa-media-block__body hierarchy",
+    "usa-collection container structure",
+    "usa-collection__item with usa-collection__heading, usa-collection__description, usa-collection__meta",
+    "xlink:href to USWDS sprite.svg for icons",
+    "ER-revisions relationship between parent bundle and child items"
+  ],
+  "knownLimitations": [
+    "These are custom bundles — they will not appear on drupal.org; teams must maintain the module",
+    "Naming convention: prefix custom bundles with the project name (e.g., prac_uswds_icon_list) to avoid collisions with future contrib bundles",
+    "Icon sprite path must be consistent across theme and module CSS libraries — define once in theme libraries.yml",
+    "If uswds_paragraph_components later ships these bundles upstream, the custom module must be uninstalled and content migrated"
+  ],
+  "tier": "curated",
+  "tags": ["icon-list", "collection", "paragraph", "custom-module", "extension", "pandemic-oversight", "uswds_paragraph_components"]
+}
+</script>
+</head>
+<body>
+<h1>USWDS Icon List &amp; Collection — Custom Paragraph Bundles</h1>
+<p>Extends <code>uswds_paragraph_components</code> with two custom paragraph bundles that contrib does not ship, following the pattern observed on pandemicoversight.gov.</p>
+<h2>Why this tile exists</h2>
+<p>The existing <code>paragraph_bundle</code> tiles cover what contrib ships (accordion, alert, card, modal, process-list, step-indicator, summary-box). Several federal sites need <code>usa-icon-list</code> and <code>usa-collection</code> as paragraph bundles too. Rather than wait for upstream contrib, sites build a small <code>{project}_additional_uswds_paragraph_components</code> module.</p>
+<h2>Reference implementation</h2>
+<p>pandemicoversight.gov (Drupal 11) ships <code>prac_additional_uswds_paragraph_components</code> with two submodules visible in CSS paths:</p>
+<pre>/modules/custom/prac_additional_uswds_paragraph_components/modules/prac_uswds_collection/css/prac_uswds_collection.css
+/modules/custom/prac_additional_uswds_paragraph_components/modules/prac_uswds_icon_list/css/prac_uswds_icon_list.css</pre>
+<h2>Module structure</h2>
+<pre>modules/custom/{project}_additional_uswds_paragraph_components/
+├── {project}_additional_uswds_paragraph_components.info.yml
+├── modules/
+│   ├── {project}_uswds_icon_list/
+│   │   ├── {project}_uswds_icon_list.info.yml
+│   │   ├── {project}_uswds_icon_list.libraries.yml
+│   │   ├── css/{project}_uswds_icon_list.css
+│   │   ├── config/install/paragraphs.paragraphs_type.uswds_icon_list.yml
+│   │   ├── config/install/paragraphs.paragraphs_type.uswds_icon_list_item.yml
+│   │   ├── config/install/field.field.paragraph.uswds_icon_list.field_uswds_icon_list_items.yml
+│   │   ├── config/install/field.storage.paragraph.field_uswds_icon_list_items.yml
+│   │   ├── templates/paragraph--uswds-icon-list.html.twig
+│   │   ├── templates/paragraph--uswds-icon-list-item.html.twig
+│   │   └── {project}_uswds_icon_list.module
+│   └── {project}_uswds_collection/
+│       └── ... (mirrors icon_list structure)</pre>
+</body>
+</html>

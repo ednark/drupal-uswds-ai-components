@@ -3,7 +3,7 @@
   "description": "Drupal implementation knowledge for USWDS components. Maps each USWDS component to its Drupal module, paragraph type, Twig template, and configuration. Maintainer: ednark.",
   "repo": "https://github.com/ednark/drupal-uswds-ai-components",
   "base": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main",
-  "count": 20,
+  "count": 24,
   "facetsUrl": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json",
   "index": "https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/components.index.json",
   "indexSchemaVersion": 1,

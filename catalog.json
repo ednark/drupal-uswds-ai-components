@@ -9,7 +9,7 @@
   },
   "drupalVersion": "^10.1 || ^11 || ^12",
   "totals": {
-    "components": "TBD",
+    "components": 24,
     "modules": 3,
     "paragraphTypes": 8
   },
@@ -56,12 +56,12 @@
     {
       "id": "setup",
       "title": "Setup & Installation",
-      "components": ["setup"]
+      "components": ["setup", "layout-builder-bridge"]
     },
     {
       "id": "paragraph-bundles",
       "title": "Paragraph Bundle Components",
-      "components": ["accordion", "alert", "card", "modal", "process-list", "step-indicator", "summary-box"]
+      "components": ["accordion", "alert", "card", "modal", "process-list", "step-indicator", "summary-box", "icon-list", "collection"]
     },
     {
       "id": "theme-regions",
@@ -76,7 +76,7 @@
     {
       "id": "custom-twig",
       "title": "Custom Twig Components",
-      "components": ["button", "table", "form", "text-input", "tag", "link", "icon", "pagination"]
+      "components": ["button", "table", "form", "text-input", "tag", "link", "icon", "pagination", "identifier", "mega-menu"]
     }
   ]
 }
