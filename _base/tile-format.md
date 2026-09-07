@@ -88,6 +88,26 @@ Metadata is organized into categories based on how the agent should process each
     "relatedComponents": ["button-group", "link"]
   },
 
+  "coordination": {
+    "prerequisiteComponents": [
+      { "name": "form", "reason": "Provides form context; place inputs inside it" }
+    ],
+    "incompatibleWith": [
+      { "name": "button-group", "reason": "Button groups override individual button event handlers" }
+    ],
+    "compositionCost": {
+      "costTier": "cheap",
+      "estimatedTokens": 750,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    },
+    "agentPromptSequence": [
+      "1. Fetch form wrapper first",
+      "2. Place the button as the last child of the form",
+      "3. Set type='submit' if it submits the form"
+    ]
+  },
+
   "constraints": {
     "preserve": [
       "usa-button base class on button or link element",
@@ -128,6 +148,7 @@ Research on LLM-native markup languages (LLMON) demonstrates that separating ins
 | `discovery` | **Index only** — never sent to the model | Facets for filtering in code |
 | `selection` | **Read before adapting** — helps choose the right component | When to use / avoid this component |
 | `instruction` | **Follow** — direct guidance for adaptation | What the agent should do |
+| `coordination` | **Plan before composing** — check before combining components | Dependencies, conflicts, cost of composition |
 | `constraints` | **Enforce** — hard boundaries on adaptation | What must/must not change |
 | `portability` | **Translate** — cross-design system mapping | How to adapt to other design systems |
 
@@ -169,6 +190,53 @@ This ordering prevents "constraint priority inversion" where a less important co
 |-------|------|-------------|
 | `instruction.agentPrompt` | string | concrete adaptation instruction |
 | `instruction.relatedComponents` | string[] | commonly paired components |
+
+### Coordination Fields (plan before composing)
+
+Coordination metadata tells an orchestrating agent what must exist before this
+component is used, what it conflicts with, and what composing it costs. This
+supports multi-agent workflows where a coordinator assembles components
+retrieved by workers.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `coordination.prerequisiteComponents` | {name, reason}[] | components that must be fetched/placed first (e.g. a form wrapper before its inputs) |
+| `coordination.incompatibleWith` | {name, reason}[] | components that should not be paired with this one |
+| `coordination.compositionCost.costTier` | enum | `cheap` \| `moderate` \| `expensive` — routing hint for model/task assignment (vocabulary shared with the forever-ai-components `perfTier` facet) |
+| `coordination.compositionCost.estimatedTokens` | integer | approximate token count of the tile source |
+| `coordination.compositionCost.renderingTimeMs` | integer | approximate client-side render/behavior cost |
+| `coordination.compositionCost.recommendedModel` | string | suggested model tier for adapting this component (e.g. `haiku`, `sonnet`) |
+| `coordination.agentPromptSequence` | string[] | ordered assembly instructions for placing this component in a larger UI |
+| `coordination.compositionRecipes` | string[] | recipe names (Surface 4) this component participates in |
+| `coordination.variantRules` | object | optional nested-variant legality: `exclusiveGroups` (array of mutually exclusive variant name arrays) and `combinable` (variant names that combine freely) |
+
+### Compliance & Mobile Fields (domain-enriched discovery)
+
+Registries serving regulated domains attach compliance and mobile-safety facts
+to the `discovery` category so they can be filtered in code. These are
+*facts about the component*, not instructions.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `discovery.compliance.nistControls` | string[] | NIST SP 800-53 control IDs this component touches (e.g. `AU-12` for audit-record-producing inputs) |
+| `discovery.compliance.fedRampLevel` | string | minimum suitable FedRAMP impact level (`IL2`, `IL2+`, `IL4`, `IL5`) |
+| `discovery.compliance.section508` | boolean | Section 508 conformance |
+| `discovery.compliance.wcag21AA` | boolean | WCAG 2.1 AA conformance |
+| `discovery.compliance.piiHandling` | enum | `accepts_input` \| `displays_only` \| `none` — PII relationship |
+| `discovery.compliance.auditTrailCompatible` | boolean | suitable for systems with audit-logging requirements |
+| `discovery.compliance.dataMaskingCompatible` | boolean | supports masked input (e.g. password-style display) |
+| `discovery.mobileUX.touchTargetSize` | string | smallest touch target this variant guarantees (e.g. `44px`) |
+| `discovery.mobileUX.requiredMinSpacing` | string | minimum spacing between adjacent instances (e.g. `8px`) |
+| `discovery.mobileUX.orientationLocked` | boolean | whether the component forces an orientation |
+| `discovery.mobileUX.fullscreenSafe` | boolean | renders correctly in fullscreen/notch-aware viewports |
+| `supportedTokenProfiles` | string[] | token profile names (registry `tokenProfiles` keys) this component supports |
+
+**Index leanness rule:** coordination *summary* fields, compliance/mobileUX
+flattened summaries, and `supportedTokenProfiles` are normalized into
+`components.index.json`; the verbose blocks themselves (`reason`,
+`agentPromptSequence`, full `compositionCost`, `variantRules`, full
+`compliance`, full `mobileUX`) travel only in the tile, so the discovery
+index stays filterable without bloat.
 
 ### Constraint Fields (enforce boundaries)
 
@@ -253,6 +321,60 @@ Registries can add fields specific to their design system within any category. F
   }
 }
 ```
+
+### Provenance Fields (where the tile knowledge came from)
+
+Optional block recording when and where the component/variant knowledge was
+acquired — valuable for field-research-driven registries and for auditing
+coverage claims.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `provenance.observed` | date | when the variant was observed/derived (YYYY-MM-DD) |
+| `provenance.source` | string | URL of the site or documentation page where it was observed |
+| `provenance.method` | enum | `live-site observation` \| `design-system documentation` \| `coverage audit` |
+
+**Index leanness rule:** provenance stays in the tile; it is never copied into
+the discovery index. Registries doing systematic field research should also
+maintain a session log at `{tileDir}/provenance.json` (sessions with date,
+source, findings, and tilesAdded).
+
+### Core Classes (the untiled layer)
+
+Registries tile **components** — but agents assembling full pages also need
+each design system's **layout/grid/typography/wrapper classes**, which are
+deliberately not components. Every registry publishes a
+`core-classes.json` manifest declaring that layer, so page assembly never
+relies on out-of-band knowledge or invented classes.
+
+```json
+{
+  "schemaVersion": 1,
+  "registry": "dsfr-ai-components",
+  "description": "Real, documented design-system classes that are NOT tiled components",
+  "categories": {
+    "layout": ["fr-container", "fr-grid-row", "fr-col-6", "fr-col-12"],
+    "typography": ["fr-h5", "fr-text--sm", "fr-text--lg"],
+    "elements": ["fr-link", "fr-logo", "fr-label", "fr-hint-text"],
+    "states": ["fr-error-text", "fr-valid-text"]
+  }
+}
+```
+
+**Authoring rule (enforced by field testing):** site customizations and
+composition layout are expressed with **inline styles or core classes** —
+never with invented component-style classes (`fr-*`, `usa-*`, `govuk-*`,
+`ecl-*` names that no tile defines). Zero invented classes is an acceptance
+criterion of the field-test procedure (`test-procedure.md`).
+
+### Language Fields
+
+Tile markup labels are written in the registry's declared language(s).
+Registries declare their language convention in `registry.config.json`
+(`language` for single-language registries, `languages` for bilingual
+mandates such as Canada). Bilingual-default registries (DSFR) carry
+target-language strings in tile markup — agents translating into them must
+expect and handle target-language label text.
 
 ## File Naming Convention
 
