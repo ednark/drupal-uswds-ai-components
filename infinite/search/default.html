@@ -7,27 +7,121 @@
 <title>USWDS Search (Drupal Theme Region)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "theme_region",
+    "drupalModule": "uswds",
+    "uswdsComponent": "search",
+    "themeRegion": "secondary_menu",
+    "complexity": "simple",
+    "drupalVersion": "^10 || ^11",
+    "uswdClass": "usa-search",
+    "tier": "curated",
+    "tags": [
+      "search",
+      "theme-region",
+      "uswds",
+      "header",
+      "form",
+      "secondary_menu"
+    ],
+    "description": "Search (Drupal Theme Region)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
+  },
+  "selection": {
+    "useWhen": [
+      "Sites with search functionality",
+      "Header search bar"
+    ],
+    "avoidWhen": [
+      "Sites without search",
+      "When search is in a dropdown panel (custom Twig needed)"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "Place the Drupal search form block in the secondary_menu region. The uswds theme converts Drupal's search form to usa-search markup. For usa-search--small or --big variants, override the template.",
+    "twigTemplate": "search.html.twig or form--search-form.html.twig in themes/contrib/uswds/templates/. Override to change variant (default, big, small).",
+    "preprocessFunction": "mytheme_preprocess_form() — check for search form and add usa-search--small class",
+    "drushCommands": [
+      "drush pm:enable search",
+      "drush config-set block.block.mytheme_search region secondary_menu"
+    ],
+    "dependencies": [
+      "uswds theme",
+      "drupal:search"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "cheap",
+      "estimatedTokens": 568,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-search class",
+      "usa-input type='search'",
+      "usa-button submit",
+      "role='search' on form"
+    ],
+    "editable": [
+      "Search form block placement",
+      "Search variant (default, big, small) via template override",
+      "Placeholder text",
+      "Submit button text/icon"
+    ],
+    "limitations": [
+      "Drupal's search form has extra div wrappers that need CSS normalization",
+      "Big/small variants require template override",
+      "Search API integration requires additional configuration"
+    ],
+    "portableInvariants": [
+      "usa-search class",
+      "usa-input type='search'",
+      "usa-button submit",
+      "role='search' on form"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
   "file": "search/default.html",
-  "title": "Search (Drupal Theme Region)",
-  "implementationType": "theme_region",
-  "drupalModule": "uswds",
-  "uswdsComponent": "search",
-  "themeRegion": "secondary_menu",
-  "complexity": "simple",
-  "drupalVersion": "^10 || ^11",
-  "useWhen": ["Sites with search functionality", "Header search bar"],
-  "avoidWhen": ["Sites without search", "When search is in a dropdown panel (custom Twig needed)"],
-  "agentPrompt": "Place the Drupal search form block in the secondary_menu region. The uswds theme converts Drupal's search form to usa-search markup. For usa-search--small or --big variants, override the template.",
-  "twigTemplate": "search.html.twig or form--search-form.html.twig in themes/contrib/uswds/templates/. Override to change variant (default, big, small).",
-  "preprocessFunction": "mytheme_preprocess_form() — check for search form and add usa-search--small class",
-  "drushCommands": ["drush pm:enable search", "drush config-set block.block.mytheme_search region secondary_menu"],
-  "scssSettings": "$theme-search-input-width",
-  "dependencies": ["uswds theme", "drupal:search"],
-  "editableAreas": ["Search form block placement", "Search variant (default, big, small) via template override", "Placeholder text", "Submit button text/icon"],
-  "preserveElements": ["usa-search class", "usa-input type='search'", "usa-button submit", "role='search' on form"],
-  "knownLimitations": ["Drupal's search form has extra div wrappers that need CSS normalization", "Big/small variants require template override", "Search API integration requires additional configuration"],
-  "tier": "curated",
-  "tags": ["search", "theme-region", "uswds", "header", "form", "secondary_menu"]
+  "title": "Search (Drupal Theme Region)"
 }
 </script>
 </head>

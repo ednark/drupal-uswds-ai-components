@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "registry": "drupal-uswds-ai-components",
+  "description": "Real, documented Drupal/USWDS classes that are NOT tiled components — the untiled core layer for page assembly in a Drupal theme.",
+  "categories": {
+    "layout": ["container", "region", "block", "node", "layout", "layout-builder", "usa-layout-grid"],
+    "drupal-modules": ["tbm", "tbm-main", "tbm-nav", "tbm-item", "tbm-link", "tbm-toggle", "tbm-submenu", "tbm-arrows", "overlay-trigger", "uswds_paragraph_components"],
+    "typography": ["usa-prose", "usa-heading", "visually-hidden"],
+    "elements": ["field", "form-item", "form-actions", "usa-current"]
+  }
+}

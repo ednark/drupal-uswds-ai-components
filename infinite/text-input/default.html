@@ -7,26 +7,120 @@
 <title>USWDS Text Input (Drupal Custom Twig)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "twig_template",
+    "drupalModule": "custom",
+    "uswdsComponent": "text-input",
+    "complexity": "simple",
+    "drupalVersion": "^10 || ^11",
+    "uswdClass": "usa-input",
+    "tier": "curated",
+    "tags": [
+      "text-input",
+      "twig",
+      "custom",
+      "form",
+      "input",
+      "textfield",
+      "email",
+      "tel"
+    ],
+    "description": "Text Input (Drupal Custom Twig)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "accepts_input",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
+  },
+  "selection": {
+    "useWhen": [
+      "Form text fields",
+      "Search inputs",
+      "Email/phone inputs"
+    ],
+    "avoidWhen": [
+      "When using Webform module (has its own theming)"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "Override input.html.twig and form-element--type-textfield.html.twig in your theme. Add usa-input class to the input element and usa-label to the label. For error states, add usa-input--error and wrap error message in usa-error-message.",
+    "twigTemplate": "input.html.twig, form-element--type-textfield.html.twig in themes/custom/mytheme/templates/",
+    "preprocessFunction": "mytheme_preprocess_input() — add usa-input class. mytheme_preprocess_form_element() — add usa-label class to labels.",
+    "drushCommands": [],
+    "dependencies": [
+      "uswds theme"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "cheap",
+      "estimatedTokens": 553,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-input class",
+      "usa-label class on label",
+      "for/id attribute relationship",
+      "aria-describedby for hints",
+      "aria-invalid='true' on error"
+    ],
+    "editable": [
+      "Input type attribute (text, email, tel, url, search, password)",
+      "Placeholder text",
+      "maxlength attribute",
+      "autocomplete attribute",
+      "Error/success variant classes"
+    ],
+    "limitations": [
+      "Drupal wraps inputs in form-element divs that need CSS normalization",
+      "Error message markup differs between Drupal and USWDS"
+    ],
+    "portableInvariants": [
+      "usa-input class",
+      "usa-label class on label",
+      "for/id attribute relationship",
+      "aria-describedby for hints",
+      "aria-invalid='true' on error"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
   "file": "text-input/default.html",
-  "title": "Text Input (Drupal Custom Twig)",
-  "implementationType": "twig_template",
-  "drupalModule": "custom",
-  "uswdsComponent": "text-input",
-  "complexity": "simple",
-  "drupalVersion": "^10 || ^11",
-  "useWhen": ["Form text fields", "Search inputs", "Email/phone inputs"],
-  "avoidWhen": ["When using Webform module (has its own theming)"],
-  "agentPrompt": "Override input.html.twig and form-element--type-textfield.html.twig in your theme. Add usa-input class to the input element and usa-label to the label. For error states, add usa-input--error and wrap error message in usa-error-message.",
-  "twigTemplate": "input.html.twig, form-element--type-textfield.html.twig in themes/custom/mytheme/templates/",
-  "preprocessFunction": "mytheme_preprocess_input() — add usa-input class. mytheme_preprocess_form_element() — add usa-label class to labels.",
-  "drushCommands": [],
-  "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-input-max-width",
-  "dependencies": ["uswds theme"],
-  "editableAreas": ["Input type attribute (text, email, tel, url, search, password)", "Placeholder text", "maxlength attribute", "autocomplete attribute", "Error/success variant classes"],
-  "preserveElements": ["usa-input class", "usa-label class on label", "for/id attribute relationship", "aria-describedby for hints", "aria-invalid='true' on error"],
-  "knownLimitations": ["Drupal wraps inputs in form-element divs that need CSS normalization", "Error message markup differs between Drupal and USWDS"],
-  "tier": "curated",
-  "tags": ["text-input", "twig", "custom", "form", "input", "textfield", "email", "tel"]
+  "title": "Text Input (Drupal Custom Twig)"
 }
 </script>
 </head>

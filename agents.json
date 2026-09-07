@@ -17,7 +17,6 @@
     "complexity",
     "drupalVersion"
   ],
-  "adaptationDetail": "embedded in each tile as <script type=\"application/json\" id=\"drupal-uswds-agent-meta\">",
   "flow": [
     "GET facets.json",
     "GET components.index.json",
@@ -50,5 +49,7 @@
     "uswds_paragraph_components (paragraph bundles by smustgrave)",
     "plotly_js (charting field type)"
   ],
-  "updated": "1.0.0"
+  "updated": "2.0.0",
+  "metadataSchemaVersion": 2,
+  "language": "en"
 }

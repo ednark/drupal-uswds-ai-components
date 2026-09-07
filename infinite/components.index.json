@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "metadataSchemaVersion": 1,
+  "metadataSchemaVersion": 2,
   "generatedBy": "_base/generate-index.mjs",
   "counts": {
     "total": 24
@@ -9,27 +9,14 @@
     {
       "file": "accordion/default.html",
       "title": "Accordion (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "accordion",
       "paragraphType": "uswds_accordion",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-accordion.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_accordion/templates/",
-      "preprocessFunction": "uswds_paragraph_components_accordion_preprocess_paragraph__uswds_accordion()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_accordion",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_accordion_item": "Entity reference revisions to uswds_accordion_item paragraph type (unlimited)",
-        "field_uswds_heading": "Text field for accordion section title"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs",
-        "entity_reference_revisions"
-      ],
+      "uswdClass": "usa-accordion",
       "tier": "curated",
       "tags": [
         "accordion",
@@ -38,31 +25,42 @@
         "collapsible",
         "faq"
       ],
-      "id": "accordion-default"
+      "description": "Accordion (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "alert/default.html",
       "title": "Alert (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "alert",
       "paragraphType": "uswds_alert",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-alert.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_alert_preprocess_paragraph__uswds_alert()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_alert",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_alert_type": "List (text) with options: info, success, warning, error",
-        "field_uswds_alert_body": "Text formatted field for alert content"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs"
-      ],
+      "uswdClass": "usa-alert",
       "tier": "curated",
       "tags": [
         "alert",
@@ -74,26 +72,42 @@
         "warning",
         "error"
       ],
-      "id": "alert-default"
+      "description": "Alert (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "banner/default.html",
       "title": "Banner (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "banner",
       "themeRegion": "header_top",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "usa-banner.html.twig in themes/contrib/uswds/templates/. Override in themes/custom/mytheme/templates/usa-banner.html.twig",
-      "preprocessFunction": "mytheme_preprocess_usa_banner()",
-      "drushCommands": [
-        "drush theme:enable uswds"
-      ],
-      "scssSettings": "$theme-banner-max-width, $theme-banner-background-color",
-      "dependencies": [
-        "uswds theme"
-      ],
+      "uswdClass": "usa-banner",
       "tier": "curated",
       "tags": [
         "banner",
@@ -104,28 +118,42 @@
         "header_top",
         "required"
       ],
-      "id": "banner-default"
+      "description": "Banner (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "breadcrumb/default.html",
       "title": "Breadcrumb (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "breadcrumb",
       "themeRegion": "breadcrumb",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "breadcrumb.html.twig in themes/contrib/uswds/templates/. The base theme converts Drupal's breadcrumb variables into usa-breadcrumb__list structure.",
-      "preprocessFunction": "mytheme_preprocess_breadcrumb() — modify $variables['breadcrumb'] array",
-      "drushCommands": [
-        "drush pm:enable block",
-        "drush config-set block.block.mytheme_breadcrumbs region breadcrumb"
-      ],
-      "dependencies": [
-        "uswds theme",
-        "drupal:block",
-        "drupal:system"
-      ],
+      "uswdClass": "usa-breadcrumb",
       "tier": "curated",
       "tags": [
         "breadcrumb",
@@ -135,26 +163,41 @@
         "hierarchy",
         "trail"
       ],
-      "id": "breadcrumb-default"
+      "description": "Breadcrumb (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "button/default.html",
       "title": "Button (Drupal Custom Twig)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "button",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "input--submit.html.twig, form-element.html.twig, or field--field-link.html.twig in themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_input() — add usa-button class to submit inputs. mytheme_preprocess_link() — add usa-button to link buttons.",
-      "drushCommands": [
-        "drush pm:enable twig_tweak"
-      ],
-      "scssSettings": "$theme-button-border-radius, $theme-button-font-family, $theme-color-primary",
-      "dependencies": [
-        "uswds theme",
-        "twig_tweak (optional, for content buttons)"
-      ],
+      "uswdClass": "usa-button",
       "tier": "curated",
       "tags": [
         "button",
@@ -164,36 +207,42 @@
         "cta",
         "action"
       ],
-      "id": "button-default"
+      "description": "Button (Drupal Custom Twig)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "card/default.html",
       "title": "Card (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "card",
       "paragraphType": "uswds_card",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_cards",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_card_image": "Image field (media reference)",
-        "field_uswds_card_heading": "Text field for card title",
-        "field_uswds_card_body": "Text formatted field",
-        "field_uswds_card_link": "Link field for clickable card",
-        "field_uswds_card_flag": "Boolean for flag variant"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs",
-        "drupal:media",
-        "drupal:media_library"
-      ],
+      "uswdClass": "usa-card",
       "tier": "curated",
       "tags": [
         "card",
@@ -203,36 +252,41 @@
         "topic",
         "landing"
       ],
-      "id": "card-default"
+      "description": "Card (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "data-visualizations/default.html",
       "title": "Data Visualizations (Drupal Field Type — plotly_js)",
+      "_schemaVersion": 2,
       "implementationType": "field_type",
       "drupalModule": "plotly_js",
       "uswdsComponent": "data-visualizations",
       "complexity": "moderate",
       "drupalVersion": "^11.3 || ^12",
-      "twigTemplate": "plotly-js-graph.html.twig in modules/contrib/plotly_js/templates/. Graph templates in graph_templates/ directory (YAML-based, overrideable).",
-      "preprocessFunction": "plotly_js_preprocess_field() — prepare graph data for JS rendering",
-      "drushCommands": [
-        "composer require drupal/plotly_js",
-        "drush pm:enable plotly_js",
-        "drush plotly_js:download-plotly",
-        "drush cache:rebuild"
-      ],
-      "configYaml": "# Graph template cascade (most specific wins):\n# PLOT_NAME.yml\n# PLOT_NAME--ENTITY_TYPE.yml\n# PLOT_NAME--ENTITY_TYPE--FIELD_MACHINE_NAME.yml\n# PLOT_NAME--ENTITY_TYPE--ENTITY_ID.yml\n# PLOT_NAME--ENTITY_TYPE--ENTITY_ID--FIELD_MACHINE_NAME.yml",
-      "scssSettings": "Chart colors should inherit from USWDS theme tokens for visual consistency",
-      "fieldDefinitions": {
-        "field_chart": "Plotly.js Graph field type — stores chart type, data, and display settings",
-        "chart_type": "bar, line, pie, scatter, etc.",
-        "chart_data": "JSON or CSV data for the chart",
-        "display_settings": "Width, height, colors, legend, axis labels"
-      },
-      "dependencies": [
-        "plotly_js",
-        "Plotly.js library (via drush download or remote)"
-      ],
+      "uswdClass": "usa-chart",
       "tier": "curated",
       "tags": [
         "data-visualizations",
@@ -245,28 +299,42 @@
         "pie",
         "scatter"
       ],
-      "id": "data-visualizations-default"
+      "description": "Data Visualizations (Drupal Field Type — plotly_js)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "footer/default.html",
       "title": "Footer (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "footer",
       "themeRegion": "footer_menu, footer, footer_secondary",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "page.html.twig — look for region-footer, region-footer_menu, region-footer_secondary. Override in your subtheme.",
-      "preprocessFunction": "mytheme_preprocess_page() — set footer variant",
-      "drushCommands": [
-        "drush pm:enable block",
-        "drush config-set block.block.mytheme_footer content ..."
-      ],
-      "scssSettings": "$theme-footer-font-family",
-      "dependencies": [
-        "uswds theme",
-        "drupal:block"
-      ],
+      "uswdClass": "usa-footer",
       "tier": "curated",
       "tags": [
         "footer",
@@ -276,23 +344,41 @@
         "agency",
         "navigation"
       ],
-      "id": "footer-default"
+      "description": "Footer (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "form/default.html",
       "title": "Form (Drupal Custom Twig + Form API)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "form",
       "complexity": "complex",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "form.html.twig, form-element.html.twig, input.html.twig, fieldset.html.twig, textarea.html.twig, select.html.twig in themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_form() — add usa-form class. mytheme_preprocess_form_element() — add usa-label, usa-input classes. mytheme_preprocess_input() — map input types to USWDS classes.",
-      "drushCommands": [],
-      "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-form-font-family",
-      "dependencies": [
-        "uswds theme"
-      ],
+      "uswdClass": "usa-form",
       "tier": "curated",
       "tags": [
         "form",
@@ -304,31 +390,42 @@
         "validation",
         "contact"
       ],
-      "id": "form-default"
+      "description": "Form (Drupal Custom Twig + Form API)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "accepts_input",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "expensive"
     },
     {
       "file": "header/default.html",
       "title": "Header (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "header",
       "themeRegion": "header, primary_menu, secondary_menu",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "page.html.twig in themes/contrib/uswds/templates/ — look for region-header, region-primary_menu blocks. Override in themes/custom/mytheme/templates/page.html.twig",
-      "preprocessFunction": "mytheme_preprocess_page() — set $variables['header_variant'] = 'extended'",
-      "drushCommands": [
-        "drush theme:enable uswds",
-        "drush config-set system.theme default mytheme",
-        "drush pm:enable block"
-      ],
-      "configYaml": "# In theme settings:\n# /admin/appearance/settings/uswds\n# Set header style: basic or extended",
-      "scssSettings": "$theme-header-font-family, $theme-header-logo-width, $theme-header-min-width",
-      "dependencies": [
-        "uswds theme",
-        "drupal:block",
-        "drupal:system (menu)"
-      ],
+      "uswdClass": "usa-header",
       "tier": "curated",
       "tags": [
         "header",
@@ -338,43 +435,40 @@
         "menu",
         "logo"
       ],
-      "id": "header-default"
+      "description": "Header (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "icon-list/default.html",
       "title": "Icon List & Collection (Drupal Custom Paragraph Bundles)",
+      "_schemaVersion": 2,
       "implementationType": "custom_module",
       "drupalModule": "custom (*_additional_uswds_paragraph_components)",
       "uswdsComponent": "icon-list, collection",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-icon-list.html.twig, paragraph--uswds-icon-list-item.html.twig, paragraph--uswds-collection.html.twig, paragraph--uswds-collection-item.html.twig in modules/custom/{project}_additional_uswds_paragraph_components/modules/{project}_uswds_icon_list/templates/ and .../{project}_uswds_collection/templates/",
-      "preprocessFunction": "{project}_uswds_icon_list_preprocess_paragraph__uswds_icon_list() and {project}_uswds_collection_preprocess_paragraph__uswds_collection() — populate icon sprite references, item arrays, and variant classes",
-      "drushCommands": [
-        "drush pm:enable {project}_additional_uswds_paragraph_components",
-        "drush pm:enable {project}_uswds_icon_list {project}_uswds_collection",
-        "drush cache:rebuild"
-      ],
-      "configYaml": "# modules/custom/{project}_additional_uswds_paragraph_components/{project}_additional_uswds_paragraph_components.info.yml\nname: 'Additional USWDS Paragraph Components'\ntype: module\ndependencies:\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# Submodule: {project}_uswds_icon_list/{project}_uswds_icon_list.info.yml\ndependencies:\n  - {project}_additional_uswds_paragraph_components\n  - paragraphs\n\n# Paragraph bundle: uswds_icon_list (parent) with field_uswds_icon_list_items (ER-revisions, target=uswds_icon_list_item, unlimited)\n# Paragraph bundle: uswds_icon_list_item with fields: field_uswds_icon (svg via media library or sprite name text), field_uswds_heading, field_uswds_body, field_uswds_link\n\n# Submodule: {project}_uswds_collection/{project}_uswds_collection.info.yml\n# Paragraph bundle: uswds_collection (parent) with field_uswds_collection_items (ER-revisions, target=uswds_collection_item)\n# Paragraph bundle: uswds_collection_item with fields: field_uswds_heading, field_uswds_body, field_uswds_link, field_uswds_meta (optional author/date)",
-      "scssSettings": "$theme-icon-list-font-family, $theme-collection-font-family — typically just consume USWDS utility classes; minimal custom SCSS",
-      "dependencies": [
-        "paragraphs",
-        "entity_reference_revisions",
-        "uswds_paragraph_components",
-        "drupal:media (optional, for icon media library)",
-        "drupal:link"
-      ],
-      "fieldDefinitions": {
-        "uswds_icon_list.field_uswds_icon_list_items": "Entity reference revisions to uswds_icon_list_item (unlimited)",
-        "uswds_icon_list_item.field_uswds_icon": "Text field for USWDS sprite name (e.g., 'check_circle', 'arrow_forward') or media reference to SVG",
-        "uswds_icon_list_item.field_uswds_heading": "Text field for item heading",
-        "uswds_icon_list_item.field_uswds_body": "Text formatted field for item body",
-        "uswds_collection.field_uswds_collection_items": "Entity reference revisions to uswds_collection_item (unlimited)",
-        "uswds_collection_item.field_uswds_heading": "Text field for item heading",
-        "uswds_collection_item.field_uswds_body": "Text formatted field for item body",
-        "uswds_collection_item.field_uswds_link": "Link field for item URL",
-        "uswds_collection_item.field_uswds_meta": "Text field for meta info (author, date)"
-      },
       "tier": "curated",
       "tags": [
         "icon-list",
@@ -385,28 +479,42 @@
         "pandemic-oversight",
         "uswds_paragraph_components"
       ],
-      "id": "icon-list-default"
+      "description": "Icon List & Collection (Drupal Custom Paragraph Bundles)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "uswdClass": "usa-icon-list",
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "identifier/default.html",
       "title": "Identifier (Drupal Custom Block)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "identifier",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "block--uswds-identifier.html.twig (custom block template) or footer.html.twig (subtheme override). Place in themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_block__uswds_identifier() — populate $variables['parent_agency'], $variables['disclaimer'], $variables['required_links'] from block config. Alternative: mytheme_preprocess_page() to inject identifier into footer variables.",
-      "drushCommands": [
-        "drush pm:enable block",
-        "drush config-set block.block.mytheme_identifier region footer_secondary"
-      ],
-      "configYaml": "# Custom block plugin: src/Plugin/Block/UswdsIdentifierBlock.php\n# Configurable fields: parent_agency, disclaimer, required_links (Accessibility, Privacy, FOIA, Vuln Disclosure)\n# Place via /admin/structure/block in the footer_secondary region",
-      "scssSettings": "$theme-identifier-font-family, $theme-identifier-background-color, $theme-identifier-identity-domain-color",
-      "dependencies": [
-        "uswds theme",
-        "drupal:block"
-      ],
+      "uswdClass": "usa-identifier",
       "tier": "curated",
       "tags": [
         "identifier",
@@ -419,37 +527,40 @@
         "legal",
         "21st-century-idea"
       ],
-      "id": "identifier-default"
+      "description": "Identifier (Drupal Custom Block)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "layout-builder-bridge/default.html",
       "title": "USWDS Layout Builder Bridge (Drupal Custom Module)",
+      "_schemaVersion": 2,
       "implementationType": "custom_module",
       "drupalModule": "layout_builder + block_content + paragraphs",
       "uswdsComponent": "all",
       "complexity": "complex",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "block--block-content--uswds-paragraph-blocks.html.twig in themes/custom/mytheme/templates/. Layout plugin template: layouts--uswds-grid--twocol.html.twig. Both rely on the paragraphs ER-revisions field rendering the child bundles (uswds_card_group_regular, uswds_accordion, uswds_alert, etc.).",
-      "preprocessFunction": "mytheme_uswds_layouts_preprocess_block__block_content__uswds_paragraph_blocks() — set $variables['uswds_bundles'] from field_uswds_bundles. Optional: mytheme_preprocess_layout() to inject USWDS grid classes based on the layout configuration.",
-      "drushCommands": [
-        "composer require drupal/layout_builder drupal/paragraphs drupal/entity_reference_revisions drupal/block_content",
-        "drush pm:enable layout_builder paragraphs entity_reference_revisions block_content",
-        "drush pm:enable mytheme_uswds_layouts",
-        "drush config:import --module=mytheme_uswds_layouts --directory=config/install",
-        "drush cache:rebuild"
-      ],
-      "configYaml": "# modules/custom/mytheme_uswds_layouts/mytheme_uswds_layouts.info.yml\nname: 'USWDS Layout Builder Bridge'\ntype: module\ndependencies:\n  - layout_builder\n  - block_content\n  - paragraphs\n  - entity_reference_revisions\n  - uswds_paragraph_components\n\n# block_content type: uswds_paragraph_blocks\n# field: field_uswds_bundles (entity_reference_revisions, target_type=paragraph, unlimited)\n# allowed bundles: all uswds_* paragraph types enabled on the site\n\n# Enable Layout Builder on the target content type (e.g., landing_page):\n# /admin/structure/types/manage/landing_page/display/default\n# → Use Layout Builder: ✓\n# → Allow custom layouts: ✓",
-      "scssSettings": "$theme-grid-gap, $theme-grid-gutter, $theme-container-max-width — keep layouts aligned with USWDS grid utilities",
-      "dependencies": [
-        "drupal:layout_builder",
-        "drupal:block_content",
-        "drupal:paragraphs",
-        "drupal:entity_reference_revisions",
-        "uswds_paragraph_components"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_bundles": "Entity reference revisions to paragraph (unlimited). Allowed bundles: uswds_accordion, uswds_alert, uswds_card_group_regular, uswds_card_group_flag, uswds_modal, uswds_process_list, uswds_step_indicator, uswds_summary_box, plus any custom uswds_* bundles the site defines"
-      },
       "tier": "curated",
       "tags": [
         "layout-builder",
@@ -460,33 +571,43 @@
         "integration",
         "grid"
       ],
-      "id": "layout-builder-bridge-default"
+      "description": "USWDS Layout Builder Bridge (Drupal Custom Module)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "noSingleClass": true,
+      "multiComponent": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "expensive"
     },
     {
       "file": "mega-menu/default.html",
       "title": "Mega Menu Header (Drupal Custom Twig)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "tb_megamenu",
       "uswdsComponent": "header",
       "complexity": "complex",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "tbm-nav.html.twig, tbm-link.html.twig, tbm-subnav.html.twig, and tb-megamenu-column-inner.html.twig in themes/custom/mytheme/templates/. Wrap the entire <nav class=\"tbm\"> in <div class=\"usa-nav__inner\"> and each <ul class=\"tbm-nav\"> becomes a usa-nav__primary usa-accordion list. Override menu.html.twig (the 'Featured Topics' menu block inside the mega menu) to render as a usa-list with usa-link anchors and usa-sr-only headings.",
-      "preprocessFunction": "mytheme_preprocess_tbm_nav() — add usa-accordion and usa-nav__primary classes to $variables['classes_array']. mytheme_preprocess_tbm_link() — add usa-nav__link class to anchor. mytheme_preprocess_menu__featured_topics() — render 'Featured Topics' menu as a usa-list with navigation__link-description spans under each link (mirrors gsa.gov usa-featured--topics block).",
-      "drushCommands": [
-        "composer require drupal/tb_megamenu",
-        "drush pm:enable tb_megamenu",
-        "drush config-set block.block.mytheme_main_menu region primary_menu",
-        "drush config-set block.block.mytheme_main_menu plugin tb_megamenu_menu_block:main",
-        "drush cache:rebuild"
-      ],
-      "configYaml": "# /admin/structure/tb-megamenu\n# Configure a mega menu based on the 'main' menu.\n# Set data-breakpoint to match $theme-header-min-width (typically 1200 for extended header).\n\n# Featured Topics column:\n# Create a separate Drupal menu (machine name: featured_topics) with menu items that include a description.\n# Place it inside the mega menu's last column via the TB Mega Menu admin UI as a 'menu block'.\n# Override its template to render as usa-list with navigation__link-description.",
-      "scssSettings": "$theme-header-min-width (match tbm data-breakpoint), $theme-nav-link-color, $theme-nav-link-color-hover, $theme-font-family-sans",
-      "dependencies": [
-        "uswds theme",
-        "drupal:tb_megamenu",
-        "drupal:block",
-        "drupal:system (menu)"
-      ],
+      "uswdClass": "usa-header",
       "tier": "curated",
       "tags": [
         "header",
@@ -498,23 +619,40 @@
         "gsa",
         "extended-header"
       ],
-      "id": "mega-menu-default"
+      "description": "Mega Menu Header (Drupal Custom Twig)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "expensive"
     },
     {
       "file": "misc/default.html",
       "title": "Tag, Link, Icon, Pagination (Drupal Custom Twig)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "tag, link, icon, pagination",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "field--type-list-string.html.twig (for tags), link.html.twig, menu.html.twig (for pagination), field--field-icon.html.twig (for icons)",
-      "preprocessFunction": "mytheme_preprocess_field() — detect tag fields and add usa-tag class. mytheme_preprocess_link() — add usa-link. mytheme_preprocess_menu() — add usa-pagination for pager menus.",
-      "drushCommands": [],
-      "scssSettings": "$theme-link-color, $theme-tag-font-family",
-      "dependencies": [
-        "uswds theme"
-      ],
       "tier": "curated",
       "tags": [
         "tag",
@@ -525,32 +663,44 @@
         "custom",
         "misc"
       ],
-      "id": "misc-default"
+      "description": "Tag, Link, Icon, Pagination (Drupal Custom Twig)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "noSingleClass": true,
+      "multiComponent": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "modal/default.html",
       "title": "Modal (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "modal",
       "paragraphType": "uswds_modal",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-modal.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_modal_preprocess_paragraph__uswds_modal()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_modal",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_modal_trigger": "Text for the button that opens the modal",
-        "field_uswds_modal_heading": "Text for modal title",
-        "field_uswds_modal_body": "Text formatted field for modal content"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs"
-      ],
+      "uswdClass": "usa-modal",
       "tier": "curated",
       "tags": [
         "modal",
@@ -559,33 +709,42 @@
         "dialog",
         "overlay"
       ],
-      "id": "modal-default"
+      "description": "Modal (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "process-list/default.html",
       "title": "Process List (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "process-list",
       "paragraphType": "uswds_process_list",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-process-list.html.twig and paragraph--uswds-process-item.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_process_list_preprocess_paragraph()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_process_list",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_process_item": "Entity reference revisions to uswds_process_item (unlimited)",
-        "field_uswds_process_heading": "Text field for each step title",
-        "field_uswds_process_body": "Text formatted field for each step"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs",
-        "entity_reference_revisions"
-      ],
+      "uswdClass": "usa-process-list",
       "tier": "curated",
       "tags": [
         "process-list",
@@ -595,28 +754,42 @@
         "how-to",
         "guide"
       ],
-      "id": "process-list-default"
+      "description": "Process List (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "search/default.html",
       "title": "Search (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "search",
       "themeRegion": "secondary_menu",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "search.html.twig or form--search-form.html.twig in themes/contrib/uswds/templates/. Override to change variant (default, big, small).",
-      "preprocessFunction": "mytheme_preprocess_form() — check for search form and add usa-search--small class",
-      "drushCommands": [
-        "drush pm:enable search",
-        "drush config-set block.block.mytheme_search region secondary_menu"
-      ],
-      "scssSettings": "$theme-search-input-width",
-      "dependencies": [
-        "uswds theme",
-        "drupal:search"
-      ],
+      "uswdClass": "usa-search",
       "tier": "curated",
       "tags": [
         "search",
@@ -626,38 +799,40 @@
         "form",
         "secondary_menu"
       ],
-      "id": "search-default"
+      "description": "Search (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "setup/default.html",
       "title": "USWDS Drupal Setup",
+      "_schemaVersion": 2,
       "implementationType": "custom_module",
       "drupalModule": "uswds + uswds_paragraph_components",
       "uswdsComponent": "all",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "drushCommands": [
-        "composer require drupal/uswds",
-        "composer require drupal/uswds_paragraph_components",
-        "composer require drupal/paragraphs drupal/entity_reference_revisions drupal/viewsreference drupal/field_group drupal/twig_tweak",
-        "drush theme:enable uswds",
-        "drush pm:enable paragraphs entity_reference_revisions viewsreference field_group twig_tweak",
-        "drush pm:enable uswds_paragraph_components",
-        "drush pm:enable uswds_paragraph_components_accordion uswds_paragraph_components_alert uswds_paragraph_components_cards uswds_paragraph_components_modal uswds_paragraph_components_process_list uswds_paragraph_components_step_indicator uswds_paragraph_components_summary_box",
-        "drush cache:rebuild"
-      ],
-      "configYaml": "# Create a subtheme:\n# Copy themes/custom/uswds/examples/uswds_gulp_subtheme to web/themes/custom/mytheme\n# Set as default theme: drush config-set system.theme default mytheme",
-      "scssSettings": "_uswds-theme.scss settings to customize:\n$theme-color-primary: #005ea2;\n$theme-font-family-sans: 'Public Sans', sans-serif;\n$theme-show-compile-warnings: false;",
-      "dependencies": [
-        "drupal:paragraphs",
-        "drupal:entity_reference_revisions",
-        "drupal:viewsreference",
-        "drupal:field_group",
-        "drupal:twig_tweak",
-        "USWDS framework CSS/JS from theme"
-      ],
-      "twigTemplate": "themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_page() in mytheme.theme",
       "tier": "curated",
       "tags": [
         "setup",
@@ -668,28 +843,44 @@
         "paragraphs",
         "theme"
       ],
-      "id": "setup-default"
+      "description": "USWDS Drupal Setup",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "noSingleClass": true,
+      "multiComponent": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "side-navigation/default.html",
       "title": "Side Navigation (Drupal Theme Region)",
+      "_schemaVersion": 2,
       "implementationType": "theme_region",
       "drupalModule": "uswds",
       "uswdsComponent": "side-navigation",
       "themeRegion": "sidebar_first",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "menu.html.twig in themes/contrib/uswds/templates/. The theme provides a usa-sidenav version of the menu template.",
-      "preprocessFunction": "mytheme_preprocess_menu() — add custom classes or modify items",
-      "drushCommands": [
-        "drush pm:enable block",
-        "drush config-set block.block.mytheme_main_menu region sidebar_first"
-      ],
-      "dependencies": [
-        "uswds theme",
-        "drupal:block",
-        "drupal:system (menu)"
-      ],
+      "uswdClass": "usa-sidenav",
       "tier": "curated",
       "tags": [
         "side-navigation",
@@ -700,33 +891,42 @@
         "menu",
         "navigation"
       ],
-      "id": "side-navigation-default"
+      "description": "Side Navigation (Drupal Theme Region)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "step-indicator/default.html",
       "title": "Step Indicator (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "step-indicator",
       "paragraphType": "uswds_step_indicator",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-step-indicator.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_step_indicator_preprocess_paragraph()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_step_indicator",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_step_items": "Entity reference revisions to uswds_step_indicator_item (unlimited)",
-        "field_uswds_step_label": "Text field for each step label",
-        "field_uswds_step_status": "List: complete, current, incomplete"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs",
-        "entity_reference_revisions"
-      ],
+      "uswdClass": "usa-step-indicator",
       "tier": "curated",
       "tags": [
         "step-indicator",
@@ -736,31 +936,42 @@
         "wizard",
         "multistep"
       ],
-      "id": "step-indicator-default"
+      "description": "Step Indicator (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "summary-box/default.html",
       "title": "Summary Box (Drupal Paragraph Bundle)",
+      "_schemaVersion": 2,
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "summary-box",
       "paragraphType": "uswds_summary_box",
       "complexity": "simple",
       "drupalVersion": "^10.1 || ^11 || ^12",
-      "twigTemplate": "paragraph--uswds-summary-box.html.twig",
-      "preprocessFunction": "uswds_paragraph_components_summary_box_preprocess_paragraph()",
-      "drushCommands": [
-        "drush pm:enable uswds_paragraph_components_summary_box",
-        "drush cache:rebuild"
-      ],
-      "fieldDefinitions": {
-        "field_uswds_summary_heading": "Text field for box heading",
-        "field_uswds_summary_body": "Text formatted field (supports lists, links)"
-      },
-      "dependencies": [
-        "uswds_paragraph_components",
-        "paragraphs"
-      ],
+      "uswdClass": "usa-summary-box",
       "tier": "curated",
       "tags": [
         "summary-box",
@@ -770,23 +981,41 @@
         "callout",
         "tldr"
       ],
-      "id": "summary-box-default"
+      "description": "Summary Box (Drupal Paragraph Bundle)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     },
     {
       "file": "table/default.html",
       "title": "Table (Drupal Custom Twig)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "table",
       "complexity": "moderate",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "table.html.twig, views-view-table.html.twig in themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_table() — add usa-table class. mytheme_preprocess_views_view_table() — add variant classes.",
-      "drushCommands": [],
-      "scssSettings": "",
-      "dependencies": [
-        "uswds theme"
-      ],
+      "uswdClass": "usa-table",
       "tier": "curated",
       "tags": [
         "table",
@@ -798,23 +1027,41 @@
         "borderless",
         "stacked"
       ],
-      "id": "table-default"
+      "description": "Table (Drupal Custom Twig)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "moderate"
     },
     {
       "file": "text-input/default.html",
       "title": "Text Input (Drupal Custom Twig)",
+      "_schemaVersion": 2,
       "implementationType": "twig_template",
       "drupalModule": "custom",
       "uswdsComponent": "text-input",
       "complexity": "simple",
       "drupalVersion": "^10 || ^11",
-      "twigTemplate": "input.html.twig, form-element--type-textfield.html.twig in themes/custom/mytheme/templates/",
-      "preprocessFunction": "mytheme_preprocess_input() — add usa-input class. mytheme_preprocess_form_element() — add usa-label class to labels.",
-      "drushCommands": [],
-      "scssSettings": "$theme-input-border-radius, $theme-input-focus-border-color, $theme-input-max-width",
-      "dependencies": [
-        "uswds theme"
-      ],
+      "uswdClass": "usa-input",
       "tier": "curated",
       "tags": [
         "text-input",
@@ -826,7 +1073,30 @@
         "email",
         "tel"
       ],
-      "id": "text-input-default"
+      "description": "Text Input (Drupal Custom Twig)",
+      "a11y": {
+        "wcag21AA": true,
+        "keyboardNav": true,
+        "screenReader": true,
+        "reducedMotion": true,
+        "forcedColors": true,
+        "ariaAttributes": true
+      },
+      "govCompliance": [
+        "Section 508",
+        "WCAG 2.1 AA",
+        "21st Century IDEA"
+      ],
+      "piiHandling": "accepts_input",
+      "auditTrailCompatible": false,
+      "nistControls": [],
+      "touchTargetSize": "44px",
+      "supportedTokenProfiles": [
+        "highContrast"
+      ],
+      "prerequisites": [],
+      "incompatibleWith": [],
+      "costTier": "cheap"
     }
   ]
 }

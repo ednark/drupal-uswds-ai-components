@@ -7,33 +7,131 @@
 <title>USWDS Card (Drupal Paragraph)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
-  "file": "card/default.html",
-  "title": "Card (Drupal Paragraph Bundle)",
-  "implementationType": "paragraph_bundle",
-  "drupalModule": "uswds_paragraph_components",
-  "uswdsComponent": "card",
-  "paragraphType": "uswds_card",
-  "complexity": "moderate",
-  "drupalVersion": "^10.1 || ^11 || ^12",
-  "useWhen": ["Topic landing pages", "Feature highlights", "Linkable content cards in grids"],
-  "avoidWhen": ["Simple text content", "When you need complex card interactions"],
-  "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
-  "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
-  "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
-  "drushCommands": ["drush pm:enable uswds_paragraph_components_cards", "drush cache:rebuild"],
-  "fieldDefinitions": {
-    "field_uswds_card_image": "Image field (media reference)",
-    "field_uswds_card_heading": "Text field for card title",
-    "field_uswds_card_body": "Text formatted field",
-    "field_uswds_card_link": "Link field for clickable card",
-    "field_uswds_card_flag": "Boolean for flag variant"
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "paragraph_bundle",
+    "drupalModule": "uswds_paragraph_components",
+    "uswdsComponent": "card",
+    "paragraphType": "uswds_card",
+    "complexity": "moderate",
+    "drupalVersion": "^10.1 || ^11 || ^12",
+    "uswdClass": "usa-card",
+    "tier": "curated",
+    "tags": [
+      "card",
+      "paragraph",
+      "uswds_paragraph_components",
+      "grid",
+      "topic",
+      "landing"
+    ],
+    "description": "Card (Drupal Paragraph Bundle)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
   },
-  "dependencies": ["uswds_paragraph_components", "paragraphs", "drupal:media", "drupal:media_library"],
-  "editableAreas": ["Card layout (regular vs flag)", "Image style for card images", "Link behavior (entire card vs button)", "Breakpoint settings via uswds_paragraph_components_breakpoints submodule"],
-  "preserveElements": ["usa-card-group wrapper", "usa-card__container structure", "usa-card__header, usa-card__body, usa-card__media hierarchy", "make-link pattern for clickable cards"],
-  "knownLimitations": ["Card group requires parent paragraph with child cards", "Flag variant needs specific image dimensions", "Breakpoint submodule needed for responsive grid"],
-  "tier": "curated",
-  "tags": ["card", "paragraph", "uswds_paragraph_components", "grid", "topic", "landing"]
+  "selection": {
+    "useWhen": [
+      "Topic landing pages",
+      "Feature highlights",
+      "Linkable content cards in grids"
+    ],
+    "avoidWhen": [
+      "Simple text content",
+      "When you need complex card interactions"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
+    "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
+    "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
+    "drushCommands": [
+      "drush pm:enable uswds_paragraph_components_cards",
+      "drush cache:rebuild"
+    ],
+    "fieldDefinitions": {
+      "field_uswds_card_image": "Image field (media reference)",
+      "field_uswds_card_heading": "Text field for card title",
+      "field_uswds_card_body": "Text formatted field",
+      "field_uswds_card_link": "Link field for clickable card",
+      "field_uswds_card_flag": "Boolean for flag variant"
+    },
+    "dependencies": [
+      "uswds_paragraph_components",
+      "paragraphs",
+      "drupal:media",
+      "drupal:media_library"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "moderate",
+      "estimatedTokens": 742,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-card-group wrapper",
+      "usa-card__container structure",
+      "usa-card__header, usa-card__body, usa-card__media hierarchy",
+      "make-link pattern for clickable cards"
+    ],
+    "editable": [
+      "Card layout (regular vs flag)",
+      "Image style for card images",
+      "Link behavior (entire card vs button)",
+      "Breakpoint settings via uswds_paragraph_components_breakpoints submodule"
+    ],
+    "limitations": [
+      "Card group requires parent paragraph with child cards",
+      "Flag variant needs specific image dimensions",
+      "Breakpoint submodule needed for responsive grid"
+    ],
+    "portableInvariants": [
+      "usa-card-group wrapper",
+      "usa-card__container structure",
+      "usa-card__header, usa-card__body, usa-card__media hierarchy",
+      "make-link pattern for clickable cards"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
+  "file": "card/default.html",
+  "title": "Card (Drupal Paragraph Bundle)"
 }
 </script>
 </head>

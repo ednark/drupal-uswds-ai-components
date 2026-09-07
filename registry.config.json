@@ -51,5 +51,33 @@
       "get_index"
     ]
   },
-  "updated": "1.0.0"
+  "updated": "2.0.0",
+  "metadataSchemaVersion": 2,
+  "language": "en",
+  "gaps": [
+    {
+      "concept": "webforms (Form API)",
+      "status": "not_part_of_design_system",
+      "nearestAlternative": "text-input / form tiles + Drupal Form API guidance",
+      "reason": "Drupal forms are built with the Form API, not static markup — the form tile documents the render-array approach"
+    },
+    {
+      "concept": "views-listings",
+      "status": "deferred",
+      "nearestAlternative": "card / collection tiles",
+      "reason": "Views-driven listings are configuration, not markup — candidate for a Views-display tile"
+    },
+    {
+      "concept": "combobox/autocomplete",
+      "status": "deferred",
+      "nearestAlternative": "select / text-input",
+      "reason": "Not among the tiled Drupal implementations"
+    },
+    {
+      "concept": "mega-menu",
+      "status": "deferred",
+      "nearestAlternative": "side-navigation",
+      "reason": "The Big Menu (tbm-*) integration is observed in the mega-menu tile but not fully documented"
+    }
+  ]
 }

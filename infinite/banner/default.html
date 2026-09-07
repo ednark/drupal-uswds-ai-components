@@ -7,27 +7,120 @@
 <title>USWDS Banner (Drupal Theme Region)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "theme_region",
+    "drupalModule": "uswds",
+    "uswdsComponent": "banner",
+    "themeRegion": "header_top",
+    "complexity": "simple",
+    "drupalVersion": "^10 || ^11",
+    "uswdClass": "usa-banner",
+    "tier": "curated",
+    "tags": [
+      "banner",
+      "theme-region",
+      "uswds",
+      "government",
+      "official",
+      "header_top",
+      "required"
+    ],
+    "description": "Banner (Drupal Theme Region)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
+  },
+  "selection": {
+    "useWhen": [
+      "Required on all federal government websites",
+      "The 'official website' indicator banner"
+    ],
+    "avoidWhen": [
+      "Non-government sites",
+      "State/local government (optional but recommended)"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "The uswds base theme includes the government banner in the header_top region by default. It uses the usa-banner markup with accordion behavior. Override the template in your subtheme to customize.",
+    "twigTemplate": "usa-banner.html.twig in themes/contrib/uswds/templates/. Override in themes/custom/mytheme/templates/usa-banner.html.twig",
+    "preprocessFunction": "mytheme_preprocess_usa_banner()",
+    "drushCommands": [
+      "drush theme:enable uswds"
+    ],
+    "dependencies": [
+      "uswds theme"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "cheap",
+      "estimatedTokens": 543,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-banner class structure",
+      "usa-banner__header-text",
+      "usa-accordion__button usa-banner__button",
+      "usa-banner__content with guidance",
+      "aria-expanded attribute on toggle"
+    ],
+    "editable": [
+      "Banner text (agency name)",
+      "Banner variant (default, medium, slim)",
+      "How you know content"
+    ],
+    "limitations": [
+      "Banner is built into the theme — customizing requires template override",
+      "The until-found hidden pattern needs custom JS"
+    ],
+    "portableInvariants": [
+      "usa-banner class structure",
+      "usa-banner__header-text",
+      "usa-accordion__button usa-banner__button",
+      "usa-banner__content with guidance",
+      "aria-expanded attribute on toggle"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
   "file": "banner/default.html",
-  "title": "Banner (Drupal Theme Region)",
-  "implementationType": "theme_region",
-  "drupalModule": "uswds",
-  "uswdsComponent": "banner",
-  "themeRegion": "header_top",
-  "complexity": "simple",
-  "drupalVersion": "^10 || ^11",
-  "useWhen": ["Required on all federal government websites", "The 'official website' indicator banner"],
-  "avoidWhen": ["Non-government sites", "State/local government (optional but recommended)"],
-  "agentPrompt": "The uswds base theme includes the government banner in the header_top region by default. It uses the usa-banner markup with accordion behavior. Override the template in your subtheme to customize.",
-  "twigTemplate": "usa-banner.html.twig in themes/contrib/uswds/templates/. Override in themes/custom/mytheme/templates/usa-banner.html.twig",
-  "preprocessFunction": "mytheme_preprocess_usa_banner()",
-  "drushCommands": ["drush theme:enable uswds"],
-  "scssSettings": "$theme-banner-max-width, $theme-banner-background-color",
-  "dependencies": ["uswds theme"],
-  "editableAreas": ["Banner text (agency name)", "Banner variant (default, medium, slim)", "How you know content"],
-  "preserveElements": ["usa-banner class structure", "usa-banner__header-text", "usa-accordion__button usa-banner__button", "usa-banner__content with guidance", "aria-expanded attribute on toggle"],
-  "knownLimitations": ["Banner is built into the theme — customizing requires template override", "The until-found hidden pattern needs custom JS"],
-  "tier": "curated",
-  "tags": ["banner", "theme-region", "uswds", "government", "official", "header_top", "required"]
+  "title": "Banner (Drupal Theme Region)"
 }
 </script>
 </head>

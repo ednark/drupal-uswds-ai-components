@@ -7,31 +7,121 @@
 <title>USWDS Process List (Drupal Paragraph)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
-  "file": "process-list/default.html",
-  "title": "Process List (Drupal Paragraph Bundle)",
-  "implementationType": "paragraph_bundle",
-  "drupalModule": "uswds_paragraph_components",
-  "uswdsComponent": "process-list",
-  "paragraphType": "uswds_process_list",
-  "complexity": "moderate",
-  "drupalVersion": "^10.1 || ^11 || ^12",
-  "useWhen": ["Step-by-step guides", "How-to content", "Procedural instructions"],
-  "avoidWhen": ["Non-sequential content", "Simple bullet lists (use regular list instead)"],
-  "agentPrompt": "Enable uswds_paragraph_components_process_list submodule. Create a parent 'uswds_process_list' paragraph, then add 'uswds_process_item' children. Each item has a heading and body.",
-  "twigTemplate": "paragraph--uswds-process-list.html.twig and paragraph--uswds-process-item.html.twig",
-  "preprocessFunction": "uswds_paragraph_components_process_list_preprocess_paragraph()",
-  "drushCommands": ["drush pm:enable uswds_paragraph_components_process_list", "drush cache:rebuild"],
-  "fieldDefinitions": {
-    "field_uswds_process_item": "Entity reference revisions to uswds_process_item (unlimited)",
-    "field_uswds_process_heading": "Text field for each step title",
-    "field_uswds_process_body": "Text formatted field for each step"
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "paragraph_bundle",
+    "drupalModule": "uswds_paragraph_components",
+    "uswdsComponent": "process-list",
+    "paragraphType": "uswds_process_list",
+    "complexity": "moderate",
+    "drupalVersion": "^10.1 || ^11 || ^12",
+    "uswdClass": "usa-process-list",
+    "tier": "curated",
+    "tags": [
+      "process-list",
+      "paragraph",
+      "uswds_paragraph_components",
+      "steps",
+      "how-to",
+      "guide"
+    ],
+    "description": "Process List (Drupal Paragraph Bundle)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
   },
-  "dependencies": ["uswds_paragraph_components", "paragraphs", "entity_reference_revisions"],
-  "editableAreas": ["Template override for custom step numbering", "Field labels for editor UX"],
-  "preserveElements": ["usa-process-list structure", "usa-process-list__item heading and body hierarchy"],
-  "knownLimitations": ["Process items are child paragraphs", "Numbering is automatic via CSS counters"],
-  "tier": "curated",
-  "tags": ["process-list", "paragraph", "uswds_paragraph_components", "steps", "how-to", "guide"]
+  "selection": {
+    "useWhen": [
+      "Step-by-step guides",
+      "How-to content",
+      "Procedural instructions"
+    ],
+    "avoidWhen": [
+      "Non-sequential content",
+      "Simple bullet lists (use regular list instead)"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "Enable uswds_paragraph_components_process_list submodule. Create a parent 'uswds_process_list' paragraph, then add 'uswds_process_item' children. Each item has a heading and body.",
+    "twigTemplate": "paragraph--uswds-process-list.html.twig and paragraph--uswds-process-item.html.twig",
+    "preprocessFunction": "uswds_paragraph_components_process_list_preprocess_paragraph()",
+    "drushCommands": [
+      "drush pm:enable uswds_paragraph_components_process_list",
+      "drush cache:rebuild"
+    ],
+    "fieldDefinitions": {
+      "field_uswds_process_item": "Entity reference revisions to uswds_process_item (unlimited)",
+      "field_uswds_process_heading": "Text field for each step title",
+      "field_uswds_process_body": "Text formatted field for each step"
+    },
+    "dependencies": [
+      "uswds_paragraph_components",
+      "paragraphs",
+      "entity_reference_revisions"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "moderate",
+      "estimatedTokens": 624,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-process-list structure",
+      "usa-process-list__item heading and body hierarchy"
+    ],
+    "editable": [
+      "Template override for custom step numbering",
+      "Field labels for editor UX"
+    ],
+    "limitations": [
+      "Process items are child paragraphs",
+      "Numbering is automatic via CSS counters"
+    ],
+    "portableInvariants": [
+      "usa-process-list structure",
+      "usa-process-list__item heading and body hierarchy"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
+  "file": "process-list/default.html",
+  "title": "Process List (Drupal Paragraph Bundle)"
 }
 </script>
 </head>

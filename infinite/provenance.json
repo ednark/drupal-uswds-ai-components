@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "registry": "drupal-uswds-ai-components",
+  "note": "Session log of field research and registry maintenance. Per-tile provenance lives in each tile provenance block.",
+  "sessions": [
+    {
+      "date": "2026-09-06",
+      "source": "family conformance sweep (uswds-ai-components as reference registry)",
+      "title": "Conformance fixes + v2 migration + family alignment",
+      "method": "coverage audit",
+      "findings": [
+        "meta.file table.html was stale (failed validate-registry) — fixed to table/default.html",
+        "All 24 tiles migrated from flat v1 to categorized v2 metadata",
+        "discovery.uswdClass added to every tile — enables class-level coverage checking",
+        "core-classes.json manifest added (Drupal layout + tbm-* module classes)",
+        "Declared gaps: webforms (Form API), views-listings, combobox, mega-menu"
+      ],
+      "tilesAdded": []
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "registry": "drupal-uswds-ai-components",
+  "designSystem": { "name": "U.S. Web Design System (Drupal)", "version": "3.13.0", "url": "https://designsystem.digital.gov" },
+  "versions": [
+    {
+      "version": "1.0.0",
+      "releaseDate": "2026-07-09",
+      "componentCount": 24,
+      "breakingChanges": [],
+      "metadataChanges": ["Initial registry: 24 Drupal implementation tiles with flat (schema v1) metadata"],
+      "migrationPath": "none required"
+    },
+    {
+      "version": "2.0.0",
+      "releaseDate": "2026-09-06",
+      "componentCount": 24,
+      "breakingChanges": [
+        "Tile metadata restructured from flat (v1) to categorized (v2): discovery / selection / instruction / coordination / constraints"
+      ],
+      "addedCategories": ["coordination", "provenance"],
+      "addedFacets": [],
+      "metadataChanges": [
+        "discovery.uswdClass added to all 24 tiles (primary USWDS class)",
+        "discovery.compliance (Section 508 / WCAG 2.1 AA / PII handling)",
+        "discovery.mobileUX (44px touch targets)",
+        "coordination.compositionCost from Drupal complexity"
+      ],
+      "migrationPath": "Readers detect v1/v2 automatically via _schemaVersion. Flat fields moved into categorized blocks; Drupal implementation facts (drupalModule, paragraphType, twigTemplate) remain discovery facets.",
+      "notes": "Family alignment pass: schema v2 + uswdClass + compliance/mobileUX + core-classes.json + declared gaps; conformance certified"
+    }
+  ],
+  "designSystemVersions": [
+    { "version": "3.13.0", "status": "current", "notes": "All 24 tiles target USWDS 3.13.0 in Drupal" }
+  ]
+}

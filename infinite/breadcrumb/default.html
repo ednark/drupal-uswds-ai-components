@@ -7,26 +7,121 @@
 <title>USWDS Breadcrumb (Drupal Theme Region)</title>
 <script type="application/json" id="drupal-uswds-agent-meta">
 {
+  "_schemaVersion": 2,
+  "discovery": {
+    "implementationType": "theme_region",
+    "drupalModule": "uswds",
+    "uswdsComponent": "breadcrumb",
+    "themeRegion": "breadcrumb",
+    "complexity": "simple",
+    "drupalVersion": "^10 || ^11",
+    "uswdClass": "usa-breadcrumb",
+    "tier": "curated",
+    "tags": [
+      "breadcrumb",
+      "theme-region",
+      "uswds",
+      "navigation",
+      "hierarchy",
+      "trail"
+    ],
+    "description": "Breadcrumb (Drupal Theme Region)",
+    "a11y": {
+      "wcag21AA": true,
+      "keyboardNav": true,
+      "screenReader": true,
+      "reducedMotion": true,
+      "forcedColors": true,
+      "ariaAttributes": true
+    },
+    "govCompliance": [
+      "Section 508",
+      "WCAG 2.1 AA",
+      "21st Century IDEA"
+    ],
+    "compliance": {
+      "nistControls": [],
+      "section508": true,
+      "wcag21AA": true,
+      "piiHandling": "displays_only",
+      "auditTrailCompatible": false,
+      "dataMaskingCompatible": false
+    },
+    "mobileUX": {
+      "touchTargetSize": "44px",
+      "requiredMinSpacing": "8px",
+      "orientationLocked": false,
+      "fullscreenSafe": true
+    }
+  },
+  "selection": {
+    "useWhen": [
+      "Multi-level content hierarchies",
+      "Documentation sites",
+      "Any page deeper than 2 levels"
+    ],
+    "avoidWhen": [
+      "Single-level sites",
+      "Homepage"
+    ]
+  },
+  "instruction": {
+    "agentPrompt": "The uswds base theme maps Drupal's breadcrumb to usa-breadcrumb markup. Place the system breadcrumb block in the breadcrumb region. The theme handles the Twig conversion from Drupal's breadcrumb trail to usa-breadcrumb__list items.",
+    "twigTemplate": "breadcrumb.html.twig in themes/contrib/uswds/templates/. The base theme converts Drupal's breadcrumb variables into usa-breadcrumb__list structure.",
+    "preprocessFunction": "mytheme_preprocess_breadcrumb() — modify $variables['breadcrumb'] array",
+    "drushCommands": [
+      "drush pm:enable block",
+      "drush config-set block.block.mytheme_breadcrumbs region breadcrumb"
+    ],
+    "dependencies": [
+      "uswds theme",
+      "drupal:block",
+      "drupal:system"
+    ]
+  },
+  "coordination": {
+    "prerequisiteComponents": [],
+    "incompatibleWith": [],
+    "compositionCost": {
+      "costTier": "cheap",
+      "estimatedTokens": 572,
+      "renderingTimeMs": 15,
+      "recommendedModel": "haiku"
+    }
+  },
+  "constraints": {
+    "preserve": [
+      "usa-breadcrumb class",
+      "usa-breadcrumb__list and usa-breadcrumb__list-item",
+      "usa-breadcrumb__link",
+      "aria-label='Breadcrumb' on nav"
+    ],
+    "editable": [
+      "Breadcrumb block placement (which pages show it)",
+      "Wrap variant via template override",
+      "Custom breadcrumb logic via preprocess"
+    ],
+    "limitations": [
+      "Drupal's breadcrumb builder determines the trail — theme just styles it",
+      "Wrap and naviprev-next variants need custom preprocess logic"
+    ],
+    "portableInvariants": [
+      "usa-breadcrumb class",
+      "usa-breadcrumb__list and usa-breadcrumb__list-item",
+      "usa-breadcrumb__link",
+      "aria-label='Breadcrumb' on nav"
+    ]
+  },
+  "supportedTokenProfiles": [
+    "highContrast"
+  ],
+  "provenance": {
+    "observed": "2026-09-06",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "method": "design-system documentation"
+  },
   "file": "breadcrumb/default.html",
-  "title": "Breadcrumb (Drupal Theme Region)",
-  "implementationType": "theme_region",
-  "drupalModule": "uswds",
-  "uswdsComponent": "breadcrumb",
-  "themeRegion": "breadcrumb",
-  "complexity": "simple",
-  "drupalVersion": "^10 || ^11",
-  "useWhen": ["Multi-level content hierarchies", "Documentation sites", "Any page deeper than 2 levels"],
-  "avoidWhen": ["Single-level sites", "Homepage"],
-  "agentPrompt": "The uswds base theme maps Drupal's breadcrumb to usa-breadcrumb markup. Place the system breadcrumb block in the breadcrumb region. The theme handles the Twig conversion from Drupal's breadcrumb trail to usa-breadcrumb__list items.",
-  "twigTemplate": "breadcrumb.html.twig in themes/contrib/uswds/templates/. The base theme converts Drupal's breadcrumb variables into usa-breadcrumb__list structure.",
-  "preprocessFunction": "mytheme_preprocess_breadcrumb() — modify $variables['breadcrumb'] array",
-  "drushCommands": ["drush pm:enable block", "drush config-set block.block.mytheme_breadcrumbs region breadcrumb"],
-  "dependencies": ["uswds theme", "drupal:block", "drupal:system"],
-  "editableAreas": ["Breadcrumb block placement (which pages show it)", "Wrap variant via template override", "Custom breadcrumb logic via preprocess"],
-  "preserveElements": ["usa-breadcrumb class", "usa-breadcrumb__list and usa-breadcrumb__list-item", "usa-breadcrumb__link", "aria-label='Breadcrumb' on nav"],
-  "knownLimitations": ["Drupal's breadcrumb builder determines the trail — theme just styles it", "Wrap and naviprev-next variants need custom preprocess logic"],
-  "tier": "curated",
-  "tags": ["breadcrumb", "theme-region", "uswds", "navigation", "hierarchy", "trail"]
+  "title": "Breadcrumb (Drupal Theme Region)"
 }
 </script>
 </head>
