@@ -16,6 +16,12 @@ Drupal USWDS AI Components is a registry that tells AI agents HOW to implement U
 
 ---
 
+## Appearance (resolved views)
+
+Drupal tiles use USWDS classes; component appearance comes from USWDS CSS (validated against @uswds/uswds at build time). A generated resolved view sibling ({tile}.resolved.html) additionally carries computed geometry, colors, and typography inline for design tools and standalone preview. Index records expose the path as the resolvedView field.
+
+---
+
 ## Quick start
 
 1. Filter vocab: GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json

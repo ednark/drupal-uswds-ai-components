@@ -48,7 +48,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "accordion/default.resolved.html"
     },
     {
       "file": "alert/default.html",
@@ -95,7 +96,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "alert/default.resolved.html"
     },
     {
       "file": "banner/default.html",
@@ -141,7 +143,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "banner/default.resolved.html"
     },
     {
       "file": "breadcrumb/default.html",
@@ -186,7 +189,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "breadcrumb/default.resolved.html"
     },
     {
       "file": "button/default.html",
@@ -230,7 +234,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "button/default.resolved.html"
     },
     {
       "file": "card/default.html",
@@ -275,7 +280,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "card/default.resolved.html"
     },
     {
       "file": "data-visualizations/default.html",
@@ -322,7 +328,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "data-visualizations/default.resolved.html"
     },
     {
       "file": "footer/default.html",
@@ -367,7 +374,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "footer/default.resolved.html"
     },
     {
       "file": "form/default.html",
@@ -413,7 +421,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "expensive"
+      "costTier": "expensive",
+      "resolvedView": "form/default.resolved.html"
     },
     {
       "file": "header/default.html",
@@ -458,7 +467,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "header/default.resolved.html"
     },
     {
       "file": "icon-list/default.html",
@@ -503,7 +513,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "icon-list/default.resolved.html"
     },
     {
       "file": "identifier/default.html",
@@ -550,7 +561,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "identifier/default.resolved.html"
     },
     {
       "file": "layout-builder-bridge/default.html",
@@ -596,7 +608,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "expensive"
+      "costTier": "expensive",
+      "resolvedView": "layout-builder-bridge/default.resolved.html"
     },
     {
       "file": "mega-menu/default.html",
@@ -642,7 +655,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "expensive"
+      "costTier": "expensive",
+      "resolvedView": "mega-menu/default.resolved.html"
     },
     {
       "file": "misc/default.html",
@@ -688,7 +702,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "misc/default.resolved.html"
     },
     {
       "file": "modal/default.html",
@@ -732,7 +747,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "modal/default.resolved.html"
     },
     {
       "file": "process-list/default.html",
@@ -777,7 +793,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "process-list/default.resolved.html"
     },
     {
       "file": "search/default.html",
@@ -822,7 +839,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "search/default.resolved.html"
     },
     {
       "file": "setup/default.html",
@@ -868,7 +886,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "setup/default.resolved.html"
     },
     {
       "file": "side-navigation/default.html",
@@ -914,7 +933,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "side-navigation/default.resolved.html"
     },
     {
       "file": "step-indicator/default.html",
@@ -959,7 +979,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "step-indicator/default.resolved.html"
     },
     {
       "file": "summary-box/default.html",
@@ -1004,7 +1025,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "summary-box/default.resolved.html"
     },
     {
       "file": "table/default.html",
@@ -1050,7 +1072,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "moderate"
+      "costTier": "moderate",
+      "resolvedView": "table/default.resolved.html"
     },
     {
       "file": "text-input/default.html",
@@ -1096,7 +1119,8 @@
       ],
       "prerequisites": [],
       "incompatibleWith": [],
-      "costTier": "cheap"
+      "costTier": "cheap",
+      "resolvedView": "text-input/default.resolved.html"
     }
   ]
 }

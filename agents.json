@@ -51,5 +51,6 @@
   ],
   "updated": "2.0.0",
   "metadataSchemaVersion": 2,
-  "language": "en"
+  "language": "en",
+  "appearance": "Every tile has a generated resolved view: fetch {tileDir}/{file with .html replaced by .resolved.html} for a computed-style standalone rendering (geometry + colors inline, validated at build time). Index records expose the path as the resolvedView field. Drupal tiles use USWDS classes; component appearance comes from USWDS CSS (validated against @uswds/uswds at build time)."
 }
