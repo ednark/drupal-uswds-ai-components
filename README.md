@@ -66,15 +66,39 @@ The companion `uswds-theme-overrides` skill is available at `.claude/skills/uswd
 
 ## Quick Start
 
-1. Filter vocab (tiny): GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/facets.json
-2. Discovery index (lean): GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/components.index.json
-3. Component source: GET https://raw.githubusercontent.com/ednark/drupal-uswds-ai-components/main/infinite/{file}
+**Agents:** [agents.json](agents.json) → [components.index.json](infinite/components.index.json) (filter in code) → fetch `infinite/{file}` → read the embedded `drupal-uswds-agent-meta` block. Machine docs: [AGENTS.md](AGENTS.md) · [llms.txt](llms.txt). MCP: `npm run mcp` (9 tools). Typical flow: query [uswds-ai-components](https://github.com/ednark/uswds-ai-components) for the design layer first, then this registry for implementation.
+
+**Humans:** tiles are implementation-guidance documents — markup, Twig snippets, module/config mapping, and Drush commands. 24 tiles across 14 component families. Validate: `node _base/validate-registry.mjs --conformance .`
 
 ## Architecture
 
 This registry extends the [AI Component Registry Spec](https://github.com/ednark/ai-component-registry-spec) as a git submodule at `_base/`. It is a companion to [uswds-ai-components](https://github.com/ednark/uswds-ai-components), which provides the design-layer knowledge (which component, when to use, HTML patterns).
 
 The retrieval protocol was originated by [forever-ai-components](https://github.com/isas1/forever-ai-components).
+
+## Agent-facing docs
+
+- [AGENTS.md](AGENTS.md) — retrieval workflow, Drupal rules, quality gates
+- [llms.txt](llms.txt) — the lean protocol: decision strategy, quality gates, facets, output contract
+- [agents.json](agents.json) — compact machine manifest
+- [compatibility.json](compatibility.json) — cross-registry maps
+- [core-classes.json](infinite/core-classes.json) — documented untiled layout/typography layer
+
+## Resolved views (appearance)
+
+Drupal tiles use USWDS classes; their *appearance* resolves through a host page that loads USWDS CSS (the normal integration flow) or through each tile's generated **resolved view** sibling (`{variant}.resolved.html`): computed geometry, colors, and typography flattened inline, with USWDS CSS from `@uswds/uswds@3.14.0` injected at build time. Index records expose the path as the `resolvedView` field. Tile classes are validated against the USWDS stylesheet at build time (`staticView.classCheck` — classes not defined by USWDS fail conformance unless reasoned-allowlisted). Regenerate views after tile changes: `node _base/generate-resolved-view.mjs`.
+
+## The registry family
+
+| Registry | Design system | Tiles |
+|---|---|---|
+| [uswds-ai-components](https://github.com/ednark/uswds-ai-components) | U.S. Web Design System | 152 |
+| [govuk-ai-components](https://github.com/ednark/govuk-ai-components) | GOV.UK Design System | 45 |
+| [dsfr-ai-components](https://github.com/ednark/dsfr-ai-components) | Système de Design de l'État | 42 |
+| [ecl-ai-components](https://github.com/ednark/ecl-ai-components) | Europa Component Library | 36 |
+| [canada-ai-components](https://github.com/ednark/canada-ai-components) | Canada.ca Design System | 25 |
+| **drupal-uswds-ai-components** (this repo) | USWDS on Drupal (implementation layer) | 24 |
+| [forever-ai-components](https://github.com/isas1/forever-ai-components) | Forever (origin project, external) | 604 |
 
 ## License
 
