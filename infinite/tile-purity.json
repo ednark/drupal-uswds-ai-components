@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "_base/generate-index.mjs",
+  "algorithm": "sha256 of whitespace-normalized body markup; script elements (metadata + behavior) excluded",
+  "count": 24,
+  "tiles": {
+    "accordion/default.html": "0ffb90a9a773b97c48b8b1944b082e0a7684774a629a82136e084e720a36e500",
+    "alert/default.html": "60b760be037db729097ca1fd4cf614aadf119f362eb8b33247005c21eec8468b",
+    "banner/default.html": "6041d23ad2cbab368044b2d3ce10afc019e62d1735801e2911a190924ef20415",
+    "breadcrumb/default.html": "90c3262b8af27be46119a1cd20688bc27fd33ef5d718de91d86fc2caccdede77",
+    "button/default.html": "dc76f87b0407dfeb7da1c6fdfceaa4c96ae4b00e17ce6979e8981d40fb01d9d0",
+    "card/default.html": "c5ecf8d0f94c891232e58d79a1ad1ef6eb614f2e8d1510b1ac45aa361756885d",
+    "data-visualizations/default.html": "106aee192d842840df7d0a505d1fe7326f31997e50a0c033136348ecc9d09d90",
+    "footer/default.html": "c9e41eeba4be6a91a2ee5071de02ba2a1a382a2ce9c5cf1a510c487272585b41",
+    "form/default.html": "fd13e1508dd2864a7494884a1e8a815646448c2df0c9daea99694c8fb081363e",
+    "header/default.html": "b944be27e7e36a6eb0d00123d76ad171f781cd668e62ee7f401efd651ff76c48",
+    "icon-list/default.html": "3079e89555d6ccb40a60987d41be391947910e93bb88d5b5a4a04753b3992b13",
+    "identifier/default.html": "94dff102fdba3238314b293077af2da7780de220c0b890a7e2d7cfb78161bbe2",
+    "layout-builder-bridge/default.html": "024c546b2dc43ca9c06ef59dcef30115c22753ec5efa05ff163f70c20a7d88d1",
+    "mega-menu/default.html": "1aa2df3a282563ae440f75d2d02013b57288a9a83ea9f3d781f1656e6239cd63",
+    "misc/default.html": "e16139b991465d501b24257eb22824309211fda05283d30a3f907e9e47678e7f",
+    "modal/default.html": "4ed7945bad037e588932048590bbfaa21e31646148d9a756e424e6cf5aab569f",
+    "process-list/default.html": "c6b2ea570e814c12380d1c9c918fd30ab0e5ee735aa02ee110d6b302db573200",
+    "search/default.html": "b5e009eee1a60e70d41377ebdeadde27deb0dfc05d4af6ce5f54f68ee8550145",
+    "setup/default.html": "0de705836dbba321c37fa7471f38076f665e4f22fee4367c6bc063d0dadd427d",
+    "side-navigation/default.html": "806461a8771702f86044c5d7b571811cd09a89417e38fb7c37d3b4b2a8507196",
+    "step-indicator/default.html": "4ba5e3a2b88b24de0abbca6232b42977e426e251455837a100634c416111207f",
+    "summary-box/default.html": "26a80d5ad98d0fec8702566d7690d4b145a1101b496c54cc87f09bd5dbb6cba1",
+    "table/default.html": "9fd61a0ac7e1df15a8b38fdf0860cacaf26c7d6e569890920138a6c9b2a2de43",
+    "text-input/default.html": "2a82ff321760aaebc51c4da459439023034913b8837d0c697ad786fb66d85a4e"
+  }
+}
