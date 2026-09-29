@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
   "registry": "drupal-uswds-ai-components",
-  "designSystem": { "name": "U.S. Web Design System (Drupal)", "version": "3.13.0", "url": "https://designsystem.digital.gov" },
+  "designSystem": {
+    "name": "U.S. Web Design System (Drupal)",
+    "version": "3.14.0",
+    "url": "https://designsystem.digital.gov"
+  },
   "versions": [
     {
       "version": "1.0.0",
       "releaseDate": "2026-07-09",
       "componentCount": 24,
       "breakingChanges": [],
-      "metadataChanges": ["Initial registry: 24 Drupal implementation tiles with flat (schema v1) metadata"],
+      "metadataChanges": [
+        "Initial registry: 24 Drupal implementation tiles with flat (schema v1) metadata"
+      ],
       "migrationPath": "none required"
     },
     {
@@ -18,7 +24,10 @@
       "breakingChanges": [
         "Tile metadata restructured from flat (v1) to categorized (v2): discovery / selection / instruction / coordination / constraints"
       ],
-      "addedCategories": ["coordination", "provenance"],
+      "addedCategories": [
+        "coordination",
+        "provenance"
+      ],
       "addedFacets": [],
       "metadataChanges": [
         "discovery.uswdClass added to all 24 tiles (primary USWDS class)",
@@ -31,6 +40,10 @@
     }
   ],
   "designSystemVersions": [
-    { "version": "3.13.0", "status": "current", "notes": "All 24 tiles target USWDS 3.13.0 in Drupal" }
+    {
+      "version": "3.13.0",
+      "status": "current",
+      "notes": "All 24 tiles target USWDS 3.13.0 in Drupal"
+    }
   ]
 }
