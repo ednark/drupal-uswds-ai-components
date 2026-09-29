@@ -59,7 +59,9 @@
       "concept": "webforms (Form API)",
       "status": "not_part_of_design_system",
       "nearestAlternative": "text-input / form tiles + Drupal Form API guidance",
-      "reason": "Drupal forms are built with the Form API, not static markup — the form tile documents the render-array approach"
+      "reason": "Drupal forms are built with the Form API, not static markup — the form tile documents the render-array approach",
+      "consequence": "Do not build forms as static markup; use the form tile render-array approach with the Form API",
+      "source": "Drupal Form API documentation (https://www.drupal.org/docs/drupal-apis/form-api) — forms are built as render arrays via the Form API"
     },
     {
       "concept": "views-listings",
