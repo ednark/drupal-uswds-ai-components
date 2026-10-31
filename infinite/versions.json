@@ -37,13 +37,27 @@
       ],
       "migrationPath": "Readers detect v1/v2 automatically via _schemaVersion. Flat fields moved into categorized blocks; Drupal implementation facts (drupalModule, paragraphType, twigTemplate) remain discovery facets.",
       "notes": "Family alignment pass: schema v2 + uswdClass + compliance/mobileUX + core-classes.json + declared gaps; conformance certified"
+    },
+    {
+      "version": "2.0.1",
+      "releaseDate": "2026-10-30",
+      "componentCount": 24,
+      "breakingChanges": [],
+      "addedCategories": [],
+      "addedFacets": [],
+      "metadataChanges": [
+        "banner/default selection rescoped with citations (pending federal website standard, executive-branch .gov/.mil scope, USWDS 'most should' modality)",
+        "header/default useWhen 'Every government site' softened to 'Government content sites with site-wide header navigation'"
+      ],
+      "migrationPath": "Re-fetch banner/default and header/default if you consume selection guidance.",
+      "notes": "Guidance-fidelity pass: policy citations verified against live sources 2026-10-30 (21st Century IDEA, OMB M-23-22, standards.digital.gov banner standard — Pending); session logged in provenance.json"
     }
   ],
   "designSystemVersions": [
     {
       "version": "3.13.0",
-      "status": "current",
-      "notes": "All 24 tiles target USWDS 3.13.0 in Drupal"
+      "status": "superseded",
+      "notes": "All 24 tiles targeted USWDS 3.13.0 in Drupal"
     }
   ]
 }

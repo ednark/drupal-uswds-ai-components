@@ -16,6 +16,19 @@
         "Declared gaps: webforms (Form API), views-listings, combobox, mega-menu"
       ],
       "tilesAdded": []
+    },
+    {
+      "date": "2026-10-30",
+      "source": "policy-citation check: 21st Century IDEA (P.L. 115-336), OMB M-23-22, standards.digital.gov/standards/banner/, designsystem.digital.gov/components/banner/",
+      "title": "Selection guidance corrections: banner requirement scope/modality, header universality",
+      "method": "coverage audit",
+      "findings": [
+        "banner/default useWhen 'Required on all federal government websites' replaced — the federal website banner standard is Pending (no required standards yet), scoped to executive branch public-facing .gov/.mil domains; USWDS docs say 'most government sites should use' it and 'do NOT' on non-government domains",
+        "banner guidance do/don't nuance recorded: state the pending-standard posture; never claim 'required by law'",
+        "header/default useWhen 'Every government site' softened to 'Government content sites with site-wide header navigation' — harmonizes with the tile's own avoidWhen",
+        "provenance on banner/default re-stamped with standards.digital.gov citation (2026-10-30)"
+      ],
+      "tilesAdded": []
     }
   ]
 }
