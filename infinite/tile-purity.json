@@ -4,7 +4,7 @@
   "algorithm": "sha256 of whitespace-normalized body markup; script elements (metadata + behavior) excluded",
   "count": 24,
   "tiles": {
-    "accordion/default.html": "0ffb90a9a773b97c48b8b1944b082e0a7684774a629a82136e084e720a36e500",
+    "accordion/default.html": "12942cc341b216dfb6e3231192aca173e4fd6a323f773a33315dd35b9443cb58",
     "alert/default.html": "60b760be037db729097ca1fd4cf614aadf119f362eb8b33247005c21eec8468b",
     "banner/default.html": "6041d23ad2cbab368044b2d3ce10afc019e62d1735801e2911a190924ef20415",
     "breadcrumb/default.html": "90c3262b8af27be46119a1cd20688bc27fd33ef5d718de91d86fc2caccdede77",

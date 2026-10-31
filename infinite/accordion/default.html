@@ -5,8 +5,7 @@
 <meta name="description" content="Drupal implementation of USWDS Accordion using paragraph bundle.">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>USWDS Accordion (Drupal Paragraph)</title>
-<script type="application/json" id="drupal-uswds-agent-meta">
-{
+<script type="application/json" id="drupal-uswds-agent-meta">{
   "_schemaVersion": 2,
   "discovery": {
     "implementationType": "paragraph_bundle",
@@ -65,16 +64,18 @@
     ]
   },
   "instruction": {
-    "agentPrompt": "Enable the uswds_paragraph_components_accordion submodule. Add a Paragraphs field to your content type. Select 'USWDS Accordion' as an allowed bundle. Editors create accordion items as child paragraphs.",
-    "twigTemplate": "paragraph--uswds-accordion.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_accordion/templates/",
-    "preprocessFunction": "uswds_paragraph_components_accordion_preprocess_paragraph__uswds_accordion()",
+    "agentPrompt": "Enable the uswds_paragraph_components_accordions submodule. Add a Paragraphs field to your content type. Select 'USWDS Accordion' as an allowed bundle. Editors create accordion items as child paragraphs.",
+    "twigTemplate": "paragraph--uswds-accordion.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_accordions/templates/",
+    "preprocessFunction": "none — theme overrides come from UswdsParagraphComponentsAccordionsHooks (#[Hook('theme')] in modules/uswds_paragraph_components_accordions/src/Hook/)",
     "drushCommands": [
-      "drush pm:enable uswds_paragraph_components_accordion",
+      "drush pm:enable uswds_paragraph_components_accordions",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
-      "field_uswds_accordion_item": "Entity reference revisions to uswds_accordion_item paragraph type (unlimited)",
-      "field_uswds_heading": "Text field for accordion section title"
+      "field_accordion_section": "Entity reference revisions to uswds_accordion_section paragraph type (unlimited)",
+      "field_bordered": "Boolean — usa-accordion--bordered variant",
+      "field_default_open": "Boolean — first section open by default",
+      "field_multiselect": "Boolean — usa-accordion--multiselectable variant"
     },
     "dependencies": [
       "uswds_paragraph_components",
@@ -120,19 +121,35 @@
   ],
   "provenance": {
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
-    "method": "design-system documentation"
+    "source": "v1→v2 migration (tools/migrate-v2.mjs); corrected 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (modules/uswds_paragraph_components_accordions/ — submodule name, template path, hooks class, field config)",
+    "method": "design-system documentation",
+    "evidence": [
+      {
+        "module": "uswds_paragraph_components",
+        "project": "https://www.drupal.org/project/uswds_paragraph_components",
+        "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
+        "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
+        "requirements": [
+          "paragraphs",
+          "entity_reference_revisions",
+          "viewsreference"
+        ],
+        "checked": "2026-10-30"
+      }
+    ],
+    "designSystemVersion": "3.14.0"
   },
   "file": "accordion/default.html",
-  "title": "Accordion (Drupal Paragraph Bundle)"
-}
-</script>
+  "title": "Accordion (Drupal Paragraph Bundle)",
+  "id": "accordion-default",
+  "resolvedView": "accordion/default.resolved.html"
+}</script>
 </head>
 <body>
 <h1>USWDS Accordion — Drupal Paragraph Bundle</h1>
-<p>Provided by <code>uswds_paragraph_components_accordion</code> submodule.</p>
+<p>Provided by <code>uswds_paragraph_components_accordions</code> submodule.</p>
 <h2>Installation</h2>
-<pre>drush pm:enable uswds_paragraph_components_accordion</pre>
+<pre>drush pm:enable uswds_paragraph_components_accordions</pre>
 <h2>Usage</h2>
 <ol>
 <li>Add a Paragraphs field to your content type</li>

@@ -55,6 +55,7 @@ Do not retrieve or deploy a tile that:
 - Whose `constraints.knownLimitations` block the delivery context (e.g. site-alert vs alert misuse)
 - Implements a concept declared in `gaps` (registry.config.json: webforms, views-listings, combobox, mega-menu) — use the gap's nearestAlternative instead
 - Needs Drupal layout/theme classes outside the tiles — use `infinite/core-classes.json` (the documented untiled Drupal layer), never invented classes
+- Names a contrib module with an unpatched security advisory affecting your target core version — check the project's latest release before deploying
 
 Registry mandates that act as gates:
 
@@ -64,6 +65,15 @@ Registry mandates that act as gates:
 
 Declared gaps: see `gaps` in registry.config.json. Untiled Drupal layer: see `infinite/core-classes.json`.
 
+
+## Authoritative-Source Gates (tier order)
+
+Before deploying any tile, verify its claims against the highest available authority. When tiers conflict, the source code wins for what renders, and the disagreement is recorded in the tile's `provenance` — never silently resolved.
+
+1. **Module/project verification (tier 2):** every contrib module a tile names must be verified against its drupal.org project page at the target core version — existence, supported-cores constraint, maintenance posture, latest release, and any open security advisory. Record the result in the tile's `provenance.evidence` (module, project URL, latestStable, maintenance, checked date). Drupal core modules are canonical and skip this gate.
+2. **Module source (tier 4):** before any Twig override or template-based claim, pull the actual template/hook/config from git.drupalcode.org at the pinned release (`https://git.drupalcode.org/project/{module}/-/raw/{branch}/{path}`). The accordion tile's 2026-10-30 source check found four defects the docs-based pass had missed (wrong submodule machine name, wrong template path, invented preprocess function, invented field machine names) — documentation alone is not ground truth for implementation claims.
+3. **Maintainer guidance (tier 3):** release notes and the issue queue are the source for branch strategy (e.g. `uswds_paragraph_components` 3.1.x = D10+; bundles ship as per-component submodules) and known limitations (e.g. `tb_megamenu` D11 issues #3530244, #3579973).
+4. **Observed behavior (tier 5):** after wiring a tile's markup on a real site, interact with the component (expand/collapse, toggle, submit) — functionality is part of done, not polish.
 
 ## Module Ecosystem
 

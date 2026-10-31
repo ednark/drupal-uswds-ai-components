@@ -129,9 +129,19 @@
     "highContrast"
   ],
   "provenance": {
+    "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
     "source": "v1→v2 migration (tools/migrate-v2.mjs)",
-    "method": "design-system documentation"
+    "method": "design-system documentation",
+    "evidence": [
+      {
+      "module": "plotly_js",
+      "project": "https://www.drupal.org/project/plotly_js",
+      "latestStable": "4.0.1 — ^10.3 || ^11; 5.0.1 — ^11.3 || ^12; 3.x insecure (SA-CONTRIB-2026-050, critical PHP object injection, fixed in 4.x/5.x)",
+      "maintenance": "36 sites; security-advisory covered",
+      "checked": "2026-10-30"
+      }
+    ]
   },
   "file": "data-visualizations/default.html",
   "title": "Data Visualizations (Drupal Field Type — plotly_js)"

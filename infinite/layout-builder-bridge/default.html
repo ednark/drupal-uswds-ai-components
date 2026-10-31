@@ -129,9 +129,24 @@
     "highContrast"
   ],
   "provenance": {
+    "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
     "source": "v1→v2 migration (tools/migrate-v2.mjs)",
-    "method": "design-system documentation"
+    "method": "design-system documentation",
+    "evidence": [
+      {
+      "module": "paragraphs",
+      "project": "https://www.drupal.org/project/paragraphs",
+      "latestStable": "contrib — verified verdict: contrib via drupal-dev-mcp indexed registry",
+      "maintenance": "widely used",
+      "checked": "2026-10-30"
+      },
+      {
+      "module": "layout_builder + block_content",
+      "note": "Drupal core modules — canonical, no external project verification needed",
+      "checked": "2026-10-30"
+      }
+    ]
   },
   "file": "layout-builder-bridge/default.html",
   "title": "USWDS Layout Builder Bridge (Drupal Custom Module)"

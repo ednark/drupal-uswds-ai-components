@@ -130,9 +130,19 @@
     "highContrast"
   ],
   "provenance": {
+    "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
     "source": "v1→v2 migration (tools/migrate-v2.mjs)",
-    "method": "design-system documentation"
+    "method": "design-system documentation",
+    "evidence": [
+      {
+      "module": "tb_megamenu",
+      "project": "https://www.drupal.org/project/tb_megamenu",
+      "latestStable": "8.x-1.10 and 3.0.0-alpha5 — ^8 || ^9 || ^10 || ^11 (stable 3.x not yet released)",
+      "maintenance": "18,522 sites; known D11 issues: #3530244 (Chosen vs jQuery 4.x admin JS), #3579973 (style/animation config broken on D11)",
+      "checked": "2026-10-30"
+      }
+    ]
   },
   "file": "mega-menu/default.html",
   "title": "Mega Menu Header (Drupal Custom Twig)"
