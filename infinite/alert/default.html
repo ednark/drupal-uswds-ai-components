@@ -69,15 +69,18 @@
   },
   "instruction": {
     "agentPrompt": "Enable the uswds_paragraph_components_alert submodule. Add a Paragraphs field allowing 'USWDS Alert' bundle. Editor selects alert type (info, success, warning, error) and enters body text.",
-    "twigTemplate": "paragraph--uswds-alert.html.twig",
-    "preprocessFunction": "uswds_paragraph_components_alert_preprocess_paragraph__uswds_alert()",
+    "twigTemplate": "paragraph--uswds-alert.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_alerts/templates/",
+    "preprocessFunction": "none — the alerts submodule ships no procedural preprocess function; theme registration/overrides come from its own module files",
     "drushCommands": [
       "drush pm:enable uswds_paragraph_components_alert",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
-      "field_uswds_alert_type": "List (text) with options: info, success, warning, error",
-      "field_uswds_alert_body": "Text formatted field for alert content"
+      "field_alert_title": "String — alert heading (plain text)",
+      "field_alert_body": "Text (formatted) — alert message",
+      "field_alert_status": "List (string) — info / warning / error / success / emergency",
+      "field_slim": "Boolean — slim variant",
+      "field_no_icon": "Boolean — suppress the status icon"
     },
     "dependencies": [
       "uswds_paragraph_components",
@@ -121,20 +124,20 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
     "method": "design-system documentation",
     "evidence": [
       {
-      "module": "uswds_paragraph_components",
-      "project": "https://www.drupal.org/project/uswds_paragraph_components",
-      "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
-      "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
-      "requirements": [
-      "paragraphs",
-      "entity_reference_revisions",
-      "viewsreference"
-      ],
-      "checked": "2026-10-30"
+        "module": "uswds_paragraph_components",
+        "project": "https://www.drupal.org/project/uswds_paragraph_components",
+        "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
+        "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
+        "requirements": [
+          "paragraphs",
+          "entity_reference_revisions",
+          "viewsreference"
+        ],
+        "checked": "2026-10-30"
       }
     ]
   },

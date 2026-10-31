@@ -67,18 +67,24 @@
   },
   "instruction": {
     "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
-    "twigTemplate": "paragraph--uswds-card.html.twig and paragraph--uswds-card-group.html.twig",
-    "preprocessFunction": "uswds_paragraph_components_cards_preprocess_paragraph__uswds_card()",
+    "twigTemplate": "paragraph--uswds-card-group-regular.html.twig and paragraph--uswds-card-group-flag.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_cards/templates/ (regular-cards.html.twig renders the inner card markup)",
+    "preprocessFunction": "none — the cards submodule ships no procedural preprocess function; check modules/uswds_paragraph_components_cards/ for hook classes",
     "drushCommands": [
       "drush pm:enable uswds_paragraph_components_cards",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
-      "field_uswds_card_image": "Image field (media reference)",
-      "field_uswds_card_heading": "Text field for card title",
-      "field_uswds_card_body": "Text formatted field",
-      "field_uswds_card_link": "Link field for clickable card",
-      "field_uswds_card_flag": "Boolean for flag variant"
+      "uswds_card_group_regular.field_cards": "Entity reference revisions to uswds_card_regular (unlimited)",
+      "uswds_card_group_regular.field_uswds_classes": "String — extra classes on the group",
+      "uswds_card_regular.field_card_title": "String — card heading",
+      "uswds_card_regular.field_card_image": "Image — card media",
+      "uswds_card_regular.field_text": "Text (formatted) — card body",
+      "uswds_card_regular.field_button": "Link — optional card action",
+      "uswds_card_regular.field_make_card_link": "Boolean — wrap card in a link",
+      "uswds_card_regular.field_title_first": "Boolean — header-first variant",
+      "uswds_card_regular.field_extend_media": "Boolean — exdent media",
+      "uswds_card_regular.field_indent_media": "Boolean — inset media",
+      "uswds_cards_flag.field_image_position": "List (string) — flag image side"
     },
     "dependencies": [
       "uswds_paragraph_components",
@@ -128,20 +134,20 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
     "method": "design-system documentation",
     "evidence": [
       {
-      "module": "uswds_paragraph_components",
-      "project": "https://www.drupal.org/project/uswds_paragraph_components",
-      "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
-      "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
-      "requirements": [
-      "paragraphs",
-      "entity_reference_revisions",
-      "viewsreference"
-      ],
-      "checked": "2026-10-30"
+        "module": "uswds_paragraph_components",
+        "project": "https://www.drupal.org/project/uswds_paragraph_components",
+        "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
+        "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
+        "requirements": [
+          "paragraphs",
+          "entity_reference_revisions",
+          "viewsreference"
+        ],
+        "checked": "2026-10-30"
       }
     ]
   },

@@ -67,16 +67,21 @@
   },
   "instruction": {
     "agentPrompt": "Enable uswds_paragraph_components_step_indicator submodule. Create a parent 'uswds_step_indicator' paragraph, then add 'uswds_step_indicator_item' children. Mark one as current.",
-    "twigTemplate": "paragraph--uswds-step-indicator.html.twig",
+    "twigTemplate": "paragraph--uswds-step-indicator-list.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_step_indicator/templates/",
     "preprocessFunction": "uswds_paragraph_components_step_indicator_preprocess_paragraph()",
     "drushCommands": [
       "drush pm:enable uswds_paragraph_components_step_indicator",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
-      "field_uswds_step_items": "Entity reference revisions to uswds_step_indicator_item (unlimited)",
-      "field_uswds_step_label": "Text field for each step label",
-      "field_uswds_step_status": "List: complete, current, incomplete"
+      "uswds_step_indicator_list.field_step_indicator_items": "Entity reference revisions to uswds_step_indicator_item (unlimited)",
+      "uswds_step_indicator_list.field_header": "String — list heading",
+      "uswds_step_indicator_list.field_counters": "Boolean — show counters",
+      "uswds_step_indicator_list.field_small_counters": "Boolean — small counters",
+      "uswds_step_indicator_list.field_centered": "Boolean — centered variant",
+      "uswds_step_indicator_list.field_no_labels": "Boolean — hide labels",
+      "uswds_step_indicator_item.field_item_title": "String — step label",
+      "uswds_step_indicator_item.field_current": "Boolean — current step"
     },
     "dependencies": [
       "uswds_paragraph_components",
@@ -121,20 +126,20 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
     "method": "design-system documentation",
     "evidence": [
       {
-      "module": "uswds_paragraph_components",
-      "project": "https://www.drupal.org/project/uswds_paragraph_components",
-      "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
-      "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
-      "requirements": [
-      "paragraphs",
-      "entity_reference_revisions",
-      "viewsreference"
-      ],
-      "checked": "2026-10-30"
+        "module": "uswds_paragraph_components",
+        "project": "https://www.drupal.org/project/uswds_paragraph_components",
+        "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
+        "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
+        "requirements": [
+          "paragraphs",
+          "entity_reference_revisions",
+          "viewsreference"
+        ],
+        "checked": "2026-10-30"
       }
     ]
   },

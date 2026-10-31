@@ -67,16 +67,16 @@
   },
   "instruction": {
     "agentPrompt": "Enable uswds_paragraph_components_process_list submodule. Create a parent 'uswds_process_list' paragraph, then add 'uswds_process_item' children. Each item has a heading and body.",
-    "twigTemplate": "paragraph--uswds-process-list.html.twig and paragraph--uswds-process-item.html.twig",
+    "twigTemplate": "paragraph--uswds-process-list.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_process_list/templates/ — no template ships for the item bundle, so uswds_process_item renders through the default paragraph template",
     "preprocessFunction": "uswds_paragraph_components_process_list_preprocess_paragraph()",
     "drushCommands": [
       "drush pm:enable uswds_paragraph_components_process_list",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
-      "field_uswds_process_item": "Entity reference revisions to uswds_process_item (unlimited)",
-      "field_uswds_process_heading": "Text field for each step title",
-      "field_uswds_process_body": "Text formatted field for each step"
+      "uswds_process_list.field_process_items": "Entity reference revisions to uswds_process_item (unlimited)",
+      "uswds_process_item.field_header": "String — step heading",
+      "uswds_process_item.field_text": "Text (formatted) — step body"
     },
     "dependencies": [
       "uswds_paragraph_components",
@@ -118,20 +118,20 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
     "method": "design-system documentation",
     "evidence": [
       {
-      "module": "uswds_paragraph_components",
-      "project": "https://www.drupal.org/project/uswds_paragraph_components",
-      "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
-      "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
-      "requirements": [
-      "paragraphs",
-      "entity_reference_revisions",
-      "viewsreference"
-      ],
-      "checked": "2026-10-30"
+        "module": "uswds_paragraph_components",
+        "project": "https://www.drupal.org/project/uswds_paragraph_components",
+        "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
+        "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
+        "requirements": [
+          "paragraphs",
+          "entity_reference_revisions",
+          "viewsreference"
+        ],
+        "checked": "2026-10-30"
       }
     ]
   },
