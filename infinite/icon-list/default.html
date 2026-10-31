@@ -118,6 +118,7 @@
       "Heading level for items (h2-h4)"
     ],
     "limitations": [
+      "Unverifiable implementation layer: this is a site-local custom module, so the template filenames, preprocess function names and field machine names below are illustrative naming conventions to adapt — not verified facts. The USWDS markup classes (usa-icon-list*, usa-collection*) are verified against USWDS 3.14.0; uswds_paragraph_components ships no icon_list or collection bundle, so nothing here can come from contrib.",
       "These are custom bundles — they will not appear on drupal.org; teams must maintain the module",
       "Naming convention: prefix custom bundles with the project name (e.g., prac_uswds_icon_list) to avoid collisions with future contrib bundles",
       "Icon sprite path must be consistent across theme and module CSS libraries — define once in theme libraries.yml",
@@ -138,20 +139,20 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
-    "method": "design-system documentation",
+    "source": "correction 2026-10-30: this tile previously carried uswds_paragraph_components contrib evidence, which does not apply to a site-local custom module. Verified that contrib ships no icon_list or collection submodule; USWDS markup classes verified against the pinned stylesheet.",
+    "method": "design-system documentation + module source",
     "evidence": [
       {
-      "module": "uswds_paragraph_components",
-      "project": "https://www.drupal.org/project/uswds_paragraph_components",
-      "latestStable": "3.1.3 — ^10.1 || ^11 || ^12; 3.1.3 fixes SA-CONTRIB-2026-234 (XSS, moderately critical)",
-      "maintenance": "minimally maintained (maintenance fixes only), 292 sites",
-      "requirements": [
-      "paragraphs",
-      "entity_reference_revisions",
-      "viewsreference"
-      ],
-      "checked": "2026-10-30"
+        "module": "custom (site-local *_additional_uswds_paragraph_components)",
+        "note": "No drupal.org project exists for these bundles — they are maintained per site, so template filenames, preprocess function names and field machine names cannot be verified against any public source. Verified 2026-10-30 that uswds_paragraph_components (3.1.x) ships no icon_list or collection submodule, confirming these are not available from contrib.",
+        "verifiable": false,
+        "checked": "2026-10-30"
+      },
+      {
+        "component": "usa-icon-list, usa-collection",
+        "note": "The design-system side IS verified: usa-icon-list, usa-icon-list__item, usa-icon-list__icon, usa-icon-list__content, usa-icon-list__title, usa-collection and usa-collection__* are all present in the pinned USWDS 3.14.0 stylesheet. Only the Drupal implementation layer is unverifiable.",
+        "verifiable": true,
+        "checked": "2026-10-30"
       }
     ]
   },

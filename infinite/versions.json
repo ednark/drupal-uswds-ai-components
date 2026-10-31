@@ -66,6 +66,20 @@
       ],
       "migrationPath": "Re-fetch accordion/default if you deploy paragraph bundles; re-fetch any tile if you consume module requirements or security posture.",
       "notes": "Authoritative-source pass: tier-2 (drupal.org project info) verified for all four named contrib modules; tier-4 (module source) pilot on accordion/default found 4 defects — every remaining tile's twigTemplate/preprocessFunction/fieldDefinitions claims still need the same source check (worklist)"
+    },
+    {
+      "version": "2.0.4",
+      "releaseDate": "2026-10-30",
+      "componentCount": 24,
+      "breakingChanges": [],
+      "addedFacets": [],
+      "metadataChanges": [
+        "icon-list/default: provenance.evidence corrected — the tile cited uswds_paragraph_components contrib data, which does not apply to a site-local custom module",
+        "icon-list/default: added an Unverifiable implementation layer limitation and a verified design-system evidence entry (usa-icon-list*/usa-collection* present in the pinned 3.14.0 stylesheet)"
+      ],
+      "migrationPath": "Re-fetch icon-list/default if you consume its provenance evidence.",
+      "designSystemVersion": "3.14.0",
+      "notes": "Verified what is verifiable: USWDS ships usa-icon-list and usa-collection; uswds_paragraph_components 3.1.x ships no icon_list or collection submodule, so the custom-module claim holds. The Drupal implementation layer (template filenames, preprocess names, field machine names) has no public source and is now explicitly labeled illustrative rather than presented as fact."
     }
   ],
   "designSystemVersions": [
