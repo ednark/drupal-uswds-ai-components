@@ -49,6 +49,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "accordion/default.resolved.html"
     },
     {
@@ -97,6 +98,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "alert/default.resolved.html"
     },
     {
@@ -144,6 +146,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "banner/default.resolved.html"
     },
     {
@@ -190,6 +193,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "breadcrumb/default.resolved.html"
     },
     {
@@ -235,6 +239,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "button/default.resolved.html"
     },
     {
@@ -244,7 +249,7 @@
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "card",
-      "paragraphType": "uswds_card",
+      "paragraphType": "uswds_card_group_regular",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
       "uswdClass": "usa-card",
@@ -281,6 +286,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "card/default.resolved.html"
     },
     {
@@ -329,6 +335,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "data-visualizations/default.resolved.html"
     },
     {
@@ -375,6 +382,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "footer/default.resolved.html"
     },
     {
@@ -422,6 +430,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "expensive",
+      "origin": "design-system",
       "resolvedView": "form/default.resolved.html"
     },
     {
@@ -468,6 +477,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "header/default.resolved.html"
     },
     {
@@ -514,6 +524,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "icon-list/default.resolved.html"
     },
     {
@@ -562,6 +573,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "identifier/default.resolved.html"
     },
     {
@@ -609,6 +621,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "expensive",
+      "origin": "design-system",
       "resolvedView": "layout-builder-bridge/default.resolved.html"
     },
     {
@@ -656,6 +669,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "expensive",
+      "origin": "design-system",
       "resolvedView": "mega-menu/default.resolved.html"
     },
     {
@@ -703,6 +717,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "misc/default.resolved.html"
     },
     {
@@ -748,6 +763,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "modal/default.resolved.html"
     },
     {
@@ -794,6 +810,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "process-list/default.resolved.html"
     },
     {
@@ -840,6 +857,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "search/default.resolved.html"
     },
     {
@@ -887,6 +905,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "setup/default.resolved.html"
     },
     {
@@ -934,6 +953,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "side-navigation/default.resolved.html"
     },
     {
@@ -943,7 +963,7 @@
       "implementationType": "paragraph_bundle",
       "drupalModule": "uswds_paragraph_components",
       "uswdsComponent": "step-indicator",
-      "paragraphType": "uswds_step_indicator",
+      "paragraphType": "uswds_step_indicator_list",
       "complexity": "moderate",
       "drupalVersion": "^10.1 || ^11 || ^12",
       "uswdClass": "usa-step-indicator",
@@ -980,6 +1000,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "step-indicator/default.resolved.html"
     },
     {
@@ -1026,6 +1047,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "summary-box/default.resolved.html"
     },
     {
@@ -1073,6 +1095,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "moderate",
+      "origin": "design-system",
       "resolvedView": "table/default.resolved.html"
     },
     {
@@ -1120,6 +1143,7 @@
       "prerequisites": [],
       "incompatibleWith": [],
       "costTier": "cheap",
+      "origin": "design-system",
       "resolvedView": "text-input/default.resolved.html"
     }
   ]

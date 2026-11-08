@@ -12,7 +12,7 @@
     "implementationType": "paragraph_bundle",
     "drupalModule": "uswds_paragraph_components",
     "uswdsComponent": "card",
-    "paragraphType": "uswds_card",
+    "paragraphType": "uswds_card_group_regular",
     "complexity": "moderate",
     "drupalVersion": "^10.1 || ^11 || ^12",
     "uswdClass": "usa-card",
@@ -66,7 +66,7 @@
     ]
   },
   "instruction": {
-    "agentPrompt": "Enable uswds_paragraph_components_cards submodule. The card bundle includes sub-bundles: USWDS Cards (Regular) and USWDS Cards (Flag). Create a parent paragraph of type 'uswds_card_group' then add card children. Each card has image, heading, body, and optional link.",
+    "agentPrompt": "Enable uswds_paragraph_components_cards (+ breakpoints) submodule. Create a parent paragraph of type 'uswds_card_group_regular' with 'uswds_card_regular' children, or 'uswds_card_group_flag' with 'uswds_cards_flag' children. Each card item has image, heading, body, and optional link.",
     "twigTemplate": "paragraph--uswds-card-group-regular.html.twig and paragraph--uswds-card-group-flag.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_cards/templates/ (regular-cards.html.twig renders the inner card markup)",
     "preprocessFunction": "none — the cards submodule ships no procedural preprocess function; check modules/uswds_paragraph_components_cards/ for hook classes",
     "drushCommands": [
@@ -134,7 +134,7 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive); bundle-name correction 2026-11-08 against live Drupal 11.4.12 + module config (paragraph bundles uswds_card_group_regular / uswds_card_group_flag are the parents; no uswds_card or uswds_card_group bundle exists)",
     "method": "design-system documentation",
     "evidence": [
       {
@@ -161,10 +161,12 @@
 <p>Provided by <code>uswds_paragraph_components_cards</code> submodule.</p>
 <h2>Structure</h2>
 <pre>
-uswds_card_group (parent)
-├── uswds_card (child — regular)
-├── uswds_card (child — regular)
-└── uswds_card (child — flag variant)
+uswds_card_group_regular (parent — regular variant)
+├── uswds_card_regular (child)
+└── uswds_card_regular (child)
+
+uswds_card_group_flag (parent — flag variant)
+└── uswds_cards_flag (child)
 </pre>
 <h2>Installation</h2>
 <pre>drush pm:enable uswds_paragraph_components_cards uswds_paragraph_components_breakpoints</pre>

@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "registry": "drupal-uswds-ai-components",
+  "note": "Epistemic record: what was tested, what broke, what changed. See _base/findings-ledger.md. Started 2026-11-08 from a claim-verification prototype (workspace/docs/drupal-claim-test-plan.md M0): ground truth = git.drupalcode.org GitLab API, project project/uswds_paragraph_components (id 67728), branch 3.1.x, recursive tree (335 entries).",
+  "findings": [
+    {
+      "id": "F-001",
+      "date": "2026-11-08",
+      "kind": "claim-verification",
+      "result": "broke",
+      "target": [
+        "alert/default"
+      ],
+      "changed": [
+        "tile: instruction.agentPrompt — submodule name singular → plural (uswds_paragraph_components_alerts)",
+        "tile: instruction.drushCommands — drush pm:enable name fixed (plural)",
+        "tile: body prose + code block — same fix (cited ground-truth correction, tile-purity re-baselined)"
+      ],
+      "evidence": [
+        "git.drupalcode.org/api/v4/projects/project%2Fuswds_paragraph_components/repository/tree?ref=3.1.x — modules/uswds_paragraph_components_alerts/ (plural); no modules/uswds_paragraph_components_alert/ exists"
+      ],
+      "summary": "The alert tile's drush command enables a submodule that does not exist.",
+      "detail": "drush pm:enable uswds_paragraph_components_alert (singular) names no module at 3.1.x; the actual submodule is uswds_paragraph_components_alerts. An agent following the tile installs nothing. Caught by comparing tile drushCommands against the module's recursive repo tree."
+    },
+    {
+      "id": "F-002",
+      "date": "2026-11-08",
+      "kind": "claim-verification",
+      "result": "broke",
+      "target": [
+        "setup/default"
+      ],
+      "changed": [
+        "tile: instruction.drushCommands — uswds_paragraph_components_accordion → _accordions, _alert → _alerts (plural)",
+        "tile: body install block — same fix (cited ground-truth correction, tile-purity re-baselined)"
+      ],
+      "evidence": [
+        "git.drupalcode.org/api/v4/projects/project%2Fuswds_paragraph_components/repository/tree?ref=3.1.x — modules/uswds_paragraph_components_accordions/, modules/uswds_paragraph_components_alerts/"
+      ],
+      "summary": "The setup tile's enable list used two singular submodule names that do not exist.",
+      "detail": "The onboarding tile's drush pm:enable line named uswds_paragraph_components_accordion and …_alert (singular); the actual submodules are …_accordions and …_alerts. Two of nine commands in the canonical full-stack install could not run. The sibling accordion tile was corrected 2026-10-30 (see its provenance) — the manual correction pass fixed one tile and missed the rest; this finding is the argument for automating the check (Tier 0/1 of workspace/docs/drupal-claim-test-plan.md)."
+    },
+    {
+      "id": "F-003",
+      "date": "2026-11-08",
+      "kind": "claim-verification",
+      "result": "broke",
+      "target": [
+        "setup/default"
+      ],
+      "changed": [
+        "tile: instruction.drushCommands — added uswds_paragraph_components_breakpoints and uswds_paragraph_components_columns to the enable list",
+        "tile: body install block — same addition (cited ground-truth correction, tile-purity re-baselined)"
+      ],
+      "evidence": [
+        "git.drupalcode.org/api/v4/projects/project%2Fuswds_paragraph_components/repository/tree?ref=3.1.x — 9 submodule dirs incl. …_breakpoints and …_columns",
+        "drupal.org/project/uswds_paragraph_components project page — Bundle Types: Cards requires the Breakpoints submodule"
+      ],
+      "summary": "The setup tile omitted two real submodules, one of which Cards requires.",
+      "detail": "The full-stack setup enabled 7 of 9 submodules, omitting uswds_paragraph_components_breakpoints and …_columns. The project page documents that Cards needs Breakpoints, so the omission could break card-group rendering, not just leave features out."
+    },
+    {
+      "id": "F-004",
+      "date": "2026-11-08",
+      "kind": "claim-verification",
+      "result": "clean",
+      "target": [
+        "accordion/default",
+        "card/default",
+        "modal/default",
+        "process-list/default",
+        "step-indicator/default",
+        "summary-box/default",
+        "alert/default"
+      ],
+      "changed": [],
+      "evidence": [
+        "git.drupalcode.org/api/v4/projects/project%2Fuswds_paragraph_components/repository/tree?ref=3.1.x — 12 twig templates under modules/*/templates/"
+      ],
+      "summary": "All seven contrib-verifiable twigTemplate path claims check out at 3.1.x.",
+      "detail": "Every instruction.twigTemplate claim pointing inside uswds_paragraph_components (file name + directory) matches the actual repository tree, including paragraph--uswds-alert.html.twig and the hooks class under src/Hook/. The defect class is confined to drush submodule names."
+    },
+    {
+      "id": "F-005",
+      "date": "2026-11-08",
+      "kind": "live-install",
+      "result": "broke",
+      "target": [
+        "card/default"
+      ],
+      "changed": [
+        "tile: discovery.paragraphType — 'uswds_card' → 'uswds_card_group_regular' (the actual parent bundle)",
+        "tile: instruction.agentPrompt — invented 'uswds_card_group' parent replaced with the two real parents and their item bundles",
+        "tile: body structure block — same correction (cited ground-truth correction, tile-purity re-baselined)"
+      ],
+      "evidence": [
+        "live ddev Drupal 11.4.12 install: enabled paragraph bundles include uswds_card_group_regular, uswds_card_group_flag, uswds_card_regular, uswds_cards_flag — no uswds_card or uswds_card_group bundle exists",
+        "module config: uswds_card_group_regular.field_cards and uswds_card_group_flag.field_cards (entity_reference_revisions) are the parent→child relations"
+      ],
+      "summary": "The card tile named two paragraph bundles that do not exist ('uswds_card', 'uswds_card_group').",
+      "detail": "A Tier-3 live install (ddev, Drupal 11.4.12, uswds_paragraph_components 3.1.x enabled) showed the real card family: parents uswds_card_group_regular (children uswds_card_regular) and uswds_card_group_flag (children uswds_cards_flag). The tile's paragraphType and structure block pointed at invented bundle names, so an agent following it could not create the parent paragraph. Field-level claims (dotted bundle.field keys) were all correct — the defect is confined to bundle names."
+    },
+    {
+      "id": "F-006",
+      "date": "2026-11-08",
+      "kind": "live-install",
+      "result": "broke",
+      "target": [
+        "step-indicator/default"
+      ],
+      "changed": [
+        "tile: discovery.paragraphType — 'uswds_step_indicator' → 'uswds_step_indicator_list' (the actual parent bundle)",
+        "tile: instruction.agentPrompt — parent type fixed to uswds_step_indicator_list (children were already correct)"
+      ],
+      "evidence": [
+        "live ddev Drupal 11.4.12 install: enabled paragraph bundles include uswds_step_indicator_list and uswds_step_indicator_item — no uswds_step_indicator bundle exists",
+        "module config: uswds_step_indicator_list.field_step_indicator_items (entity_reference_revisions) is the parent→child relation"
+      ],
+      "summary": "The step-indicator tile's parent bundle name does not exist.",
+      "detail": "Same defect class as F-005: discovery.paragraphType and agentPrompt named 'uswds_step_indicator', which the module does not ship. All six list fields and both item fields matched live config exactly — bundle name only."
+    },
+    {
+      "id": "F-007",
+      "date": "2026-11-08",
+      "kind": "live-install",
+      "result": "broke",
+      "target": [
+        "setup/default"
+      ],
+      "changed": [
+        "tile: constraints.knownLimitations — added the minimum-stability requirement with the verified reason",
+        "tile: provenance.source — correction citation appended"
+      ],
+      "evidence": [
+        "composer resolver on ddev Drupal 11.4.12: 'drupal/uswds_paragraph_components 3.1.3 requires drupal/viewsreference ^2.0 … it does not match your minimum-stability' with default stable",
+        "updates.drupal.org release-history XML for viewsreference: 45 releases, supported branch 8.x-2., latest tagged release 2.0.0-beta14 (no stable 2.x tag exists)"
+      ],
+      "summary": "The setup tile's composer command fails on a default Drupal 11 project without a stability override.",
+      "detail": "uswds_paragraph_components 3.1.x requires drupal/viewsreference ^2.0, but no stable 2.x viewsreference tag exists (2.0.0-beta14 is the latest tag, requiring ^10 || ^11 || ^12). A default project (minimum-stability: stable) cannot resolve the require, so the tile's canonical composer command fails as written. The tile's limitations now document the working configuration (minimum-stability: dev + prefer-stable: true, or an explicit ^2.0-beta14 constraint). Incidental: the release-history XML endpoint verified here answers the Tier-2 open question in workspace/docs/drupal-claim-test-plan.md §5."
+    }
+  ]
+}

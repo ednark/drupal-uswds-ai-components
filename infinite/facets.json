@@ -49,10 +49,10 @@
     "paragraphType": {
       "uswds_accordion": 1,
       "uswds_alert": 1,
-      "uswds_card": 1,
+      "uswds_card_group_regular": 1,
       "uswds_modal": 1,
       "uswds_process_list": 1,
-      "uswds_step_indicator": 1,
+      "uswds_step_indicator_list": 1,
       "uswds_summary_box": 1
     },
     "themeRegion": {

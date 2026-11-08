@@ -12,7 +12,7 @@
     "implementationType": "paragraph_bundle",
     "drupalModule": "uswds_paragraph_components",
     "uswdsComponent": "step-indicator",
-    "paragraphType": "uswds_step_indicator",
+    "paragraphType": "uswds_step_indicator_list",
     "complexity": "moderate",
     "drupalVersion": "^10.1 || ^11 || ^12",
     "uswdClass": "usa-step-indicator",
@@ -66,7 +66,7 @@
     ]
   },
   "instruction": {
-    "agentPrompt": "Enable uswds_paragraph_components_step_indicator submodule. Create a parent 'uswds_step_indicator' paragraph, then add 'uswds_step_indicator_item' children. Mark one as current.",
+    "agentPrompt": "Enable uswds_paragraph_components_step_indicator submodule. Create a parent 'uswds_step_indicator_list' paragraph, then add 'uswds_step_indicator_item' children. Mark one as current.",
     "twigTemplate": "paragraph--uswds-step-indicator-list.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_step_indicator/templates/",
     "preprocessFunction": "uswds_paragraph_components_step_indicator_preprocess_paragraph()",
     "drushCommands": [
@@ -126,7 +126,7 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive); bundle-name correction 2026-11-08 against live Drupal 11.4.12 + module config (parent bundle is uswds_step_indicator_list; no uswds_step_indicator bundle exists)",
     "method": "design-system documentation",
     "evidence": [
       {

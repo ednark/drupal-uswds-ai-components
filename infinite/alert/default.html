@@ -68,11 +68,11 @@
     ]
   },
   "instruction": {
-    "agentPrompt": "Enable the uswds_paragraph_components_alert submodule. Add a Paragraphs field allowing 'USWDS Alert' bundle. Editor selects alert type (info, success, warning, error) and enters body text.",
+    "agentPrompt": "Enable the uswds_paragraph_components_alerts submodule. Add a Paragraphs field allowing 'USWDS Alert' bundle. Editor selects alert type (info, success, warning, error) and enters body text.",
     "twigTemplate": "paragraph--uswds-alert.html.twig in modules/contrib/uswds_paragraph_components/modules/uswds_paragraph_components_alerts/templates/",
     "preprocessFunction": "none — the alerts submodule ships no procedural preprocess function; theme registration/overrides come from its own module files",
     "drushCommands": [
-      "drush pm:enable uswds_paragraph_components_alert",
+      "drush pm:enable uswds_paragraph_components_alerts",
       "drush cache:rebuild"
     ],
     "fieldDefinitions": {
@@ -124,7 +124,7 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive)",
+    "source": "verified 2026-10-30 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (repository tree, recursive); submodule-name correction 2026-11-08 against the same tree (modules/uswds_paragraph_components_alerts/ — plural; drush pm:enable + body prose fixed)",
     "method": "design-system documentation",
     "evidence": [
       {
@@ -148,9 +148,9 @@
 </head>
 <body>
 <h1>USWDS Alert — Drupal Paragraph Bundle</h1>
-<p>Provided by <code>uswds_paragraph_components_alert</code> submodule.</p>
+<p>Provided by <code>uswds_paragraph_components_alerts</code> submodule.</p>
 <h2>Installation</h2>
-<pre>drush pm:enable uswds_paragraph_components_alert</pre>
+<pre>drush pm:enable uswds_paragraph_components_alerts</pre>
 <h2>Fields</h2>
 <ul>
 <li><strong>Alert Type</strong>: info, success, warning, error (select list)</li>

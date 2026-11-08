@@ -80,6 +80,38 @@
       "migrationPath": "Re-fetch icon-list/default if you consume its provenance evidence.",
       "designSystemVersion": "3.14.0",
       "notes": "Verified what is verifiable: USWDS ships usa-icon-list and usa-collection; uswds_paragraph_components 3.1.x ships no icon_list or collection submodule, so the custom-module claim holds. The Drupal implementation layer (template filenames, preprocess names, field machine names) has no public source and is now explicitly labeled illustrative rather than presented as fact."
+    },
+    {
+      "version": "2.0.5",
+      "releaseDate": "2026-11-08",
+      "componentCount": 24,
+      "breakingChanges": [],
+      "addedFacets": [],
+      "metadataChanges": [
+        "alert/default + setup/default: drush submodule-name corrections — uswds_paragraph_components_alert → _alerts; _accordion/_alert in setup → _accordions/_alerts (meta agentPrompt/drushCommands + body prose, cited in tile provenance) [findings F-001, F-002]",
+        "setup/default: enable list completed with uswds_paragraph_components_breakpoints + _columns (Breakpoints required by Cards per project page) [finding F-003]",
+        "infinite/findings.json created — first findings ledger entries (F-001…F-004) from claim verification against git.drupalcode.org @ 3.1.x",
+        "agents.json updated stamp aligned to registry version (was stale at 2.0.0)"
+      ],
+      "migrationPath": "Re-fetch alert/default and setup/default if you consume their drushCommands or install blocks — the previous commands named non-existent submodules and would fail.",
+      "designSystemVersion": "3.14.0",
+      "notes": "Claim-verification prototype (workspace/docs/drupal-claim-test-plan.md M0, plain Node + git.drupalcode.org GitLab API, no PHP/drupal needed) found the defects the 2026-10-30 manual correction pass fixed in accordion only. Completes the tier-4 worklist item recorded in 2.0.4 for the drush-name defect class; twig-template path claims verified clean (F-004)."
+    },
+    {
+      "version": "2.0.6",
+      "releaseDate": "2026-11-08",
+      "componentCount": 24,
+      "breakingChanges": [],
+      "addedFacets": [],
+      "metadataChanges": [
+        "card/default: bundle-name correction — paragraphType 'uswds_card' → 'uswds_card_group_regular'; agentPrompt + body structure block name the real parent/item bundles [finding F-005]",
+        "step-indicator/default: bundle-name correction — paragraphType 'uswds_step_indicator' → 'uswds_step_indicator_list' [finding F-006]",
+        "setup/default: knownLimitations gained the composer minimum-stability requirement (viewsreference 2.x has no stable tag) [finding F-007]",
+        "facets: paragraphType facet vocabulary updated (uswds_card_group_regular, uswds_step_indicator_list replace non-existent bundle names)"
+      ],
+      "migrationPath": "Re-fetch card/default and step-indicator/default if you consume paragraphType or agentPrompt — the previous bundle names do not exist and would block parent-paragraph creation. Re-fetch setup/default if you consume knownLimitations.",
+      "designSystemVersion": "3.14.0",
+      "notes": "First Tier-3 live install (ddev Drupal 11.4.12 + SQLite via omitted db container): all 9 corrected submodules enabled clean, all paragraph_bundle bundle/field claims now verified against live config (78/78 checks, workspace/tests/drupal-site-tests/tier3-checks.mjs). Two new defect classes surfaced by execution: invented parent-bundle names (F-005, F-006) and an unresolved composer dependency (F-007)."
     }
   ],
   "designSystemVersions": [

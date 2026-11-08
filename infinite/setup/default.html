@@ -75,7 +75,7 @@
       "drush theme:enable uswds",
       "drush pm:enable paragraphs entity_reference_revisions viewsreference field_group twig_tweak",
       "drush pm:enable uswds_paragraph_components",
-      "drush pm:enable uswds_paragraph_components_accordion uswds_paragraph_components_alert uswds_paragraph_components_cards uswds_paragraph_components_modal uswds_paragraph_components_process_list uswds_paragraph_components_step_indicator uswds_paragraph_components_summary_box",
+      "drush pm:enable uswds_paragraph_components_accordions uswds_paragraph_components_alerts uswds_paragraph_components_breakpoints uswds_paragraph_components_cards uswds_paragraph_components_columns uswds_paragraph_components_modal uswds_paragraph_components_process_list uswds_paragraph_components_step_indicator uswds_paragraph_components_summary_box",
       "drush cache:rebuild"
     ],
     "dependencies": [
@@ -110,7 +110,8 @@
     ],
     "limitations": [
       "USWDS SCSS compilation requires Node.js and gulp",
-      "Some paragraph bundles depend on others (Cards Flag depends on Cards)"
+      "Some paragraph bundles depend on others (Cards Flag depends on Cards)",
+      "Composer setup requires non-stable releases: uswds_paragraph_components needs drupal/viewsreference ^2.0 but every tagged 2.x release is a beta (2.0.0-beta14 is latest) — on a default project set composer minimum-stability: dev + prefer-stable: true, or require drupal/viewsreference:^2.0-beta14 explicitly (verified on Drupal 11.4.12, 2026-11-08)"
     ],
     "portableInvariants": [
       "base theme: uswds",
@@ -124,7 +125,7 @@
   "provenance": {
     "designSystemVersion": "3.14.0",
     "observed": "2026-09-06",
-    "source": "v1→v2 migration (tools/migrate-v2.mjs)",
+    "source": "v1→v2 migration (tools/migrate-v2.mjs); submodule-name correction + breakpoints/columns added 2026-11-08 against git.drupalcode.org/project/uswds_paragraph_components @ 3.1.x (9 submodule dirs; drush pm:enable + body install block fixed; Breakpoints required by Cards per project page); composer minimum-stability limitation added 2026-11-08 from live ddev Drupal 11.4.12 install (composer resolution failed with default stability: viewsreference 2.x has no stable tag)",
     "method": "design-system documentation",
     "evidence": [
       {
@@ -170,9 +171,11 @@ drush pm:enable paragraphs entity_reference_revisions viewsreference field_group
 drush pm:enable uswds_paragraph_components
 
 # 4. Enable desired submodules (pick what you need)
-drush pm:enable uswds_paragraph_components_accordion \
-  uswds_paragraph_components_alert \
+drush pm:enable uswds_paragraph_components_accordions \
+  uswds_paragraph_components_alerts \
+  uswds_paragraph_components_breakpoints \
   uswds_paragraph_components_cards \
+  uswds_paragraph_components_columns \
   uswds_paragraph_components_modal \
   uswds_paragraph_components_process_list \
   uswds_paragraph_components_step_indicator \
